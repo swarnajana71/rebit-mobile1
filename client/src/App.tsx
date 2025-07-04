@@ -1,45 +1,48 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
+import "./index.css";
 
-import { Home } from "@/pages/Home";
-import { QRCode } from "@/pages/QRCode";
-import { Help } from "@/pages/Help";
-import { Challenge } from "@/pages/Challenge";
-import { Map } from "@/pages/Map";
-import { Account } from "@/pages/Account";
-import { SignOut } from "@/pages/SignOut";
-import { SignUp } from "@/pages/SignUp";
-
-function Router() {
+function StatusBar() {
   return (
-    <Switch>
-      {/* Add pages below */}
-      <Route path="/" component={Home} />
-      <Route path="/qrcode" component={QRCode} />
-      <Route path="/help" component={Help} />
-      <Route path="/challenge" component={Challenge} />
-      <Route path="/map" component={Map} />
-      <Route path="/account" component={Account} />
-      <Route path="/signout" component={SignOut} />
-      <Route path="/signup" component={SignUp} />
-      {/* Fallback to 404 */}
-      <Route component={NotFound} />
-    </Switch>
+    <div className="w-[390px] h-[47px] bg-black flex items-center justify-between px-[21px] py-[15px] text-white">
+      {/* Left side - Time */}
+      <div className="text-[15px] font-semibold leading-[20px] tracking-[-0.24px]">
+        9:41
+      </div>
+      
+      {/* Right side - Status icons */}
+      <div className="flex items-center gap-[5px]">
+        {/* Signal bars */}
+        <div className="flex items-end gap-[2px]">
+          <div className="w-[3px] h-[3px] bg-white rounded-full"></div>
+          <div className="w-[3px] h-[5px] bg-white rounded-[1px]"></div>
+          <div className="w-[3px] h-[7px] bg-white rounded-[1px]"></div>
+          <div className="w-[3px] h-[9px] bg-white rounded-[1px]"></div>
+        </div>
+        
+        {/* WiFi icon */}
+        <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+          <path d="M0.5 5.5C0.5 5.5 3.5 1.5 7.5 1.5C11.5 1.5 14.5 5.5 14.5 5.5" stroke="white" strokeWidth="1"/>
+          <path d="M2.5 7.5C2.5 7.5 4.5 5.5 7.5 5.5C10.5 5.5 12.5 7.5 12.5 7.5" stroke="white" strokeWidth="1"/>
+          <path d="M4.5 9.5C4.5 9.5 5.5 8.5 7.5 8.5C9.5 8.5 10.5 9.5 10.5 9.5" stroke="white" strokeWidth="1"/>
+          <circle cx="7.5" cy="10.5" r="0.5" fill="white"/>
+        </svg>
+        
+        {/* Battery icon */}
+        <div className="flex items-center">
+          <div className="w-[24px] h-[11px] border border-white rounded-[2px] relative">
+            <div className="w-[18px] h-[7px] bg-white rounded-[1px] absolute top-[1px] left-[1px]"></div>
+          </div>
+          <div className="w-[1px] h-[4px] bg-white rounded-r-[1px] ml-[1px]"></div>
+        </div>
+      </div>
+    </div>
   );
 }
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <div className="w-full h-screen bg-white flex justify-center">
+      <StatusBar />
+    </div>
   );
 }
 

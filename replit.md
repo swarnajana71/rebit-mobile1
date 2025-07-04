@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a full-stack web application built with React and Express, featuring a modern TypeScript-based architecture. The project uses a monorepo structure with separate client and server directories, sharing common types and schemas through a shared directory. The application utilizes PostgreSQL with Drizzle ORM for database operations and includes a comprehensive UI component library built with Radix UI and Tailwind CSS.
+This is a minimal React application displaying an iPhone status bar component. The project has been simplified to show only the status bar interface with authentic iPhone design elements including time display, signal bars, WiFi icon, and battery indicator. The application uses React with TypeScript and Tailwind CSS for styling.
 
 ## System Architecture
 
@@ -104,6 +104,7 @@ This is a full-stack web application built with React and Express, featuring a m
 ```
 Changelog:
 - July 04, 2025. Initial setup
+- July 04, 2025. Major architectural change - simplified to iPhone status bar only
 ```
 
 ## User Preferences
