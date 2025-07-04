@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 
-export const SignUp = (): JSX.Element => {
+export const SignUp1 = (): JSX.Element => {
   return (
     <div className="bg-white w-full min-h-screen flex justify-center">
       <div className="bg-white w-[390px] relative">
