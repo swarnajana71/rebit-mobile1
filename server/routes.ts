@@ -69,7 +69,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         // Don't fail the request if local backup fails
       }
       
-      res.status(201).json(result);
+      // Return a standardized response with Japanese message
+      res.status(201).json({
+        success: true,
+        message: "会員登録が完了しました",
+        data: result.user || result.data,
+        timestamp: new Date().toISOString(),
+        registrationMethod: "mobile-app"
+      });
       
     } catch (error) {
       console.error("Mobile registration forwarding error:", error);

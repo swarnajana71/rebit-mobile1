@@ -65,8 +65,18 @@ export const SignUp1 = (): JSX.Element => {
     },
   });
 
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password: string) => {
+    return password.length >= 6;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
     if (!email || !password) {
       toast({
         title: "入力エラー",
@@ -75,50 +85,29 @@ export const SignUp1 = (): JSX.Element => {
       });
       return;
     }
+
+    if (!validateEmail(email)) {
+      toast({
+        title: "メールアドレスエラー",
+        description: "正しいメールアドレスを入力してください。",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      toast({
+        title: "パスワードエラー",
+        description: "パスワードは6文字以上で入力してください。",
+        variant: "destructive",
+      });
+      return;
+    }
+
     registerMutation.mutate({ email, password });
   };
 
-  // Test external API connection
-  const testConnection = async () => {
-    try {
-      console.log("=== Testing External API Connection ===");
-      
-      const testData = { email: "test@example.com", password: "test123" };
-      const response = await fetch("/api/proxy/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(testData),
-      });
-      
-      console.log("External API response status:", response.status);
-      const responseText = await response.text();
-      console.log("External API response:", responseText);
-      
-      if (response.ok) {
-        const data = JSON.parse(responseText);
-        toast({
-          title: "外部API接続成功",
-          description: `登録成功: ${data.message || "OK"}`,
-        });
-      } else {
-        toast({
-          title: "外部API接続エラー",
-          description: `ステータス: ${response.status}`,
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("External API test failed:", error);
-      toast({
-        title: "外部API接続エラー",
-        description: `エラー: ${error instanceof Error ? error.message : "Unknown error"}`,
-        variant: "destructive",
-      });
-    }
-  };
+
 
   return (
     <div className="bg-white w-full min-h-screen flex justify-center">
@@ -153,14 +142,37 @@ export const SignUp1 = (): JSX.Element => {
               <label className="text-[#162A39] font-['Noto_Sans_JP'] text-[14px] font-medium">
                 メールアドレス
               </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="border border-[#E6E6E6] rounded-lg h-[48px] px-4 font-['Noto_Sans_JP'] text-[14px] focus:border-[#148176] focus:outline-none"
-                placeholder="example@email.com"
-                required
-              />
+              <div className="relative">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={`border rounded-lg h-[48px] px-4 pr-12 font-['Noto_Sans_JP'] text-[14px] focus:outline-none w-full transition-colors ${
+                    email && !validateEmail(email) 
+                      ? "border-red-400 bg-red-50 focus:border-red-500" 
+                      : email && validateEmail(email)
+                      ? "border-green-400 bg-green-50 focus:border-green-500"
+                      : "border-[#E6E6E6] focus:border-[#148176]"
+                  }`}
+                  placeholder="example@email.com"
+                  required
+                />
+                {email && validateEmail(email) && (
+                  <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                )}
+                {email && !validateEmail(email) && (
+                  <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                )}
+              </div>
+              {email && !validateEmail(email) && (
+                <p className="text-red-500 text-xs font-['Noto_Sans_JP']">
+                  正しいメールアドレスを入力してください
+                </p>
+              )}
             </div>
 
             {/* Password Input */}
@@ -168,14 +180,37 @@ export const SignUp1 = (): JSX.Element => {
               <label className="text-[#162A39] font-['Noto_Sans_JP'] text-[14px] font-medium">
                 パスワード
               </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="border border-[#E6E6E6] rounded-lg h-[48px] px-4 font-['Noto_Sans_JP'] text-[14px] focus:border-[#148176] focus:outline-none"
-                placeholder="パスワードを入力"
-                required
-              />
+              <div className="relative">
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={`border rounded-lg h-[48px] px-4 pr-12 font-['Noto_Sans_JP'] text-[14px] focus:outline-none w-full transition-colors ${
+                    password && !validatePassword(password)
+                      ? "border-red-400 bg-red-50 focus:border-red-500"
+                      : password && validatePassword(password)
+                      ? "border-green-400 bg-green-50 focus:border-green-500"
+                      : "border-[#E6E6E6] focus:border-[#148176]"
+                  }`}
+                  placeholder="6文字以上のパスワード"
+                  required
+                />
+                {password && validatePassword(password) && (
+                  <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                  </svg>
+                )}
+                {password && !validatePassword(password) && (
+                  <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                )}
+              </div>
+              {password && !validatePassword(password) && (
+                <p className="text-red-500 text-xs font-['Noto_Sans_JP']">
+                  パスワードは6文字以上で入力してください
+                </p>
+              )}
             </div>
 
             {/* Terms and Conditions */}
@@ -193,14 +228,7 @@ export const SignUp1 = (): JSX.Element => {
               </p>
             </div>
 
-            {/* Test Connection Button - Debug */}
-            <button
-              type="button"
-              onClick={testConnection}
-              className="w-full py-2 px-4 bg-blue-500 text-white rounded text-sm mb-2"
-            >
-              接続テスト (Debug)
-            </button>
+
 
             {/* Register Button */}
             <button
@@ -218,9 +246,18 @@ export const SignUp1 = (): JSX.Element => {
                 </defs>
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-white font-['Noto_Sans_JP'] text-[16px] font-medium">
-                  {registerMutation.isPending ? "登録中..." : "会員登録する"}
-                </span>
+                {registerMutation.isPending ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span className="text-white font-['Noto_Sans_JP'] text-[16px] font-medium">
+                      登録中...
+                    </span>
+                  </div>
+                ) : (
+                  <span className="text-white font-['Noto_Sans_JP'] text-[16px] font-medium">
+                    会員登録する
+                  </span>
+                )}
               </div>
             </button>
 
