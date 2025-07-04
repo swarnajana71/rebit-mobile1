@@ -13,6 +13,7 @@ import { Map } from "@/pages/Map";
 import { Account } from "@/pages/Account";
 import { SignOut } from "@/pages/SignOut";
 import { SignUp1 } from "@/pages/SignUp1";
+import { SignUp2 } from "@/pages/SignUp2";
 
 import "./index.css";
 
@@ -28,6 +29,7 @@ function Router() {
       <Route path="/account" component={Account} />
       <Route path="/signout" component={SignOut} />
       <Route path="/signup1" component={SignUp1} />
+      <Route path="/signup2" component={SignUp2} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>

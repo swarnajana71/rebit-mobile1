@@ -68,12 +68,14 @@ export const SignUp1 = (): JSX.Element => {
 
           {/* Sign Up Button */}
           <div className="flex flex-col gap-3 w-[358px] items-center">
-            <button className="relative w-[240px] h-[54px] rounded-[27px] overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#148176] to-[#77C6BE]"></div>
-              <span className="relative z-10 text-white font-['Noto_Sans_JP'] text-[16px] font-bold flex items-center justify-center h-full">
-                新規登録
-              </span>
-            </button>
+            <Link href="/signup2">
+              <button className="relative w-[240px] h-[54px] rounded-[27px] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#148176] to-[#77C6BE]"></div>
+                <span className="relative z-10 text-white font-['Noto_Sans_JP'] text-[16px] font-bold flex items-center justify-center h-full">
+                  新規登録
+                </span>
+              </button>
+            </Link>
 
             {/* Login Link */}
             <div className="text-center">
