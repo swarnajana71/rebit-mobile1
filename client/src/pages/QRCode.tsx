@@ -74,7 +74,20 @@ export const QRCode = (): JSX.Element => {
             </Link>
             
             {/* Centered Logo */}
-            <div className="w-[42px] h-7 bg-[url(/figmaAssets/logo.png)] bg-[100%_100%]" />
+            <div className="flex items-center justify-center">
+              <svg width="60" height="28" viewBox="0 0 60 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* "ReBit" */}
+                <text x="0" y="12" fill="#2C4A5A" fontSize="10" fontWeight="bold" fontFamily="Arial, sans-serif">ReBit</text>
+                
+                {/* Yellow dot */}
+                <circle cx="33" cy="4" r="2.5" fill="#F1C40F"/>
+                
+                {/* "box" with yellow "o" */}
+                <text x="0" y="24" fill="#2C4A5A" fontSize="10" fontWeight="bold" fontFamily="Arial, sans-serif">b</text>
+                <text x="8" y="24" fill="#F1C40F" fontSize="10" fontWeight="bold" fontFamily="Arial, sans-serif">o</text>
+                <text x="16" y="24" fill="#2C4A5A" fontSize="10" fontWeight="bold" fontFamily="Arial, sans-serif">x</text>
+              </svg>
+            </div>
           </div>
         </header>
 
