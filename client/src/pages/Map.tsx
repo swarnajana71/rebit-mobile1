@@ -67,26 +67,10 @@ export const Map = (): JSX.Element => {
             </div>
           </div>
 
-          {/* Header with Back Button and Title */}
-          <div className="bg-white w-full flex items-center h-[44px] px-4 relative">
-            {/* Back Button */}
-            <Link href="/">
-              <button className="flex items-center justify-center w-6 h-6 bg-transparent border-none p-0">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 18L9 12L15 6" stroke="#162A39" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-            </Link>
-
-            {/* Title */}
-            <div className="flex-1 text-center">
-              <span className="font-['Noto_Sans_JP'] text-[16px] font-bold text-[#162a39] leading-[160%]">
-                マップ
-              </span>
-            </div>
-
-            {/* Right spacer to balance the back button */}
-            <div className="w-6 h-6"></div>
+          {/* Header with Logo */}
+          <div className="bg-white w-full flex justify-center items-center h-[44px] px-4 relative">
+            {/* Centered Logo */}
+            <div className="w-[42px] h-7 bg-[url(/figmaAssets/logo.png)] bg-[100%_100%]" />
           </div>
         </header>
 
