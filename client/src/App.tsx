@@ -12,6 +12,7 @@ import { Challenge } from "@/pages/Challenge";
 import { Map } from "@/pages/Map";
 import { Account } from "@/pages/Account";
 import { SignOut } from "@/pages/SignOut";
+import { SignUp } from "@/pages/SignUp";
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/map" component={Map} />
       <Route path="/account" component={Account} />
       <Route path="/signout" component={SignOut} />
+      <Route path="/signup" component={SignUp} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
