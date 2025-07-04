@@ -16,12 +16,12 @@ export const Admin = (): JSX.Element => {
   const { data: membersData, isLoading, error } = useQuery({
     queryKey: ["/api/admin/members", dataSource],
     queryFn: async () => {
-      const baseUrl = dataSource === "external" 
-        ? "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev"
-        : "";
+      const endpoint = dataSource === "external" 
+        ? "/api/proxy/members"  // Use proxy for external data
+        : "/api/admin/members"; // Use local endpoint for local data
       
       try {
-        const response = await fetch(`${baseUrl}/api/admin/members`);
+        const response = await fetch(endpoint);
         if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }

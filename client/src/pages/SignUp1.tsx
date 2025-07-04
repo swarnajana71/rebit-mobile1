@@ -11,16 +11,15 @@ export const SignUp1 = (): JSX.Element => {
 
   const registerMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
-      const API_BASE = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
-      const endpoint = `${API_BASE}/api/mobile/auth/register`;
+      // Use proxy endpoint to avoid mixed content issues
+      const endpoint = "/api/proxy/register";
       
-      console.log("Attempting registration to:", endpoint);
+      console.log("Attempting registration via proxy to:", endpoint);
       console.log("Data:", data);
       
       try {
         const response = await fetch(endpoint, {
           method: "POST",
-          mode: "cors",
           headers: { 
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -28,33 +27,20 @@ export const SignUp1 = (): JSX.Element => {
           body: JSON.stringify(data),
         });
         
-        console.log("Response status:", response.status);
-        console.log("Response headers:", Object.fromEntries(response.headers.entries()));
+        console.log("Proxy response status:", response.status);
         
         if (!response.ok) {
-          const errorText = await response.text();
-          console.log("Error response:", errorText);
-          let errorData: any = {};
-          try {
-            errorData = JSON.parse(errorText);
-          } catch (e) {
-            console.log("Could not parse error as JSON");
-          }
-          throw new Error(errorData.message || `HTTP ${response.status}: ${response.statusText}`);
+          const errorData = await response.json().catch(() => ({}));
+          console.log("Proxy error response:", errorData);
+          throw new Error(errorData.message || `HTTP ${response.status}: Registration failed`);
         }
         
         const result = await response.json();
-        console.log("Success response:", result);
+        console.log("Registration success:", result);
         return result;
       } catch (error: unknown) {
         console.error("Registration error:", error);
         if (error instanceof Error) {
-          console.log("Error name:", error.name);
-          console.log("Error message:", error.message);
-          
-          if (error.name === 'TypeError' && (error.message.includes('fetch') || error.message.includes('CORS'))) {
-            throw new Error("ネットワークエラー: 管理サーバーに接続できません。CORSまたはネットワーク問題が発生しています。");
-          }
           throw error;
         }
         throw new Error("予期しないエラーが発生しました");
@@ -90,45 +76,13 @@ export const SignUp1 = (): JSX.Element => {
     registerMutation.mutate({ email, password });
   };
 
-  // Test API connection with multiple methods
+  // Test proxy connection
   const testConnection = async () => {
-    const API_BASE = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
-    
-    // Test 1: Basic connectivity
     try {
-      console.log("=== Testing API Connectivity ===");
-      console.log("API Base URL:", API_BASE);
+      console.log("=== Testing Proxy Connection ===");
       
-      // Test the base URL first
-      console.log("Testing base URL...");
-      const baseResponse = await fetch(API_BASE, { method: "GET" });
-      console.log("Base URL response:", baseResponse.status, baseResponse.statusText);
-    } catch (error) {
-      console.error("Base URL test failed:", error);
-    }
-
-    // Test 2: Registration endpoint with OPTIONS
-    try {
-      console.log("Testing registration endpoint with OPTIONS...");
-      const optionsResponse = await fetch(`${API_BASE}/api/mobile/auth/register`, {
-        method: "OPTIONS",
-        headers: {
-          "Origin": window.location.origin,
-          "Access-Control-Request-Method": "POST",
-          "Access-Control-Request-Headers": "Content-Type"
-        }
-      });
-      console.log("OPTIONS response:", optionsResponse.status, optionsResponse.statusText);
-      console.log("CORS headers:", Object.fromEntries(optionsResponse.headers.entries()));
-    } catch (error) {
-      console.error("OPTIONS test failed:", error);
-    }
-
-    // Test 3: Actual POST test with minimal data
-    try {
-      console.log("Testing POST with test data...");
-      const testData = { email: "test@test.com", password: "test123" };
-      const postResponse = await fetch(`${API_BASE}/api/mobile/auth/register`, {
+      const testData = { email: "test@example.com", password: "test123" };
+      const response = await fetch("/api/proxy/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,20 +90,19 @@ export const SignUp1 = (): JSX.Element => {
         },
         body: JSON.stringify(testData),
       });
-      console.log("POST response status:", postResponse.status);
-      console.log("POST response headers:", Object.fromEntries(postResponse.headers.entries()));
       
-      const responseText = await postResponse.text();
-      console.log("POST response body:", responseText);
+      console.log("Proxy response status:", response.status);
+      const responseText = await response.text();
+      console.log("Proxy response:", responseText);
       
       toast({
-        title: "API テスト完了",
-        description: `POST ステータス: ${postResponse.status}`,
+        title: "プロキシテスト完了",
+        description: `ステータス: ${response.status}`,
       });
     } catch (error) {
-      console.error("POST test failed:", error);
+      console.error("Proxy test failed:", error);
       toast({
-        title: "API接続エラー",
+        title: "プロキシ接続エラー",
         description: `エラー: ${error instanceof Error ? error.message : "Unknown error"}`,
         variant: "destructive",
       });

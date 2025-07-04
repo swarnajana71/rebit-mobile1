@@ -96,6 +96,80 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Proxy endpoint to handle external admin API calls
+  app.post("/api/proxy/register", async (req, res) => {
+    try {
+      const EXTERNAL_API = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      
+      console.log("Proxying registration request to external API...");
+      console.log("Request body:", req.body);
+      
+      const response = await fetch(`${EXTERNAL_API}/api/mobile/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(req.body),
+      });
+      
+      console.log("External API response status:", response.status);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("External API error:", errorText);
+        return res.status(response.status).json({
+          error: "External API error",
+          message: errorText,
+          status: response.status
+        });
+      }
+      
+      const result = await response.json();
+      console.log("External API success:", result);
+      res.json(result);
+      
+    } catch (error) {
+      console.error("Proxy error:", error);
+      res.status(500).json({
+        error: "Proxy error",
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
+  // Proxy endpoint for admin members
+  app.get("/api/proxy/members", async (req, res) => {
+    try {
+      const EXTERNAL_API = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      
+      const response = await fetch(`${EXTERNAL_API}/api/admin/members`, {
+        method: "GET",
+        headers: {
+          "Accept": "application/json"
+        },
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        return res.status(response.status).json({
+          error: "External API error",
+          message: errorText
+        });
+      }
+      
+      const result = await response.json();
+      res.json(result);
+      
+    } catch (error) {
+      console.error("Members proxy error:", error);
+      res.status(500).json({
+        error: "Proxy error",
+        message: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
