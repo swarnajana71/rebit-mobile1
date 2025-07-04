@@ -28,7 +28,7 @@ export const Account = (): JSX.Element => {
     <div className="bg-white w-full min-h-screen">
       <div className="bg-white w-full relative">
         {/* Status Bar */}
-        <header className="flex flex-col w-full items-start pt-4 pb-0 px-0 sticky top-0 left-0 bg-white z-10">
+        <header className="flex flex-col w-[390px] items-start pt-4 pb-0 px-0 sticky top-0 left-0 bg-white z-10">
           <div className="items-center justify-between flex relative self-stretch w-full flex-[0_0_auto]">
             <div className="flex w-[120px] items-center justify-center pl-6 pr-4 py-0 relative">
               <div className={statusBarItems[0].className}>
@@ -68,14 +68,14 @@ export const Account = (): JSX.Element => {
           </div>
 
           {/* Header with Logo */}
-          <div className="bg-white w-full flex justify-center items-center h-[44px] px-4 relative">
+          <div className="bg-white w-[390px] flex justify-center items-center h-[44px] px-0 relative">
             {/* Centered Logo */}
             <div className="w-[42px] h-7 bg-[url(/figmaAssets/logo.png)] bg-[100%_100%]" />
           </div>
         </header>
 
         {/* Main Content */}
-        <div className="flex w-full px-0 py-6 pb-10 flex-col items-center gap-6 min-h-[calc(100vh-120px)]">
+        <div className="flex w-[390px] py-6 pb-10 flex-col items-center gap-6 min-h-[calc(100vh-120px)]">
           {/* Profile Section */}
           <div className="flex w-[358px] flex-col items-center gap-2">
             {/* Profile Image */}
