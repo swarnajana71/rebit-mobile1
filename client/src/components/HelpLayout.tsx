@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'wouter';
 import styles from '../styles/HelpLayout.module.css';
 
 export default function HelpLayout() {
@@ -115,9 +116,11 @@ export default function HelpLayout() {
       </div>
 
       <div className={styles.ButtonContainer}>
-        <button className={styles.BackButton}>
-          戻る
-        </button>
+        <Link href="/">
+          <button className={styles.BackButton}>
+            戻る
+          </button>
+        </Link>
       </div>
     </div>
   );
