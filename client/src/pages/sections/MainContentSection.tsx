@@ -60,7 +60,7 @@ export const MainContentSection = (): JSX.Element => {
   ];
 
   return (
-    <div className="flex flex-col w-full items-start gap-2">
+    <div className="flex flex-col w-full items-start gap-2 pb-32">
       <header className="flex h-11 items-center justify-end pl-4 pr-0 py-2 relative self-stretch w-full bg-white">
         <div className="absolute w-[42px] h-7 top-2 left-1/2 -translate-x-1/2 bg-[url(/figmaAssets/logo.png)] bg-[100%_100%]" />
 
