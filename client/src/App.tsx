@@ -10,6 +10,7 @@ import { QRCode } from "@/pages/QRCode";
 import { Help } from "@/pages/Help";
 import { Challenge } from "@/pages/Challenge";
 import { Map } from "@/pages/Map";
+import { Account } from "@/pages/Account";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/help" component={Help} />
       <Route path="/challenge" component={Challenge} />
       <Route path="/map" component={Map} />
+      <Route path="/account" component={Account} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
