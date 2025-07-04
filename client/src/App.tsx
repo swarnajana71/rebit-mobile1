@@ -14,6 +14,7 @@ import { Account } from "@/pages/Account";
 import { SignOut } from "@/pages/SignOut";
 import { SignUp1 } from "@/pages/SignUp1";
 import { SignUp2 } from "@/pages/SignUp2";
+import { Admin } from "@/pages/Admin";
 
 import "./index.css";
 
@@ -30,6 +31,7 @@ function Router() {
       <Route path="/signout" component={SignOut} />
       <Route path="/signup1" component={SignUp1} />
       <Route path="/signup2" component={SignUp2} />
+      <Route path="/admin" component={Admin} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
