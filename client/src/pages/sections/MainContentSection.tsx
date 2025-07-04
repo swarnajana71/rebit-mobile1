@@ -2,6 +2,7 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import IconArea from "@/components/IconArea";
 
 export const MainContentSection = (): JSX.Element => {
   // Data for campaign banners
@@ -157,7 +158,11 @@ export const MainContentSection = (): JSX.Element => {
                 variant="outline"
                 className="flex flex-col w-20 h-20 items-center justify-center gap-0.5 pt-3.5 pb-[18px] px-0 bg-white rounded-[40px] overflow-hidden shadow-rebit-app-shadow-button-secondary"
               >
-                <div className="w-8 h-8 bg-[url(${button.icon})] bg-[100%_100%]" />
+                {button.id === 1 ? (
+                  <IconArea />
+                ) : (
+                  <div className="w-8 h-8 bg-[url(${button.icon})] bg-[100%_100%]" />
+                )}
                 <span className="font-rebit-app-label-12px text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] whitespace-nowrap">
                   {button.label}
                 </span>
