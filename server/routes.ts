@@ -7,6 +7,50 @@ import { z } from "zod";
 export async function registerRoutes(app: Express): Promise<Server> {
   console.log("=== Registering routes ===");
   
+  // External mobile app registration endpoint (for external projects)
+  app.post('/api/mobile/auth/register', async (req, res) => {
+    try {
+      console.log("=== EXTERNAL MOBILE REGISTRATION ENDPOINT HIT ===");
+      console.log("Request body:", req.body);
+      
+      const { email, password } = req.body;
+      
+      if (!email || !password) {
+        return res.status(400).json({ 
+          error: 'Missing required fields',
+          message: 'Email and password are required'
+        });
+      }
+      
+      // Create member in local database
+      const member = await storage.createMember({
+        email,
+        password, // In production, this should be hashed
+        registrationMethod: "external-mobile"
+      });
+      
+      console.log("Member created successfully:", member);
+      
+      res.status(201).json({
+        success: true,
+        message: "Registration successful",
+        data: {
+          id: member.id,
+          email: member.email,
+          registrationMethod: member.registrationMethod,
+          createdAt: member.createdAt
+        }
+      });
+      
+    } catch (error) {
+      console.error("External mobile registration error:", error);
+      res.status(500).json({ 
+        error: 'Registration failed',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      });
+    }
+  });
+  
   // Mobile app member registration
   app.post("/api/mobile/auth/register", async (req, res) => {
     try {

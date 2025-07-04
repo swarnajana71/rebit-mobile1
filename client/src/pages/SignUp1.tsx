@@ -12,10 +12,10 @@ export const SignUp1 = (): JSX.Element => {
 
   const registerMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
-      // Use proxy endpoint to avoid mixed content issues
-      const endpoint = "/api/proxy/register";
+      // Use direct endpoint since this IS the admin dashboard
+      const endpoint = "/api/mobile/auth/register";
       
-      console.log("Attempting registration via proxy to:", endpoint);
+      console.log("Attempting registration directly to:", endpoint);
       console.log("Data:", data);
       
       try {
@@ -57,35 +57,11 @@ export const SignUp1 = (): JSX.Element => {
     },
     onError: (error: Error) => {
       console.log("Registration error details:", error.message);
-      
-      // Check if it's an external API error and fallback to local storage
-      if (error.message.includes("External API unavailable") || error.message.includes("503") || error.message.includes("HTML instead of JSON")) {
-        console.log("External API unavailable, falling back to local storage");
-        
-        // Try local database storage instead
-        apiRequest("POST", "/api/mobile/auth/register", { email, password }).then(() => {
-          toast({
-            title: "登録完了",
-            description: "ローカルデータベースで登録が完了しました。",
-            variant: "default",
-          });
-          setLocation("/signup2");
-        }).catch((localError: any) => {
-          console.error("Local registration also failed:", localError);
-          toast({
-            title: "登録エラー",
-            description: "登録に失敗しました。もう一度お試しください。",
-            variant: "destructive",
-          });
-        });
-      } else {
-        // Show error message for other errors
-        toast({
-          title: "エラー",
-          description: error.message || "登録に失敗しました。",
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "登録エラー",
+        description: error.message || "登録に失敗しました。もう一度お試しください。",
+        variant: "destructive",
+      });
     },
   });
 
