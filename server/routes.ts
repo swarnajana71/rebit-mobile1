@@ -5,6 +5,8 @@ import { insertMemberSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  console.log("=== Registering routes ===");
+  
   // Mobile app member registration
   app.post("/api/mobile/auth/register", async (req, res) => {
     try {
@@ -97,45 +99,69 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Proxy endpoint to handle external admin API calls
-  app.post("/api/proxy/register", async (req, res) => {
-    try {
-      const EXTERNAL_API = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
-      
-      console.log("Proxying registration request to external API...");
-      console.log("Request body:", req.body);
-      
-      const response = await fetch(`${EXTERNAL_API}/api/mobile/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(req.body),
-      });
-      
+  app.post("/api/proxy/register", (req, res) => {
+    console.log("=== PROXY ENDPOINT HIT ===");
+    console.log("Method:", req.method);
+    console.log("URL:", req.url);
+    console.log("Headers:", req.headers);
+    console.log("Body:", req.body);
+
+    const EXTERNAL_API = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+    
+    fetch(`${EXTERNAL_API}/api/mobile/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(req.body),
+    })
+    .then(async response => {
       console.log("External API response status:", response.status);
+      console.log("External API response headers:", Object.fromEntries(response.headers.entries()));
+      
+      const contentType = response.headers.get('content-type') || '';
+      
+      if (contentType.includes('text/html')) {
+        console.log("External API returned HTML instead of JSON - API endpoint may not exist");
+        res.status(503).json({
+          error: "External API unavailable",
+          message: "The external API is returning HTML instead of JSON. This usually means the API endpoint doesn't exist or the server is misconfigured.",
+          suggestion: "Using local database storage instead"
+        });
+        return;
+      }
       
       if (!response.ok) {
         const errorText = await response.text();
         console.error("External API error:", errorText);
-        return res.status(response.status).json({
+        res.status(response.status).json({
           error: "External API error",
           message: errorText,
           status: response.status
         });
+        return;
       }
       
-      const result = await response.json();
-      console.log("External API success:", result);
-      res.json(result);
-      
-    } catch (error) {
-      console.error("Proxy error:", error);
+      try {
+        const result = await response.json();
+        console.log("External API success:", result);
+        res.json(result);
+      } catch (jsonError) {
+        console.error("Failed to parse JSON response:", jsonError);
+        res.status(502).json({
+          error: "Invalid JSON response",
+          message: "The external API returned invalid JSON"
+        });
+      }
+    })
+    .catch(error => {
+      console.error("Proxy fetch error:", error);
       res.status(500).json({
         error: "Proxy error",
         message: error instanceof Error ? error.message : "Unknown error"
       });
-    }
+    });
   });
 
   // Proxy endpoint for admin members

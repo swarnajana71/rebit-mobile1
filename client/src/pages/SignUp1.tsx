@@ -2,6 +2,7 @@ import { Link, useLocation } from "wouter";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 export const SignUp1 = (): JSX.Element => {
   const [, setLocation] = useLocation();
@@ -55,11 +56,36 @@ export const SignUp1 = (): JSX.Element => {
       setLocation("/signup2");
     },
     onError: (error: Error) => {
-      toast({
-        title: "エラー",
-        description: error.message || "登録に失敗しました。",
-        variant: "destructive",
-      });
+      console.log("Registration error details:", error.message);
+      
+      // Check if it's an external API error and fallback to local storage
+      if (error.message.includes("External API unavailable") || error.message.includes("503")) {
+        console.log("External API unavailable, falling back to local storage");
+        
+        // Try local database storage instead
+        apiRequest("POST", "/api/mobile/auth/register", { email, password }).then(() => {
+          toast({
+            title: "登録完了",
+            description: "ローカルデータベースで登録が完了しました。",
+            variant: "default",
+          });
+          setLocation("/signup2");
+        }).catch((localError: any) => {
+          console.error("Local registration also failed:", localError);
+          toast({
+            title: "登録エラー",
+            description: "登録に失敗しました。もう一度お試しください。",
+            variant: "destructive",
+          });
+        });
+      } else {
+        // Show error message for other errors
+        toast({
+          title: "エラー",
+          description: error.message || "登録に失敗しました。",
+          variant: "destructive",
+        });
+      }
     },
   });
 
