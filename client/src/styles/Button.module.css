@@ -1,0 +1,40 @@
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,700&display=swap";
+.Button_1_2396 {
+  aspect-ratio: 1;
+  background: var(--Gray-White, #fff);
+  border-radius: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  width: 80px;
+  height: 80px;
+  padding: 14px 0 18px;
+  display: flex;
+  box-shadow: 0 2px 8px #162a391a;
+}
+.IconArea_1_4968 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+}
+.Mail_1_5129 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+.generated_送る_1_4969 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: center;
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  display: inline-block;
+}
