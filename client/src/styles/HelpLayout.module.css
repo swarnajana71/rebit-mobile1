@@ -337,3 +337,32 @@
   line-height: 160%;
   display: inline-block;
 }
+.ButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 32px;
+  padding: 16px 0;
+}
+.UnderstandButton {
+  background: var(--text-icon-primary, #162a39);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 160%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-width: 120px;
+}
+.UnderstandButton:hover {
+  background: var(--text-icon-secondary, #475a69);
+}
+.UnderstandButton:active {
+  background: var(--text-icon-primary, #162a39);
+  transform: translateY(1px);
+}

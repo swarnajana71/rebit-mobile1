@@ -113,6 +113,12 @@ export default function HelpLayout() {
           地球の未来のために大きな貢献を成し遂げた、真のエコリーダーです。
         </span>
       </div>
+
+      <div className={styles.ButtonContainer}>
+        <button className={styles.UnderstandButton}>
+          了解しました
+        </button>
+      </div>
     </div>
   );
 }
