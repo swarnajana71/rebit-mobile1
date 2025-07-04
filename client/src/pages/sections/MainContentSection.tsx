@@ -174,7 +174,7 @@ export const MainContentSection = (): JSX.Element => {
                 className="flex flex-col w-20 h-20 items-center justify-center gap-0.5 pt-3.5 pb-[18px] px-0 bg-white rounded-[40px] overflow-hidden shadow-rebit-app-shadow-button-secondary"
               >
                 {button.id === 1 ? (
-                  <IconArea />
+                  <img src="/icons/mail-icon.png" alt="Mail" className="w-8 h-8" />
                 ) : button.id === 2 ? (
                   <Vector />
                 ) : (
