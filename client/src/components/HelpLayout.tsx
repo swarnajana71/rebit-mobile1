@@ -115,8 +115,8 @@ export default function HelpLayout() {
       </div>
 
       <div className={styles.ButtonContainer}>
-        <button className={styles.UnderstandButton}>
-          了解しました
+        <button className={styles.BackButton}>
+          戻る
         </button>
       </div>
     </div>
