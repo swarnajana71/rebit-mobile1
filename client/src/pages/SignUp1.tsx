@@ -90,24 +90,67 @@ export const SignUp1 = (): JSX.Element => {
     registerMutation.mutate({ email, password });
   };
 
-  // Test API connection
+  // Test API connection with multiple methods
   const testConnection = async () => {
     const API_BASE = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+    
+    // Test 1: Basic connectivity
     try {
-      console.log("Testing connection to:", API_BASE);
-      const response = await fetch(`${API_BASE}/api/mobile/auth/register`, {
+      console.log("=== Testing API Connectivity ===");
+      console.log("API Base URL:", API_BASE);
+      
+      // Test the base URL first
+      console.log("Testing base URL...");
+      const baseResponse = await fetch(API_BASE, { method: "GET" });
+      console.log("Base URL response:", baseResponse.status, baseResponse.statusText);
+    } catch (error) {
+      console.error("Base URL test failed:", error);
+    }
+
+    // Test 2: Registration endpoint with OPTIONS
+    try {
+      console.log("Testing registration endpoint with OPTIONS...");
+      const optionsResponse = await fetch(`${API_BASE}/api/mobile/auth/register`, {
         method: "OPTIONS",
+        headers: {
+          "Origin": window.location.origin,
+          "Access-Control-Request-Method": "POST",
+          "Access-Control-Request-Headers": "Content-Type"
+        }
       });
-      console.log("OPTIONS response:", response.status, response.statusText);
+      console.log("OPTIONS response:", optionsResponse.status, optionsResponse.statusText);
+      console.log("CORS headers:", Object.fromEntries(optionsResponse.headers.entries()));
+    } catch (error) {
+      console.error("OPTIONS test failed:", error);
+    }
+
+    // Test 3: Actual POST test with minimal data
+    try {
+      console.log("Testing POST with test data...");
+      const testData = { email: "test@test.com", password: "test123" };
+      const postResponse = await fetch(`${API_BASE}/api/mobile/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(testData),
+      });
+      console.log("POST response status:", postResponse.status);
+      console.log("POST response headers:", Object.fromEntries(postResponse.headers.entries()));
+      
+      const responseText = await postResponse.text();
+      console.log("POST response body:", responseText);
+      
       toast({
-        title: "接続テスト",
-        description: `ステータス: ${response.status}`,
+        title: "API テスト完了",
+        description: `POST ステータス: ${postResponse.status}`,
       });
     } catch (error) {
-      console.error("Connection test failed:", error);
+      console.error("POST test failed:", error);
       toast({
-        title: "接続エラー",
-        description: "サーバーに接続できません",
+        title: "API接続エラー",
+        description: `エラー: ${error instanceof Error ? error.message : "Unknown error"}`,
         variant: "destructive",
       });
     }
