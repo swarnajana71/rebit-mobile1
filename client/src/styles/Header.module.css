@@ -26,13 +26,18 @@
 .Title_1_4654 {
   color: var(--Base-Primary, #403d3c);
   text-align: center;
-  font-family: Noto Sans JP;
+  font-family: 'Noto Sans JP', sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
-  top: 14px;
-  left: 139px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
 }
