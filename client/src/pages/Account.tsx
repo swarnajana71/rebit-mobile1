@@ -156,16 +156,18 @@ export const Account = (): JSX.Element => {
             </div>
 
             {/* Sign Out */}
-            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-[390px]">
-              <span className="text-[#162A39] text-ellipsis whitespace-nowrap flex-col flex-1 justify-center font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%] inline-block overflow-hidden">
-                サインアウト
-              </span>
-              <div className="aspect-square justify-center items-center w-5 h-5 flex">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.913 6.70802 17.917C6.45108 17.921 6.20802 17.8207 6.00802 17.6127C5.80802 17.4043 5.70802 17.161 5.70802 16.8835C5.70802 16.606 5.80802 16.3627 6.00802 16.1543L12.0622 10.0002Z" fill="#162A39"/>
-                </svg>
+            <Link href="/signout">
+              <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-[390px] cursor-pointer hover:bg-gray-50">
+                <span className="text-[#162A39] text-ellipsis whitespace-nowrap flex-col flex-1 justify-center font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%] inline-block overflow-hidden">
+                  サインアウト
+                </span>
+                <div className="aspect-square justify-center items-center w-5 h-5 flex">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.913 6.70802 17.917C6.45108 17.921 6.20802 17.8207 6.00802 17.6127C5.80802 17.4043 5.70802 17.161 5.70802 16.8835C5.70802 16.606 5.80802 16.3627 6.00802 16.1543L12.0622 10.0002Z" fill="#162A39"/>
+                  </svg>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
 
