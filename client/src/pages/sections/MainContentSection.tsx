@@ -1,6 +1,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import IconArea from "@/components/IconArea";
 import Vector from "@/components/Vector";
 import Card from "@/components/Card";
@@ -81,15 +82,17 @@ export const MainContentSection = (): JSX.Element => {
       <header className="flex h-11 items-center justify-end pl-4 pr-0 py-2 relative self-stretch w-full bg-white">
         <div className="absolute w-[42px] h-7 top-2 left-1/2 -translate-x-1/2 bg-[url(/figmaAssets/logo.png)] bg-[100%_100%]" />
 
-        <Button
-          variant="ghost"
-          className="gap-0.5 px-2 py-3 h-auto inline-flex items-center"
-        >
-          <span className="font-rebit-app-label-12px text-[#475a69] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] tracking-[var(--rebit-app-label-12px-letter-spacing)] whitespace-nowrap">
-            会員ランクとは
-          </span>
-          <div className="relative w-5 h-5 bg-[url(/figmaAssets/help.svg)] bg-[100%_100%]" />
-        </Button>
+        <Link href="/help">
+          <Button
+            variant="ghost"
+            className="gap-0.5 px-2 py-3 h-auto inline-flex items-center"
+          >
+            <span className="font-rebit-app-label-12px text-[#475a69] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] tracking-[var(--rebit-app-label-12px-letter-spacing)] whitespace-nowrap">
+              会員ランクとは
+            </span>
+            <div className="relative w-5 h-5 bg-[url(/figmaAssets/help.svg)] bg-[100%_100%]" />
+          </Button>
+        </Link>
       </header>
 
       <div className="flex flex-col items-center gap-6 w-full">

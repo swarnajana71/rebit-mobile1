@@ -7,6 +7,7 @@ import NotFound from "@/pages/not-found";
 
 import { Home } from "@/pages/Home";
 import { QRCode } from "@/pages/QRCode";
+import { Help } from "@/pages/Help";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
       {/* Add pages below */}
       <Route path="/" component={Home} />
       <Route path="/qrcode" component={QRCode} />
+      <Route path="/help" component={Help} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
