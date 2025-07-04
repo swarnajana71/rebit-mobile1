@@ -48,15 +48,18 @@ export const SignOut = (): JSX.Element => {
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col gap-3 w-[358px]">
-            {/* Sign Out Button */}
-            <button className="bg-[#162A39] text-white font-['Noto_Sans_JP'] text-[16px] font-bold h-[52px] rounded-lg w-full">
-              サインアウト
+          <div className="flex flex-col gap-3 w-[358px] items-center">
+            {/* Sign Out Button with Gradient */}
+            <button className="relative w-[240px] h-[54px] rounded-[27px] overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#148176] to-[#77C6BE]"></div>
+              <span className="relative z-10 text-white font-['Noto_Sans_JP'] text-[16px] font-bold flex items-center justify-center h-full">
+                ログアウト
+              </span>
             </button>
 
             {/* Cancel Button */}
             <Link href="/account">
-              <button className="bg-[#F5F5F5] text-[#162A39] font-['Noto_Sans_JP'] text-[16px] font-medium h-[52px] rounded-lg w-full">
+              <button className="bg-[#F5F5F5] text-[#162A39] font-['Noto_Sans_JP'] text-[16px] font-medium h-[52px] rounded-lg w-[240px]">
                 キャンセル
               </button>
             </Link>
