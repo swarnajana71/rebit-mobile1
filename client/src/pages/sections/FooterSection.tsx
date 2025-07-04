@@ -18,7 +18,17 @@ export const FooterSection = (): JSX.Element => {
     {
       icon: "data:image/svg+xml;base64," + btoa(`
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zM15 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z" fill="#162a39"/>
+          <!-- Gift box base -->
+          <rect x="5" y="8" width="14" height="12" rx="1" fill="none" stroke="#162a39" stroke-width="1.5"/>
+          <!-- Vertical ribbon lines -->
+          <line x1="9" y1="8" x2="9" y2="20" stroke="#162a39" stroke-width="1"/>
+          <line x1="12" y1="8" x2="12" y2="20" stroke="#162a39" stroke-width="1"/>
+          <line x1="15" y1="8" x2="15" y2="20" stroke="#162a39" stroke-width="1"/>
+          <!-- Horizontal ribbon across middle -->
+          <line x1="5" y1="14" x2="19" y2="14" stroke="#162a39" stroke-width="1"/>
+          <!-- Bow on top -->
+          <path d="M10 4c0 1 1 2 2 2s2-1 2-2M10 4c-1 0-2 1-2 2s1 2 2 2M14 4c1 0 2 1 2 2s-1 2-2 2" fill="none" stroke="#162a39" stroke-width="1.5"/>
+          <circle cx="12" cy="6" r="1" fill="#162a39"/>
         </svg>
       `),
       label: "チャレンジ",
