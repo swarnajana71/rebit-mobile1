@@ -75,9 +75,26 @@ export const QRCode = (): JSX.Element => {
             
             {/* Centered Logo */}
             <div className="flex items-center justify-center">
-              <span className="text-[#76B900] font-bold text-[16px] tracking-wide">
-                ReBit BOX
-              </span>
+              <svg width="80" height="32" viewBox="0 0 80 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* "Re" */}
+                <text x="2" y="14" fill="#2C4A5A" fontSize="12" fontWeight="bold" fontFamily="sans-serif">Re</text>
+                
+                {/* "B" */}
+                <text x="16" y="14" fill="#2C4A5A" fontSize="12" fontWeight="bold" fontFamily="sans-serif">B</text>
+                
+                {/* Dot */}
+                <circle cx="29" cy="6" r="3" fill="#F1C40F"/>
+                
+                {/* "it" */}
+                <text x="34" y="14" fill="#2C4A5A" fontSize="12" fontWeight="bold" fontFamily="sans-serif">it</text>
+                
+                {/* "bo" - "o" in yellow */}
+                <text x="2" y="28" fill="#2C4A5A" fontSize="12" fontWeight="bold" fontFamily="sans-serif">b</text>
+                <text x="10" y="28" fill="#F1C40F" fontSize="12" fontWeight="bold" fontFamily="sans-serif">o</text>
+                
+                {/* "x" */}
+                <text x="19" y="28" fill="#2C4A5A" fontSize="12" fontWeight="bold" fontFamily="sans-serif">x</text>
+              </svg>
             </div>
           </div>
         </header>
