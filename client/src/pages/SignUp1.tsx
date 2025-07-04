@@ -11,18 +11,32 @@ export const SignUp1 = (): JSX.Element => {
 
   const registerMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
-      const response = await fetch("https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev/api/mobile/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Registration failed");
+      try {
+        const response = await fetch("https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev/api/mobile/auth/register", {
+          method: "POST",
+          headers: { 
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(data),
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(errorData.message || `HTTP ${response.status}: Registration failed`);
+        }
+        
+        return await response.json();
+      } catch (err) {
+        console.error("Registration error:", err);
+        if (err instanceof Error) {
+          if (err.name === 'TypeError' && err.message.includes('fetch')) {
+            throw new Error("ネットワークエラー: 管理サーバーに接続できません");
+          }
+          throw err;
+        }
+        throw new Error("予期しないエラーが発生しました");
       }
-      
-      return await response.json();
     },
     onSuccess: (response) => {
       toast({

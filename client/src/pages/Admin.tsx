@@ -20,11 +20,17 @@ export const Admin = (): JSX.Element => {
         ? "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev"
         : "";
       
-      const response = await fetch(`${baseUrl}/api/admin/members`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch members");
+      try {
+        const response = await fetch(`${baseUrl}/api/admin/members`);
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+      } catch (err) {
+        console.error("API fetch error:", err);
+        const errorMessage = err instanceof Error ? err.message : "Unknown error";
+        throw new Error(`Failed to fetch members: ${errorMessage}`);
       }
-      return response.json();
     },
   });
 
