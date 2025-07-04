@@ -53,17 +53,18 @@ export const SignUp2 = (): JSX.Element => {
             </button>
 
             {/* Button 2 - Amazon */}
-            <button className="relative w-[358px] h-[48px] rounded-[24px] overflow-hidden flex items-center justify-center">
-              <div className="w-full h-full flex items-center justify-center">
-                <svg width="270" height="48" viewBox="0 0 270 48" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" className="w-full h-full">
-                  <rect width="270" height="48" fill="url(#pattern0_2_8675)"/>
-                  <defs>
-                    <pattern id="pattern0_2_8675" patternContentUnits="objectBoundingBox" width="1" height="1">
-                      <use xlinkHref="#image0_2_8675" transform="scale(0.00174292 0.00980392)"/>
-                    </pattern>
-                    <image id="image0_2_8675" width="574" height="102" preserveAspectRatio="none" xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAj4AAABmCAYAAAG8d6uJAAAABGdBTUEAALGPC/xhBQAAQABJREFUeAHsHQdgFcVyXggtCT10BBQERHrvCgiKooJKUUCKNEUsgH7siA0UkSbSpEsVBUFUVBCQ3ntVKVKkQxI6yZ+Z3dm72/dCAlgQbyFv2/Sdndvdu3cvAJgmvVf+F8r9ZFkgEOgX+OydsgkPNW0LgUAAICEBsMA5lgBLQDml/2R/WGoIj49H7S+dNYZgq7BJlL3ESmKo/1T/pfMQfvFSPCTEn0G9A2wk8pq0RV7SJlLZ6a3vevqpNcFAK9O58W+c/hTBHpSAU6xymZvgx/FtcMYlQOTtPT0eRv1q4qFBsZ9ql1/4x8yXz36xFLMfQNz4X3vnFU5S3WYCRZjrk4pPOIhD6yWpCnL/pPcWfhPH7ZI5Pb0ecIZwGzFqfGsaOb5VRyZAF8vFD9VT3YITpcZxc+RGEhGTVBJp8WQCqn8LKF/yDxoEP6FDyYOsf9X+0Y8xhIq/3JeCzpfZpGhJRpKh8l+YgOGtHqf9W+cjY6/95TpDfJxn+Gmu7Tk5JEDfNuH4vfCv7SQKh+Jx3YkHIfY/FqJ/8LGQEcyHi84wCL94FfAfKF+PJK2wZyC/4hJQ4wQJYbM89J8vFIe/UHaGCf+dDj8v4hRPGcaH/pFCDdNqBQdKYRSGbcWMwBYFPhYd8MfhL8vYLVUQAXL4z+wUG5VDhGQ1DL8KMFrYfuBfcpVg/DZh+Iv1Y/VU/xD8BQog/LRvvYb/CH9JhOQ1DDdZgXhUGPzJRHVMqT9HCcRhY/9YT/P9I+fEJGZT8Y/1D0sKY/9YT/RPBT3fO8f4vf/L7XEo8hJ/5YEXp/rLBfzc6VcQIP8b6hKcHOqNQNOh8ePfKwShwBJfnUhT3pKXTBfD4+pOLJfePn14Ey7Lc/9k/wlz6QWH5eTICAkIfkIxuKB0kOF/FJ/9X8xLhJv8B9hc/eP+yYtlr5JfpJQ9aw/IyQ/5E/OhZM3r6X9pA8Q8OPff31z9qdl7DvWOJXvz2dRB+A8Z/8W8U5BFnXpDPDf8U1wvMXwGJUzJCd/6k/L0fvdXJ9kXDXULf1sWZl8nofpFJjX8z8bH5vOo9x9sP8gJ2X8xL3SInvJANw8xL8zBff/TxJBJz5y4FhzEGf9xMJP8DzpFRBYfqCR6+/A9K1M56L+avr4vvhQq+P6hJPF8if6JhiAG49z8n/+WB79z89/wvFq9aRD8A/0fZVrjHweH8vIz/R/3Xwy3yzJ4x9rQ/8kG/5X8uJxe+T9t6L/YPy7cOFUjPNfzn/Sg/1Qf8f2qLVqxn+c/9E/vYe+SgOa+f85BdQnpFH8/2TKnZCP/pvf6B/Sf8H/Y/05/z1L/SfqIvxUf/eRxzLUh5IPwH8W/bCU9Ef6A7/Pqn+s6l/y1wy0xhAR+wf45f9n1M2/oWGRCgvJF5MfqJ8cf6QNg/8o35IXlhqO/pf+5e0/8Pjy7S/8F9EGAz/jPpPfKkzyLQBvFNq1D9Z/e//WP+xjOSVo/6TZUzwH8U/GX8+/t/qhH7+P/ZP93VQj6/4i/Rq/1Zd8nT49k0xWBi/lrWe3/LL0/gk6Rh/Hdfvp+g/yv9k/cTnR9k8g7/H+W6w/8fZRlqC/q/Wc2N/t+w/1gE/8T+A/vHXGgOBwJ8gv/v6Kn/v41D/ZiP/W+fA/6z6p8Y/q4FJh9pD1zONX/y2L8W//5Zt+kHh+K+Nwz3Y8+w/Wgqr8Y/wL8mJvp6P/I8mTDn6a9zz/VlCTc/5uv8x/4vz3aQfJxCFj/w8FIQ=="/>
-                  </defs>
+            <button className="relative w-[358px] h-[48px] rounded-[24px] overflow-hidden bg-[#FF9900] flex items-center justify-center border border-[#E7C547]">
+              <div className="flex items-center justify-center gap-3">
+                {/* Amazon Logo */}
+                <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.5 9.5C8.5 11.3 10 12.8 11.8 12.8H14.5C16.3 12.8 17.8 11.3 17.8 9.5C17.8 7.7 16.3 6.2 14.5 6.2H11.8C10 6.2 8.5 7.7 8.5 9.5Z" fill="#232F3E"/>
+                  <path d="M20.5 14.8C18.9 16.1 16.5 16.8 14.4 16.8C11.5 16.8 8.9 15.6 6.9 13.8C6.7 13.6 6.9 13.3 7.1 13.4C9.3 14.9 12.1 15.8 15 15.8C17 15.8 19.2 15.4 21.2 14.5C21.6 14.3 21.9 14.7 20.5 14.8Z" fill="#232F3E"/>
+                  <path d="M21.4 13.8C21.2 13.5 20 13.6 19.5 13.7C19.3 13.7 19.3 13.5 19.5 13.4C20.5 12.6 22.2 12.8 22.4 13.1C22.6 13.4 22.3 15.1 21.4 15.8C21.2 16 21 15.9 21.1 15.7C21.5 14.9 21.6 13.9 21.4 13.8Z" fill="#232F3E"/>
                 </svg>
+                {/* Text */}
+                <span className="text-[#232F3E] font-['Noto_Sans_JP'] text-[15px] font-medium">
+                  Amazonアカウントでログイン
+                </span>
               </div>
             </button>
 
