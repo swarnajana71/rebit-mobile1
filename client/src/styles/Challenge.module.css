@@ -1,0 +1,232 @@
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,700;0,500&display=swap";
+
+.challengeContainer {
+  background: var(--Gray-White, #fff);
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.challengeContent {
+  flex: 1;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 390px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.challengeHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: center;
+}
+
+.challengeTitle {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 160%;
+  margin: 0;
+}
+
+.challengeSubtitle {
+  color: var(--text-icon-secondary, #475a69);
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 160%;
+  margin: 0;
+}
+
+.challengeList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.challengeCard {
+  background: var(--Gray-White, #fff);
+  border: 1px solid var(--Border-Basic, #e6e6e6);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s ease;
+}
+
+.challengeCard:hover {
+  box-shadow: 0 4px 12px rgba(22, 42, 57, 0.1);
+}
+
+.challengeIcon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.challengeInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.challengeCardTitle {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 140%;
+  margin: 0;
+}
+
+.challengeDescription {
+  color: var(--text-icon-secondary, #475a69);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 160%;
+  margin: 0;
+}
+
+.challengeReward {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rewardText {
+  color: var(--text-icon-secondary, #475a69);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.rewardPoints {
+  color: #4A9B8C;
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.challengeStatus {
+  flex-shrink: 0;
+}
+
+.statusBadge {
+  background: var(--Navy-Navy-50, #e6eaed);
+  color: var(--text-icon-secondary, #475a69);
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.statusBadgeComplete {
+  background: #4A9B8C;
+  color: white;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.statusBadgeProgress {
+  background: #FFA726;
+  color: white;
+  border-radius: 16px;
+  padding: 4px 12px;
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.challengeProgress {
+  background: var(--Navy-Navy-50, #e6eaed);
+  border-radius: 12px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.progressTitle {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 140%;
+  margin: 0;
+}
+
+.progressBar {
+  background: #D1D5DB;
+  border-radius: 8px;
+  height: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  background: #4A9B8C;
+  height: 100%;
+  border-radius: 8px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progressText span {
+  color: var(--text-icon-secondary, #475a69);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 375px) {
+  .challengeContent {
+    padding: 16px 12px;
+  }
+  
+  .challengeCard {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .challengeIcon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .challengeCardTitle {
+    font-size: 15px;
+  }
+  
+  .challengeDescription {
+    font-size: 13px;
+  }
+}
