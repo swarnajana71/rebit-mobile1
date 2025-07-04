@@ -114,7 +114,75 @@ export const QRCode = (): JSX.Element => {
         </div>
 
         {/* Footer */}
-        <FooterSection />
+        <footer className="fixed bottom-0 left-0 right-0 flex flex-col w-full items-start bg-transparent z-50">
+          <div className="flex flex-col items-center justify-end p-2 relative self-stretch w-full flex-[0_0_auto] bg-white border-t [border-top-style:solid] border-[#e6e6e6]">
+            <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
+              {/* Left side navigation items */}
+              <div className="flex items-center gap-2 relative flex-1 grow">
+                {/* Home button with outlined icon */}
+                <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 12H5V21H10V15H14V21H19V12H22L12 2Z" stroke="#162a39" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
+                    <rect x="9" y="15" width="6" height="6" stroke="#162a39" strokeWidth="1.5" fill="none"/>
+                  </svg>
+                  <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
+                    ホーム
+                  </div>
+                </button>
+                
+                {/* Challenge button */}
+                <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
+                  <div
+                    className="w-6 h-6 bg-[100%_100%]"
+                    style={{ backgroundImage: `url(/figmaAssets/gift-400.svg)` }}
+                  />
+                  <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
+                    チャレンジ
+                  </div>
+                </button>
+              </div>
+
+              {/* Right side navigation items */}
+              <div className="flex items-center justify-end gap-2 relative flex-1 grow">
+                {/* Map button */}
+                <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
+                  <div
+                    className="w-6 h-6 bg-[100%_100%]"
+                    style={{ backgroundImage: `url(/figmaAssets/pin.svg)` }}
+                  />
+                  <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
+                    マップ
+                  </div>
+                </button>
+                
+                {/* Account button */}
+                <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
+                  <div
+                    className="w-6 h-6 bg-[100%_100%]"
+                    style={{ backgroundImage: `url(/figmaAssets/account.svg)` }}
+                  />
+                  <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
+                    アカウント
+                  </div>
+                </button>
+              </div>
+
+              {/* Center QR code button */}
+              <Link href="/qrcode">
+                <button className="flex flex-col w-16 h-16 items-center justify-center gap-0.5 pt-0 pb-1 px-0 absolute top-[-22px] left-1/2 transform -translate-x-1/2 bg-[#162a39] rounded-[47px] border-none">
+                  <div className="w-6 h-6 bg-[url(/figmaAssets/qrcode.svg)] relative bg-[100%_100%]" />
+                  <div className="relative self-stretch font-med-12px font-[number:var(--med-12px-font-weight)] text-white text-[length:var(--med-12px-font-size)] text-center tracking-[var(--med-12px-letter-spacing)] leading-[var(--med-12px-line-height)] [font-style:var(--med-12px-font-style)]">
+                    QRコード
+                  </div>
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          <div className="relative self-stretch w-full h-[34px] bg-white">
+            <div className="relative w-36 h-[5px] mx-auto mt-5 bg-black rounded-[100px]" />
+          </div>
+        </footer>
       </div>
     </div>
   );
