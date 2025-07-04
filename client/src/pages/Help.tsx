@@ -76,7 +76,7 @@ export const Help = (): JSX.Element => {
         <div className="flex flex-col items-center p-0 gap-6 absolute w-[358px] left-1/2 transform -translate-x-1/2 top-[122px]">
           <div className="flex flex-col items-start p-0 gap-6 w-[358px]">
             {/* Main Heading */}
-            <Heading>会員ランクとは</Heading>
+            <Heading>会員ランクの説明</Heading>
             
             {/* Section 1 */}
             <div className="flex flex-col items-start p-0 gap-4 w-[358px]">
