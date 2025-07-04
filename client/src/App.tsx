@@ -6,12 +6,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 
 import { Home } from "@/pages/Home";
+import { QRCode } from "@/pages/QRCode";
 
 function Router() {
   return (
     <Switch>
       {/* Add pages below */}
       <Route path="/" component={Home} />
+      <Route path="/qrcode" component={QRCode} />
       {/* Fallback to 404 */}
       <Route component={NotFound} />
     </Switch>
