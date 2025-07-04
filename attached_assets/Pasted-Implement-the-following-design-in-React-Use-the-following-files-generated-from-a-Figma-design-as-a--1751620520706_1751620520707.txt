@@ -1,0 +1,65 @@
+Implement the following design in React. Use the following files generated from a Figma design as a specification and guide:
+
+```src/styles/Header.module.css
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,700&display=swap";
+.Header_2_9268 {
+  border-bottom: 1px solid var(--Border-Basic, #e6e6e6);
+  background: var(--White, #fff);
+  box-sizing: border-box;
+  align-items: center;
+  height: 44px;
+  padding: 8px 8px 8px 16px;
+  display: flex;
+  position: relative;
+}
+.IconArea_1_4653 {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  display: flex;
+}
+.ArrowBack_1_5127 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+.Title_1_4654 {
+  color: var(--Base-Primary, #403d3c);
+  text-align: center;
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 14px;
+  left: 139px;
+}
+
+```
+
+---
+
+```src/components/Header.tsx
+import React from 'react';
+import styles from '../styles/Header.module.css';
+
+
+export default function Header() {
+  return (
+    <div className={styles.Header_2_9268}>
+      <div className={styles.IconArea_1_4653}>
+        <div className={styles.ArrowBack_1_5127}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5502 12.0001L10.9002 19.3501C11.1502 19.6001 11.271 19.8918 11.2627 20.2251C11.2544 20.5584 11.1252 20.8501 10.8752 21.1001C10.6252 21.3501 10.3335 21.4751 10.0002 21.4751C9.66686 21.4751 9.3752 21.3501 9.1252 21.1001L1.4252 13.4251C1.2252 13.2251 1.0752 13.0001 0.975195 12.7501C0.875195 12.5001 0.825195 12.2501 0.825195 12.0001C0.825195 11.7501 0.875195 11.5001 0.975195 11.2501C1.0752 11.0001 1.2252 10.7751 1.4252 10.5751L9.1252 2.87511C9.3752 2.62511 9.67103 2.50428 10.0127 2.51261C10.3544 2.52094 10.6502 2.65011 10.9002 2.90011C11.1502 3.15011 11.2752 3.44178 11.2752 3.77511C11.2752 4.10844 11.1502 4.40011 10.9002 4.65011L3.5502 12.0001Z" fill="#162A39" />
+          </svg>
+        </div>
+      </div><span className={styles.Title_1_4654}>&#x4F1A;&#x54E1;&#x30E9;&#x30F3;&#x30AF;&#x3068;&#x306F;</span>
+    </div>
+  );
+}
+```
+

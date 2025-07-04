@@ -1,0 +1,38 @@
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,700&display=swap";
+.Header_2_9268 {
+  border-bottom: 1px solid var(--Border-Basic, #e6e6e6);
+  background: var(--White, #fff);
+  box-sizing: border-box;
+  align-items: center;
+  height: 44px;
+  padding: 8px 8px 8px 16px;
+  display: flex;
+  position: relative;
+}
+.IconArea_1_4653 {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  display: flex;
+}
+.ArrowBack_1_5127 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+.Title_1_4654 {
+  color: var(--Base-Primary, #403d3c);
+  text-align: center;
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 14px;
+  left: 139px;
+}
