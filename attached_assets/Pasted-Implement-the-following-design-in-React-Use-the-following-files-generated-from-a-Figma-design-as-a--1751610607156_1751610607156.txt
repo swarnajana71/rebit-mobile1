@@ -1,0 +1,391 @@
+Implement the following design in React. Use the following files generated from a Figma design as a specification and guide:
+
+```src/styles/Layout.module.css
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,700;0,500&display=swap";
+.Layout_2_8228 {
+  flex-direction: column;
+  align-items: center;
+  gap: -40px;
+  width: 100%;
+  display: flex;
+}
+.Card_2_8229 {
+  border-radius: var(--Regular, 8px);
+  background: var(
+    --Gradation-Seed,
+    linear-gradient(270deg, #eae3c8 0%, #dad29d 100%)
+  );
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 358px;
+  padding: 16px 0;
+  display: flex;
+  box-shadow: 0 4px 4px #0000001a;
+}
+.Layout_1_4703 {
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0 16px 0 24px;
+  display: flex;
+}
+.Layout_1_4704 {
+  flex: 1 0 0;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  display: flex;
+}
+.Name_1_4705,
+.Label_1_4706 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
+  display: inline-block;
+}
+.Rank_1_4707 {
+  background: var(--Gray-White, #fff);
+  border-radius: 16px;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 8px 8px 8px 12px;
+  display: flex;
+}
+.Label_1_4708 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Rank_1_4709 {
+  align-items: center;
+  gap: 2px;
+  display: flex;
+}
+.Label_1_4710 {
+  color: var(--Yellow-Yellow-800, #776907);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.IconArea_1_4711 {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+.Seed_1_5125 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+.Layout_1_4712 {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+}
+.Layout_1_4713 {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  display: flex;
+}
+.Layout_1_4714 {
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  display: flex;
+}
+.Label_1_4715 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  display: inline-block;
+}
+.Layout_1_4716 {
+  flex: 1 0 0;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+  display: flex;
+}
+.Value_1_4717 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: right;
+  flex: 1 0 0;
+  max-height: 34px;
+  font-family: Noto Sans JP;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  display: inline-block;
+}
+.Label_1_4718 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4719 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+.Label_1_4720 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4721 {
+  align-items: flex-end;
+  gap: 8px;
+  display: flex;
+}
+.Value_1_4722 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: right;
+  font-family: Noto Sans JP;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  display: inline-block;
+}
+.Label_1_4723 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4724 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+.Label_1_4725 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4726 {
+  align-items: flex-end;
+  gap: 8px;
+  display: flex;
+}
+.Value_1_4727 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: right;
+  font-family: Noto Sans JP;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  display: inline-block;
+}
+.Label_1_4728 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Section_2_8230 {
+  background: var(--Navy-Navy-50, #e6eaed);
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 64px 16px 24px;
+  display: flex;
+}
+.Button_1_2396 {
+  aspect-ratio: 1;
+  background: var(--Gray-White, #fff);
+  border-radius: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  width: 80px;
+  height: 80px;
+  padding: 14px 0 18px;
+  display: flex;
+  box-shadow: 0 2px 8px #162a391a;
+}
+.IconArea_1_4968 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  display: flex;
+}
+.Mail_1_5129 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+.generated_送る_1_4969 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: center;
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%;
+  display: inline-block;
+}
+.Button_1_2397 {
+  aspect-ratio: 1;
+  background: var(--Gray-White, #fff);
+  border-radius: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  width: 80px;
+  height: 80px;
+  padding: 14px 0 18px;
+  display: flex;
+  box-shadow: 0 2px 8px #162a391a;
+}
+.Change_1_5129 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+.Button_1_2398 {
+  aspect-ratio: 1;
+  background: var(--Gray-White, #fff);
+  border-radius: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  width: 80px;
+  height: 80px;
+  padding: 14px 0 18px;
+  display: flex;
+  box-shadow: 0 2px 8px #162a391a;
+}
+.History_1_5129 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+```
+
+---
+
+```src/components/Layout.tsx
+import React from 'react';
+import styles from '../styles/Layout.module.css';
+
+
+export default function Layout() {
+  return (
+    <div className={styles.Layout_2_8228}>
+      <div className={styles.Card_2_8229}>
+        <div className={styles.Layout_1_4703}>
+          <div className={styles.Layout_1_4704}><span className={styles.Name_1_4705}>Hirota</span><span className={styles.Label_1_4706}>&#x3055;&#x3093;</span></div>
+          <div className={styles.Rank_1_4707}><span className={styles.Label_1_4708}>&#x4F1A;&#x54E1;&#x30E9;&#x30F3;&#x30AF;</span>
+            <div className={styles.Rank_1_4709}><span className={styles.Label_1_4710}>Seed</span>
+              <div className={styles.IconArea_1_4711}>
+                <div className={styles.Seed_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.00004 16.6668C4.54171 16.6668 4.14935 16.5036 3.82296 16.1772C3.49657 15.8509 3.33337 15.4585 3.33337 15.0002C3.33337 14.5418 3.49657 14.1495 3.82296 13.8231C4.14935 13.4967 4.54171 13.3335 5.00004 13.3335C5.45837 13.3335 5.85073 13.4967 6.17712 13.8231C6.50351 14.1495 6.66671 14.5418 6.66671 15.0002C6.66671 15.4585 6.50351 15.8509 6.17712 16.1772C5.85073 16.5036 5.45837 16.6668 5.00004 16.6668ZM11.6667 16.6668C11.2084 16.6668 10.816 16.5036 10.4896 16.1772C10.1632 15.8509 10 15.4585 10 15.0002C10 14.5418 10.1632 14.1495 10.4896 13.8231C10.816 13.4967 11.2084 13.3335 11.6667 13.3335C12.125 13.3335 12.5174 13.4967 12.8438 13.8231C13.1702 14.1495 13.3334 14.5418 13.3334 15.0002C13.3334 15.4585 13.1702 15.8509 12.8438 16.1772C12.5174 16.5036 12.125 16.6668 11.6667 16.6668ZM8.33337 13.3335C7.87504 13.3335 7.48268 13.1703 7.15629 12.8439C6.8299 12.5175 6.66671 12.1252 6.66671 11.6668C6.66671 11.2085 6.8299 10.8161 7.15629 10.4897C7.48268 10.1634 7.87504 10.0002 8.33337 10.0002C8.79171 10.0002 9.18407 10.1634 9.51046 10.4897C9.83684 10.8161 10 11.2085 10 11.6668C10 12.1252 9.83684 12.5175 9.51046 12.8439C9.18407 13.1703 8.79171 13.3335 8.33337 13.3335ZM15 13.3335C14.5417 13.3335 14.1493 13.1703 13.823 12.8439C13.4966 12.5175 13.3334 12.1252 13.3334 11.6668C13.3334 11.2085 13.4966 10.8161 13.823 10.4897C14.1493 10.1634 14.5417 10.0002 15 10.0002C15.4584 10.0002 15.8507 10.1634 16.1771 10.4897C16.5035 10.8161 16.6667 11.2085 16.6667 11.6668C16.6667 12.1252 16.5035 12.5175 16.1771 12.8439C15.8507 13.1703 15.4584 13.3335 15 13.3335ZM5.00004 10.0002C4.54171 10.0002 4.14935 9.83697 3.82296 9.51058C3.49657 9.18419 3.33337 8.79183 3.33337 8.3335C3.33337 7.87516 3.49657 7.4828 3.82296 7.15641C4.14935 6.83002 4.54171 6.66683 5.00004 6.66683C5.45837 6.66683 5.85073 6.83002 6.17712 7.15641C6.50351 7.4828 6.66671 7.87516 6.66671 8.3335C6.66671 8.79183 6.50351 9.18419 6.17712 9.51058C5.85073 9.83697 5.45837 10.0002 5.00004 10.0002ZM11.6667 10.0002C11.2084 10.0002 10.816 9.83697 10.4896 9.51058C10.1632 9.18419 10 8.79183 10 8.3335C10 7.87516 10.1632 7.4828 10.4896 7.15641C10.816 6.83002 11.2084 6.66683 11.6667 6.66683C12.125 6.66683 12.5174 6.83002 12.8438 7.15641C13.1702 7.4828 13.3334 7.87516 13.3334 8.3335C13.3334 8.79183 13.1702 9.18419 12.8438 9.51058C12.5174 9.83697 12.125 10.0002 11.6667 10.0002ZM8.33337 6.66683C7.87504 6.66683 7.48268 6.50363 7.15629 6.17725C6.8299 5.85086 6.66671 5.4585 6.66671 5.00016C6.66671 4.54183 6.8299 4.14947 7.15629 3.82308C7.48268 3.49669 7.87504 3.3335 8.33337 3.3335C8.79171 3.3335 9.18407 3.49669 9.51046 3.82308C9.83684 4.14947 10 4.54183 10 5.00016C10 5.4585 9.83684 5.85086 9.51046 6.17725C9.18407 6.50363 8.79171 6.66683 8.33337 6.66683ZM15 6.66683C14.5417 6.66683 14.1493 6.50363 13.823 6.17725C13.4966 5.85086 13.3334 5.4585 13.3334 5.00016C13.3334 4.54183 13.4966 4.14947 13.823 3.82308C14.1493 3.49669 14.5417 3.3335 15 3.3335C15.4584 3.3335 15.8507 3.49669 16.1771 3.82308C16.5035 4.14947 16.6667 4.54183 16.6667 5.00016C16.6667 5.4585 16.5035 5.85086 16.1771 6.17725C15.8507 6.50363 15.4584 6.66683 15 6.66683Z" fill="#776907" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.Layout_1_4712}>
+          <div className={styles.Layout_1_4713}>
+            <div className={styles.Layout_1_4714}><span className={styles.Label_1_4715}>ReBit&#x30DD;&#x30A4;&#x30F3;&#x30C8;&#x6B8B;&#x9AD8;</span>
+              <div className={styles.Layout_1_4716}><span className={styles.Value_1_4717}>100</span><span className={styles.Label_1_4718}>pt</span></div>
+            </div>
+            <div className={styles.Layout_1_4719}><span className={styles.Label_1_4720}>&#x5186;&#x63DB;&#x7B97;</span>
+              <div className={styles.Layout_1_4721}><span className={styles.Value_1_4722}>10</span><span className={styles.Label_1_4723}>&#x5186;</span></div>
+            </div>
+          </div>
+          <div className={styles.Layout_1_4724}><span className={styles.Label_1_4725}>CO2&#x524A;&#x6E1B;&#x91CF;</span>
+            <div className={styles.Layout_1_4726}><span className={styles.Value_1_4727}>-5</span><span className={styles.Label_1_4728}>%</span></div>
+          </div>
+        </div>
+      </div>
+      <div className={styles.Section_2_8230}>
+        <div className={styles.Button_1_2396}>
+          <div className={styles.IconArea_1_4968}>
+            <div className={styles.Mail_1_5129}><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.33268 26.6668C4.59935 26.6668 3.97157 26.4057 3.44935 25.8835C2.92713 25.3613 2.66602 24.7335 2.66602 24.0002V8.00016C2.66602 7.26683 2.92713 6.63905 3.44935 6.11683C3.97157 5.59461 4.59935 5.3335 5.33268 5.3335H26.666C27.3994 5.3335 28.0271 5.59461 28.5494 6.11683C29.0716 6.63905 29.3327 7.26683 29.3327 8.00016V24.0002C29.3327 24.7335 29.0716 25.3613 28.5494 25.8835C28.0271 26.4057 27.3994 26.6668 26.666 26.6668H5.33268ZM26.666 10.6668L16.6994 16.9002C16.5882 16.9668 16.4716 17.0168 16.3494 17.0502C16.2271 17.0835 16.1105 17.1002 15.9994 17.1002C15.8882 17.1002 15.7716 17.0835 15.6494 17.0502C15.5271 17.0168 15.4105 16.9668 15.2994 16.9002L5.33268 10.6668V24.0002H26.666V10.6668ZM15.9994 14.6668L26.666 8.00016H5.33268L15.9994 14.6668ZM5.33268 11.0002V9.03349V9.06683V9.05016V11.0002Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div><span className={styles.generated_送る_1_4969}>&#x9001;&#x308B;</span>
+        </div>
+        <div className={styles.Button_1_2397}>
+          <div className={styles.IconArea_1_4968}>
+            <div className={styles.Change_1_5129}><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.76575 21.3332L10.2658 23.8332C10.5102 24.0777 10.6324 24.3832 10.6324 24.7499C10.6324 25.1166 10.5102 25.4332 10.2658 25.6999C9.99909 25.9666 9.68242 26.0999 9.31575 26.0999C8.94909 26.0999 8.63242 25.9666 8.36576 25.6999L3.59909 20.9332C3.46576 20.7999 3.37131 20.6555 3.31576 20.4999C3.2602 20.3443 3.23242 20.1777 3.23242 19.9999C3.23242 19.8221 3.2602 19.6555 3.31576 19.4999C3.37131 19.3443 3.46576 19.1999 3.59909 19.0666L8.39909 14.2666C8.66575 13.9999 8.97687 13.8721 9.33242 13.8832C9.68798 13.8943 9.99909 14.0332 10.2658 14.2999C10.5102 14.5666 10.638 14.8777 10.6491 15.2332C10.6602 15.5888 10.5324 15.8999 10.2658 16.1666L7.76575 18.6666H15.9991C16.3769 18.6666 16.6935 18.7943 16.9491 19.0499C17.2046 19.3055 17.3324 19.6221 17.3324 19.9999C17.3324 20.3777 17.2046 20.6943 16.9491 20.9499C16.6935 21.2055 16.3769 21.3332 15.9991 21.3332H7.76575ZM24.2324 13.3332H15.9991C15.6213 13.3332 15.3046 13.2055 15.0491 12.9499C14.7935 12.6943 14.6658 12.3777 14.6658 11.9999C14.6658 11.6221 14.7935 11.3055 15.0491 11.0499C15.3046 10.7943 15.6213 10.6666 15.9991 10.6666H24.2324L21.7324 8.16657C21.488 7.92212 21.3658 7.61657 21.3658 7.2499C21.3658 6.88324 21.488 6.56657 21.7324 6.2999C21.9991 6.03324 22.3158 5.8999 22.6824 5.8999C23.0491 5.8999 23.3658 6.03324 23.6324 6.2999L28.3991 11.0666C28.5324 11.1999 28.6269 11.3443 28.6824 11.4999C28.738 11.6555 28.7658 11.8221 28.7658 11.9999C28.7658 12.1777 28.738 12.3443 28.6824 12.4999C28.6269 12.6555 28.5324 12.7999 28.3991 12.9332L23.5991 17.7332C23.3324 17.9999 23.0213 18.1277 22.6658 18.1166C22.3102 18.1055 21.9991 17.9666 21.7324 17.6999C21.488 17.4332 21.3602 17.1221 21.3491 16.7666C21.338 16.411 21.4658 16.0999 21.7324 15.8332L24.2324 13.3332Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div><span className={styles.generated_送る_1_4969}>&#x4EA4;&#x63DB;</span>
+        </div>
+        <div className={styles.Button_1_2398}>
+          <div className={styles.IconArea_1_4968}>
+            <div className={styles.History_1_5129}><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 28C13.2 28 10.7222 27.15 8.56667 25.45C6.41111 23.75 5.01111 21.5778 4.36667 18.9333C4.27778 18.6 4.34444 18.2944 4.56667 18.0167C4.78889 17.7389 5.08889 17.5778 5.46667 17.5333C5.82222 17.4889 6.14444 17.5556 6.43333 17.7333C6.72222 17.9111 6.92222 18.1778 7.03333 18.5333C7.56667 20.5333 8.66667 22.1667 10.3333 23.4333C12 24.7 13.8889 25.3333 16 25.3333C18.6 25.3333 20.8056 24.4278 22.6167 22.6167C24.4278 20.8056 25.3333 18.6 25.3333 16C25.3333 13.4 24.4278 11.1944 22.6167 9.38333C20.8056 7.57222 18.6 6.66667 16 6.66667C14.4667 6.66667 13.0333 7.02222 11.7 7.73333C10.3667 8.44444 9.24444 9.42222 8.33333 10.6667H10.6667C11.0444 10.6667 11.3611 10.7944 11.6167 11.05C11.8722 11.3056 12 11.6222 12 12C12 12.3778 11.8722 12.6944 11.6167 12.95C11.3611 13.2056 11.0444 13.3333 10.6667 13.3333H5.33333C4.95556 13.3333 4.63889 13.2056 4.38333 12.95C4.12778 12.6944 4 12.3778 4 12V6.66667C4 6.28889 4.12778 5.97222 4.38333 5.71667C4.63889 5.46111 4.95556 5.33333 5.33333 5.33333C5.71111 5.33333 6.02778 5.46111 6.28333 5.71667C6.53889 5.97222 6.66667 6.28889 6.66667 6.66667V8.46667C7.8 7.04444 9.18333 5.94444 10.8167 5.16667C12.45 4.38889 14.1778 4 16 4C17.6667 4 19.2278 4.31667 20.6833 4.95C22.1389 5.58333 23.4056 6.43889 24.4833 7.51667C25.5611 8.59444 26.4167 9.86111 27.05 11.3167C27.6833 12.7722 28 14.3333 28 16C28 17.6667 27.6833 19.2278 27.05 20.6833C26.4167 22.1389 25.5611 23.4056 24.4833 24.4833C23.4056 25.5611 22.1389 26.4167 20.6833 27.05C19.2278 27.6833 17.6667 28 16 28ZM17.3333 15.4667L20.6667 18.8C20.9111 19.0444 21.0333 19.3556 21.0333 19.7333C21.0333 20.1111 20.9111 20.4222 20.6667 20.6667C20.4222 20.9111 20.1111 21.0333 19.7333 21.0333C19.3556 21.0333 19.0444 20.9111 18.8 20.6667L15.0667 16.9333C14.9333 16.8 14.8333 16.65 14.7667 16.4833C14.7 16.3167 14.6667 16.1444 14.6667 15.9667V10.6667C14.6667 10.2889 14.7944 9.97222 15.05 9.71667C15.3056 9.46111 15.6222 9.33333 16 9.33333C16.3778 9.33333 16.6944 9.46111 16.95 9.71667C17.2056 9.97222 17.3333 10.2889 17.3333 10.6667V15.4667Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div><span className={styles.generated_送る_1_4969}>&#x5C65;&#x6B74;</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+

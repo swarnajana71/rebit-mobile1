@@ -19,6 +19,7 @@
   padding: 16px 0;
   display: flex;
   box-shadow: 0 4px 4px #0000001a;
+  position: relative;
   z-index: 1;
 }
 .Layout_1_4703 {
