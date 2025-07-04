@@ -74,109 +74,93 @@ export const Map = (): JSX.Element => {
           </div>
         </header>
 
-        {/* Main Content */}
-        <div className="flex-1 flex flex-col items-center justify-start p-4 pb-32 min-h-[calc(100vh-120px)]">
-          {/* Map Container */}
-          <div className="w-full max-w-[358px] h-[500px] bg-white rounded-lg overflow-hidden shadow-sm">
-            {/* Map Header */}
-            <div className="bg-[#00C896] h-12 flex items-center justify-center">
-              <span className="font-['Noto_Sans_JP'] text-white text-[14px] font-medium">
-                ReBit BOX マップ
-              </span>
-            </div>
-
-            {/* Map Content */}
-            <div className="relative w-full h-[452px] bg-[#f0f8ff]">
-              {/* Map Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <svg width="100%" height="100%" className="w-full h-full">
-                  <defs>
-                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#00C896" strokeWidth="1"/>
-                    </pattern>
-                  </defs>
-                  <rect width="100%" height="100%" fill="url(#grid)"/>
-                </svg>
-              </div>
-
-              {/* Location Markers */}
-              <div className="absolute top-20 left-12">
-                <div className="relative">
-                  <div className="w-8 h-8 bg-[#00C896] rounded-full flex items-center justify-center shadow-lg">
-                    <div className="w-4 h-4 bg-white rounded-full"></div>
-                  </div>
-                  <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded text-xs font-['Noto_Sans_JP'] text-[#162a39] shadow-md whitespace-nowrap">
-                    渋谷駅前
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute top-32 right-16">
-                <div className="relative">
-                  <div className="w-8 h-8 bg-[#00C896] rounded-full flex items-center justify-center shadow-lg">
-                    <div className="w-4 h-4 bg-white rounded-full"></div>
-                  </div>
-                  <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded text-xs font-['Noto_Sans_JP'] text-[#162a39] shadow-md whitespace-nowrap">
-                    新宿南口
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2">
-                <div className="relative">
-                  <div className="w-8 h-8 bg-[#00C896] rounded-full flex items-center justify-center shadow-lg">
-                    <div className="w-4 h-4 bg-white rounded-full"></div>
-                  </div>
-                  <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded text-xs font-['Noto_Sans_JP'] text-[#162a39] shadow-md whitespace-nowrap">
-                    品川駅
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute top-16 right-8">
-                <div className="relative">
-                  <div className="w-8 h-8 bg-[#FF6B6B] rounded-full flex items-center justify-center shadow-lg">
-                    <div className="w-4 h-4 bg-white rounded-full"></div>
-                  </div>
-                  <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded text-xs font-['Noto_Sans_JP'] text-[#162a39] shadow-md whitespace-nowrap">
-                    現在地
-                  </div>
-                </div>
-              </div>
-
-              {/* Current Location Indicator */}
-              <div className="absolute bottom-4 left-4 bg-white rounded-lg p-3 shadow-md">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#FF6B6B] rounded-full"></div>
-                  <span className="font-['Noto_Sans_JP'] text-[12px] text-[#162a39]">現在地</span>
-                </div>
-                <div className="flex items-center gap-2 mt-1">
-                  <div className="w-2 h-2 bg-[#00C896] rounded-full"></div>
-                  <span className="font-['Noto_Sans_JP'] text-[12px] text-[#162a39]">ReBit BOX</span>
-                </div>
-              </div>
-            </div>
+        {/* Search Section */}
+        <div className="flex items-center gap-4 w-full px-4 py-4">
+          <div className="flex items-center gap-2 flex-1 h-12 px-4 border border-[#2b988d] rounded-lg bg-white">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#b3b3b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M21 21L16.65 16.65" stroke="#b3b3b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <input 
+              type="text" 
+              placeholder="場所やエリアを検索" 
+              className="flex-1 text-[14px] font-['Noto_Sans_JP'] text-[#b3b3b3] bg-transparent border-none outline-none"
+            />
           </div>
+          <button className="flex items-center justify-center w-12 h-12 border border-[#2b988d] bg-white rounded-full">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 6H20" stroke="#2b988d" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M8 12H16" stroke="#2b988d" strokeWidth="2" strokeLinecap="round"/>
+              <path d="M10 18H14" stroke="#2b988d" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+          </button>
+        </div>
 
-          {/* Distance Info */}
-          <div className="mt-4 w-full max-w-[358px] bg-white rounded-lg p-4 shadow-sm">
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <span className="font-['Noto_Sans_JP'] text-[14px] font-medium text-[#162a39]">
-                  最寄りのReBit BOX
-                </span>
-                <div className="mt-1">
-                  <span className="font-['Noto_Sans_JP'] text-[12px] text-[#666]">
-                    渋谷駅前 - 徒歩3分 (約240m)
-                  </span>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 bg-[#00C896] rounded-full"></div>
-                <span className="font-['Noto_Sans_JP'] text-[12px] text-[#00C896] font-medium">
-                  利用可能
-                </span>
-              </div>
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col items-center justify-start pb-32 min-h-[calc(100vh-200px)]">
+          {/* Map Container */}
+          <div className="w-full h-[764px] bg-[#d3d3d3] relative overflow-hidden">
+            {/* Map Background with Grid Pattern */}
+            <div className="absolute inset-0 opacity-20">
+              <svg width="100%" height="100%" className="w-full h-full">
+                <defs>
+                  <pattern id="mapGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#999" strokeWidth="1"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#mapGrid)"/>
+              </svg>
+            </div>
+
+            {/* Location Pins */}
+            <div className="absolute top-20 left-16">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="28" cy="28" r="28" fill="#00C896"/>
+                <circle cx="28" cy="28" r="20" fill="white"/>
+                <circle cx="28" cy="28" r="12" fill="#00C896"/>
+                <path d="M28 32C30.2091 32 32 30.2091 32 28C32 25.7909 30.2091 24 28 24C25.7909 24 24 25.7909 24 28C24 30.2091 25.7909 32 28 32Z" fill="white"/>
+              </svg>
+            </div>
+
+            <div className="absolute top-40 right-20">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="28" cy="28" r="28" fill="#00C896"/>
+                <circle cx="28" cy="28" r="20" fill="white"/>
+                <circle cx="28" cy="28" r="12" fill="#00C896"/>
+                <path d="M28 32C30.2091 32 32 30.2091 32 28C32 25.7909 30.2091 24 28 24C25.7909 24 24 25.7909 24 28C24 30.2091 25.7909 32 28 32Z" fill="white"/>
+              </svg>
+            </div>
+
+            <div className="absolute bottom-32 left-1/2 transform -translate-x-1/2">
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="28" cy="28" r="28" fill="#00C896"/>
+                <circle cx="28" cy="28" r="20" fill="white"/>
+                <circle cx="28" cy="28" r="12" fill="#00C896"/>
+                <path d="M28 32C30.2091 32 32 30.2091 32 28C32 25.7909 30.2091 24 28 24C25.7909 24 24 25.7909 24 28C24 30.2091 25.7909 32 28 32Z" fill="white"/>
+              </svg>
+            </div>
+
+            {/* Map overlay with subtle roads/paths */}
+            <div className="absolute inset-0">
+              <svg width="100%" height="100%" className="w-full h-full">
+                <path d="M0 200 Q200 180 400 200 T800 200" stroke="#999" strokeWidth="3" fill="none" opacity="0.3"/>
+                <path d="M100 0 Q120 200 100 400 T100 800" stroke="#999" strokeWidth="3" fill="none" opacity="0.3"/>
+                <path d="M200 100 Q400 120 600 100 T1000 100" stroke="#999" strokeWidth="2" fill="none" opacity="0.2"/>
+                <path d="M300 0 Q320 300 300 600 T300 1000" stroke="#999" strokeWidth="2" fill="none" opacity="0.2"/>
+              </svg>
+            </div>
+
+            {/* Location Labels */}
+            <div className="absolute top-28 left-20 bg-white px-2 py-1 rounded shadow-sm">
+              <span className="font-['Noto_Sans_JP'] text-[10px] text-[#162a39] font-medium">渋谷駅前</span>
+            </div>
+            
+            <div className="absolute top-48 right-24 bg-white px-2 py-1 rounded shadow-sm">
+              <span className="font-['Noto_Sans_JP'] text-[10px] text-[#162a39] font-medium">新宿南口</span>
+            </div>
+            
+            <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded shadow-sm">
+              <span className="font-['Noto_Sans_JP'] text-[10px] text-[#162a39] font-medium">品川駅</span>
             </div>
           </div>
         </div>
