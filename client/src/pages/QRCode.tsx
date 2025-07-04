@@ -115,14 +115,18 @@ export const QRCode = (): JSX.Element => {
             <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
               {/* Left side navigation items */}
               <div className="flex items-center gap-2 relative flex-1 grow">
-                {/* Home button with outlined icon */}
+                {/* Home button with filled icon */}
                 <Link href="/">
                   <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3 12L12 3L21 12" stroke="#162a39" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M5 10V19C5 19.5523 5.44772 20 6 20H18C18.5523 20 19 19.5523 19 19V10" stroke="#162a39" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-                      <rect x="10" y="15" width="4" height="5" stroke="#162a39" strokeWidth="1.5" fill="none"/>
-                      <circle cx="11.5" cy="17" r="0.5" fill="#162a39"/>
+                      <g clip-path="url(#clip0_40000004_2374)">
+                        <path d="M6 19H9V14C9 13.7167 9.09583 13.4792 9.2875 13.2875C9.47917 13.0958 9.71667 13 10 13H14C14.2833 13 14.5208 13.0958 14.7125 13.2875C14.9042 13.4792 15 13.7167 15 14V19H18V10L12 5.5L6 10V19ZM4 19V10C4 9.68333 4.07083 9.38333 4.2125 9.1C4.35417 8.81667 4.55 8.58333 4.8 8.4L10.8 3.9C11.15 3.63333 11.55 3.5 12 3.5C12.45 3.5 12.85 3.63333 13.2 3.9L19.2 8.4C19.45 8.58333 19.6458 8.81667 19.7875 9.1C19.9292 9.38333 20 9.68333 20 10V19C20 19.55 19.8042 20.0208 19.4125 20.4125C19.0208 20.8042 18.55 21 18 21H14C13.7167 21 13.4792 20.9042 13.2875 20.7125C13.0958 20.5208 13 20.2833 13 20V15H11V20C11 20.2833 10.9042 20.5208 10.7125 20.7125C10.5208 20.9042 10.2833 21 10 21H6C5.45 21 4.97917 20.8042 4.5875 20.4125C4.19583 20.0208 4 19.55 4 19Z" fill="#162A39"/>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_40000004_2374">
+                          <rect width="24" height="24" fill="white"/>
+                        </clipPath>
+                      </defs>
                     </svg>
                     <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
                       ホーム
