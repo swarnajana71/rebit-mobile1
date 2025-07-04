@@ -76,22 +76,32 @@ export const Map = (): JSX.Element => {
 
         {/* Search Section */}
         <div className="flex items-center gap-4 w-full px-4 py-4">
-          <div className="flex items-center gap-2 flex-1 h-12 px-4 border border-[#2b988d] rounded-lg bg-white">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#b3b3b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M21 21L16.65 16.65" stroke="#b3b3b3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            <input 
-              type="text" 
-              placeholder="場所やエリアを検索" 
-              className="flex-1 text-[14px] font-['Noto_Sans_JP'] text-[#b3b3b3] bg-transparent border-none outline-none"
-            />
+          <div className="flex items-center gap-2 flex-1 h-12 px-4 border border-[#808080] rounded-lg bg-white">
+            <div className="flex items-center justify-center w-6 h-6">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 16C7.68333 16 6.14583 15.3708 4.8875 14.1125C3.62917 12.8542 3 11.3167 3 9.5C3 7.68333 3.62917 6.14583 4.8875 4.8875C6.14583 3.62917 7.68333 3 9.5 3C11.3167 3 12.8542 3.62917 14.1125 4.8875C15.3708 6.14583 16 7.68333 16 9.5C16 10.2333 15.8833 10.925 15.65 11.575C15.4167 12.225 15.1 12.8 14.7 13.3L20.3 18.9C20.4833 19.0833 20.575 19.3167 20.575 19.6C20.575 19.8833 20.4833 20.1167 20.3 20.3C20.1167 20.4833 19.8833 20.575 19.6 20.575C19.3167 20.575 19.0833 20.4833 18.9 20.3L13.3 14.7C12.8 15.1 12.225 15.4167 11.575 15.65C10.925 15.8833 10.2333 16 9.5 16ZM9.5 14C10.75 14 11.8125 13.5625 12.6875 12.6875C13.5625 11.8125 14 10.75 14 9.5C14 8.25 13.5625 7.1875 12.6875 6.3125C11.8125 5.4375 10.75 5 9.5 5C8.25 5 7.1875 5.4375 6.3125 6.3125C5.4375 7.1875 5 8.25 5 9.5C5 10.75 5.4375 11.8125 6.3125 12.6875C7.1875 13.5625 8.25 14 9.5 14Z" fill="#b3b3b3"/>
+              </svg>
+            </div>
+            <span className="flex-1 text-[14px] font-['Noto_Sans_JP'] font-medium text-[#b3b3b3] leading-[160%]">
+              店名, エリア名から検索
+            </span>
           </div>
-          <button className="flex items-center justify-center w-12 h-12 border border-[#2b988d] bg-white rounded-full">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 6H20" stroke="#2b988d" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M8 12H16" stroke="#2b988d" strokeWidth="2" strokeLinecap="round"/>
-              <path d="M10 18H14" stroke="#2b988d" strokeWidth="2" strokeLinecap="round"/>
+          <button className="flex items-center justify-center">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" fill="white"/>
+              <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="url(#paint0_linear_40000004_3796)"/>
+              <g clipPath="url(#clip0_40000004_3796)">
+                <path d="M15 31C14.7167 31 14.4792 30.9042 14.2875 30.7125C14.0958 30.5208 14 30.2833 14 30C14 29.7167 14.0958 29.4792 14.2875 29.2875C14.4792 29.0958 14.7167 29 15 29H23C23.2833 29 23.5208 29.0958 23.7125 29.2875C23.9042 29.4792 24 29.7167 24 30C24 30.2833 23.9042 30.5208 23.7125 30.7125C23.5208 30.9042 23.2833 31 23 31H15ZM15 26C14.7167 26 14.4792 25.9042 14.2875 25.7125C14.0958 25.5208 14 25.2833 14 25C14 24.7167 14.0958 24.4792 14.2875 24.2875C14.4792 24.0958 14.7167 24 15 24H18C18.2833 24 18.5208 24.0958 18.7125 24.2875C18.9042 24.4792 19 24.7167 19 25C19 25.2833 18.9042 25.5208 18.7125 25.7125C18.5208 25.9042 18.2833 26 18 26H15ZM15 21C14.7167 21 14.4792 20.9042 14.2875 20.7125C14.0958 20.5208 14 20.2833 14 20C14 19.7167 14.0958 19.4792 14.2875 19.2875C14.4792 19.0958 14.7167 19 15 19H21C21.2833 19 21.5208 19.0958 21.7125 19.2875C21.9042 19.4792 22 19.7167 22 20C22 20.2833 21.9042 20.5208 21.7125 20.7125C21.5208 20.9042 21.2833 21 21 21H15ZM25 26V20C25 19.7167 25.0958 19.4792 25.2875 19.2875C25.4792 19.0958 25.7167 19 26 19C26.2833 19 26.5208 19.0958 26.7125 19.2875C26.9042 19.4792 27 19.7167 27 20V21.35L29.65 18.7C29.8333 18.5167 30.0667 18.425 30.35 18.425C30.6333 18.425 30.8667 18.5167 31.05 18.7C31.2333 18.8833 31.325 19.1167 31.325 19.4C31.325 19.6833 31.2333 19.9167 31.05 20.1L28.4 22.75H29.95C30.2333 22.75 30.4708 22.8458 30.6625 23.0375C30.8542 23.2292 30.95 23.4667 30.95 23.75C30.95 24.0333 30.8542 24.2708 30.6625 24.4625C30.4708 24.6542 30.2333 24.75 29.95 24.75H28.4L31.05 27.4C31.2333 27.5833 31.325 27.8167 31.325 28.1C31.325 28.3833 31.2333 28.6167 31.05 28.8C30.8667 28.9833 30.6333 29.075 30.35 29.075C30.0667 29.075 29.8333 28.9833 29.65 28.8L27 26.15V29C27 29.2833 26.9042 29.5208 26.7125 29.7125C26.5208 29.9042 26.2833 30 26 30C25.7167 30 25.4792 29.9042 25.2875 29.7125C25.0958 29.5208 25 29.2833 25 29V26Z" fill="#2B988D"/>
+              </g>
+              <defs>
+                <linearGradient id="paint0_linear_40000004_3796" x1="-4.76067e-09" y1="24.192" x2="47.9995" y2="24.3543" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#2B988D"/>
+                  <stop offset="1" stopColor="#A4E0D9"/>
+                </linearGradient>
+                <clipPath id="clip0_40000004_3796">
+                  <rect width="24" height="24" fill="white" transform="translate(12 12)"/>
+                </clipPath>
+              </defs>
             </svg>
           </button>
         </div>
