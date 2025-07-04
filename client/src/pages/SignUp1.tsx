@@ -102,10 +102,10 @@ export const SignUp1 = (): JSX.Element => {
     registerMutation.mutate({ email, password });
   };
 
-  // Test proxy connection
+  // Test external API connection
   const testConnection = async () => {
     try {
-      console.log("=== Testing Proxy Connection ===");
+      console.log("=== Testing External API Connection ===");
       
       const testData = { email: "test@example.com", password: "test123" };
       const response = await fetch("/api/proxy/register", {
@@ -117,18 +117,27 @@ export const SignUp1 = (): JSX.Element => {
         body: JSON.stringify(testData),
       });
       
-      console.log("Proxy response status:", response.status);
+      console.log("External API response status:", response.status);
       const responseText = await response.text();
-      console.log("Proxy response:", responseText);
+      console.log("External API response:", responseText);
       
-      toast({
-        title: "プロキシテスト完了",
-        description: `ステータス: ${response.status}`,
-      });
+      if (response.ok) {
+        const data = JSON.parse(responseText);
+        toast({
+          title: "外部API接続成功",
+          description: `登録成功: ${data.message || "OK"}`,
+        });
+      } else {
+        toast({
+          title: "外部API接続エラー",
+          description: `ステータス: ${response.status}`,
+          variant: "destructive",
+        });
+      }
     } catch (error) {
-      console.error("Proxy test failed:", error);
+      console.error("External API test failed:", error);
       toast({
-        title: "プロキシ接続エラー",
+        title: "外部API接続エラー",
         description: `エラー: ${error instanceof Error ? error.message : "Unknown error"}`,
         variant: "destructive",
       });

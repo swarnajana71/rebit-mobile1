@@ -98,6 +98,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Debug endpoint to check what's available on external server
+  app.get("/api/debug/external", async (req, res) => {
+    const EXTERNAL_API = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+    
+    try {
+      console.log("Testing external API endpoints...");
+      
+      // Test different possible endpoints
+      const endpoints = [
+        "/",
+        "/api",
+        "/api/mobile",
+        "/api/mobile/auth",
+        "/api/mobile/auth/register",
+        "/api/admin",
+        "/api/admin/members"
+      ];
+      
+      const results = [];
+      
+      for (const endpoint of endpoints) {
+        try {
+          const response = await fetch(`${EXTERNAL_API}${endpoint}`, {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+          });
+          
+          const contentType = response.headers.get('content-type') || '';
+          const size = response.headers.get('content-length') || 'unknown';
+          
+          results.push({
+            endpoint,
+            status: response.status,
+            contentType,
+            size,
+            isJson: contentType.includes('application/json')
+          });
+        } catch (error) {
+          results.push({
+            endpoint,
+            error: error instanceof Error ? error.message : 'Unknown error'
+          });
+        }
+      }
+      
+      res.json({ results });
+    } catch (error) {
+      res.status(500).json({ error: error instanceof Error ? error.message : 'Unknown error' });
+    }
+  });
+
   // Proxy endpoint to handle external admin API calls
   app.post("/api/proxy/register", (req, res) => {
     console.log("=== PROXY ENDPOINT HIT ===");
@@ -106,7 +157,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     console.log("Headers:", req.headers);
     console.log("Body:", req.body);
 
-    const EXTERNAL_API = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+    const EXTERNAL_API = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
     
     fetch(`${EXTERNAL_API}/api/mobile/auth/register`, {
       method: "POST",
@@ -114,7 +165,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      body: JSON.stringify(req.body),
+      body: JSON.stringify({
+        email: req.body.email,
+        password: req.body.password
+      }),
     })
     .then(async response => {
       console.log("External API response status:", response.status);
@@ -167,7 +221,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Proxy endpoint for admin members
   app.get("/api/proxy/members", async (req, res) => {
     try {
-      const EXTERNAL_API = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      const EXTERNAL_API = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
       
       const response = await fetch(`${EXTERNAL_API}/api/admin/members`, {
         method: "GET",
