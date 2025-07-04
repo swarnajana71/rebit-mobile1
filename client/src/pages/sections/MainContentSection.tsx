@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import IconArea from "@/components/IconArea";
 import Vector from "@/components/Vector";
 import Card from "@/components/Card";
+import Layout from "@/components/Layout";
 
 export const MainContentSection = (): JSX.Element => {
   // Data for campaign banners
@@ -92,32 +93,7 @@ export const MainContentSection = (): JSX.Element => {
       </header>
 
       <div className="flex flex-col items-center gap-6 w-full">
-        <div className="flex flex-col items-center w-full">
-          <Card />
-
-          <div className="flex items-center justify-center gap-10 pt-16 pb-6 px-4 w-full -mt-10 z-0 bg-[#e6eaed]">
-            {actionButtons.map((button) => (
-              <Button
-                key={button.id}
-                variant="outline"
-                className="flex flex-col w-20 h-20 items-center justify-center gap-0.5 pt-3.5 pb-[18px] px-0 bg-white rounded-[40px] overflow-hidden shadow-rebit-app-shadow-button-secondary"
-              >
-                {button.id === 1 ? (
-                  <img src="/icons/mail-icon.png" alt="Mail" className="w-8 h-8" />
-                ) : button.id === 2 ? (
-                  <img src="/icons/exchange-icon.png" alt="Exchange" className="w-8 h-8" />
-                ) : button.id === 3 ? (
-                  <img src="/icons/history-icon.png" alt="History" className="w-8 h-8" />
-                ) : (
-                  <div className="w-8 h-8">{button.icon}</div>
-                )}
-                <span className="font-rebit-app-label-12px text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] whitespace-nowrap">
-                  {button.label}
-                </span>
-              </Button>
-            ))}
-          </div>
-        </div>
+        <Layout />
 
         <section className="flex flex-col items-start gap-2 px-4 py-0 w-full">
           <h2 className="w-full font-rebit-app-heading-14px text-[#162a39] text-[length:var(--rebit-app-heading-14px-font-size)] tracking-[var(--rebit-app-heading-14px-letter-spacing)] leading-[var(--rebit-app-heading-14px-line-height)]">
