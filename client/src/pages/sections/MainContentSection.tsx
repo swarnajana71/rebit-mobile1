@@ -1,9 +1,9 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import IconArea from "@/components/IconArea";
 import Vector from "@/components/Vector";
+import Card from "@/components/Card";
 
 export const MainContentSection = (): JSX.Element => {
   // Data for campaign banners
@@ -93,78 +93,7 @@ export const MainContentSection = (): JSX.Element => {
 
       <div className="flex flex-col items-center gap-6 w-full">
         <div className="flex flex-col items-center w-full">
-          <Card className="w-full z-[1] rounded-lg overflow-hidden shadow-rebit-app-shadow-card bg-[linear-gradient(270deg,rgba(234,227,200,1)_0%,rgba(218,210,157,1)_100%)] border-0">
-            <CardContent className="flex flex-col items-start gap-3 p-0">
-              <div className="flex items-center gap-2 pl-6 pr-4 py-4 w-full">
-                <div className="flex items-center gap-1 flex-1">
-                  <span className="font-rebit-app-body-16px-bold text-[#162a39] text-[length:var(--rebit-app-body-16px-bold-font-size)] tracking-[var(--rebit-app-body-16px-bold-letter-spacing)] leading-[var(--rebit-app-body-16px-bold-line-height)] whitespace-nowrap">
-                    Hirota
-                  </span>
-                  <span className="font-rebit-app-body-16px-bold text-[#162a39] text-[length:var(--rebit-app-body-16px-bold-font-size)] tracking-[var(--rebit-app-body-16px-bold-letter-spacing)] leading-[var(--rebit-app-body-16px-bold-line-height)] whitespace-nowrap">
-                    さん
-                  </span>
-                </div>
-
-                <Badge className="h-8 gap-2 pl-3 pr-2 py-2 bg-white rounded-2xl flex items-center">
-                  <span className="font-rebit-app-body-12px-med text-[#162a39] text-[length:var(--rebit-app-body-12px-med-font-size)] leading-[var(--rebit-app-body-12px-med-line-height)] tracking-[var(--rebit-app-body-12px-med-letter-spacing)] whitespace-nowrap">
-                    会員ランク
-                  </span>
-                  <div className="flex items-center gap-0.5">
-                    <span className="font-rebit-app-body-12px-med text-[#776907] text-[length:var(--rebit-app-body-12px-med-font-size)] leading-[var(--rebit-app-body-12px-med-line-height)] tracking-[var(--rebit-app-body-12px-med-letter-spacing)] whitespace-nowrap">
-                      Seed
-                    </span>
-                    <div className="w-5 h-5 bg-[url(/figmaAssets/seed.svg)] bg-[100%_100%]" />
-                  </div>
-                </Badge>
-              </div>
-
-              <div className="flex flex-col items-start gap-3 px-6 pb-4 w-full">
-                <div className="flex flex-col items-start gap-1.5 w-full">
-                  <div className="flex items-center gap-4 w-full">
-                    <span className="font-rebit-app-body-14px-med text-[#162a39] text-[length:var(--rebit-app-body-14px-med-font-size)] leading-[var(--rebit-app-body-14px-med-line-height)] tracking-[var(--rebit-app-body-14px-med-letter-spacing)] whitespace-nowrap">
-                      ReBitポイント残高
-                    </span>
-                    <div className="flex items-end justify-end gap-2 flex-1">
-                      <span className="flex-1 font-rebit-app-number-l text-[#162a39] text-[length:var(--rebit-app-number-l-font-size)] leading-[var(--rebit-app-number-l-line-height)] tracking-[var(--rebit-app-number-l-letter-spacing)] text-right overflow-hidden text-ellipsis [display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]">
-                        100
-                      </span>
-                      <span className="font-rebit-app-body-12px-med text-[#162a39] text-[length:var(--rebit-app-body-12px-med-font-size)] leading-[var(--rebit-app-body-12px-med-line-height)] tracking-[var(--rebit-app-body-12px-med-letter-spacing)] whitespace-nowrap">
-                        pt
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center justify-between w-full">
-                    <span className="font-rebit-app-body-12px-med text-[#162a39] text-[length:var(--rebit-app-body-12px-med-font-size)] leading-[var(--rebit-app-body-12px-med-line-height)] tracking-[var(--rebit-app-body-12px-med-letter-spacing)] whitespace-nowrap">
-                      円換算
-                    </span>
-                    <div className="inline-flex items-end gap-2">
-                      <span className="font-rebit-app-number-m text-[#162a39] text-[length:var(--rebit-app-number-m-font-size)] leading-[var(--rebit-app-number-m-line-height)] tracking-[var(--rebit-app-number-m-letter-spacing)] text-right whitespace-nowrap">
-                        10
-                      </span>
-                      <span className="font-rebit-app-body-12px-med text-[#162a39] text-[length:var(--rebit-app-body-12px-med-font-size)] leading-[var(--rebit-app-body-12px-med-line-height)] tracking-[var(--rebit-app-body-12px-med-letter-spacing)] whitespace-nowrap">
-                        円
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center justify-between w-full">
-                  <span className="font-rebit-app-body-12px-med text-[#162a39] text-[length:var(--rebit-app-body-12px-med-font-size)] leading-[var(--rebit-app-body-12px-med-line-height)] tracking-[var(--rebit-app-body-12px-med-letter-spacing)] whitespace-nowrap">
-                    CO2削減量
-                  </span>
-                  <div className="inline-flex items-end gap-2">
-                    <span className="font-rebit-app-number-m text-[#162a39] text-[length:var(--rebit-app-number-m-font-size)] leading-[var(--rebit-app-number-m-line-height)] tracking-[var(--rebit-app-number-m-letter-spacing)] text-right whitespace-nowrap">
-                      -5
-                    </span>
-                    <span className="font-rebit-app-body-12px-med text-[#162a39] text-[length:var(--rebit-app-body-12px-med-font-size)] leading-[var(--rebit-app-body-12px-med-line-height)] tracking-[var(--rebit-app-body-12px-med-letter-spacing)] whitespace-nowrap">
-                      %
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <Card />
 
           <div className="flex items-center justify-center gap-10 pt-16 pb-6 px-4 w-full -mt-10 z-0 bg-[#e6eaed]">
             {actionButtons.map((button) => (

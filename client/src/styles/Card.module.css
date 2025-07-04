@@ -1,0 +1,222 @@
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,700;0,500&display=swap";
+.Card_2_8229 {
+  border-radius: var(--Regular, 8px);
+  background: var(
+    --Gradation-Seed,
+    linear-gradient(270deg, #eae3c8 0%, #dad29d 100%)
+  );
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 358px;
+  padding: 16px 0;
+  display: flex;
+  box-shadow: 0 4px 4px #0000001a;
+}
+.Layout_1_4703 {
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 0 16px 0 24px;
+  display: flex;
+}
+.Layout_1_4704 {
+  flex: 1 0 0;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  display: flex;
+}
+.Name_1_4705,
+.Label_1_4706 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 160%;
+  display: inline-block;
+}
+.Rank_1_4707 {
+  background: var(--Gray-White, #fff);
+  border-radius: 16px;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 8px 8px 8px 12px;
+  display: flex;
+}
+.Label_1_4708 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Rank_1_4709 {
+  align-items: center;
+  gap: 2px;
+  display: flex;
+}
+.Label_1_4710 {
+  color: var(--Yellow-Yellow-800, #776907);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.IconArea_1_4711 {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+.Seed_1_5125 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+.Layout_1_4712 {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 0 24px;
+  display: flex;
+}
+.Layout_1_4713 {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  display: flex;
+}
+.Layout_1_4714 {
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  display: flex;
+}
+.Label_1_4715 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  display: inline-block;
+}
+.Layout_1_4716 {
+  flex: 1 0 0;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 8px;
+  width: 100%;
+  display: flex;
+}
+.Value_1_4717 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: right;
+  flex: 1 0 0;
+  max-height: 34px;
+  font-family: Noto Sans JP;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  display: inline-block;
+}
+.Label_1_4718 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4719 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+.Label_1_4720 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4721 {
+  align-items: flex-end;
+  gap: 8px;
+  display: flex;
+}
+.Value_1_4722 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: right;
+  font-family: Noto Sans JP;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  display: inline-block;
+}
+.Label_1_4723 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4724 {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  display: flex;
+}
+.Label_1_4725 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
+.Layout_1_4726 {
+  align-items: flex-end;
+  gap: 8px;
+  display: flex;
+}
+.Value_1_4727 {
+  color: var(--text-icon-primary, #162a39);
+  text-align: right;
+  font-family: Noto Sans JP;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+  display: inline-block;
+}
+.Label_1_4728 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  display: inline-block;
+}
