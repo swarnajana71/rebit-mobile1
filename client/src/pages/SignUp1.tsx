@@ -11,7 +11,7 @@ export const SignUp1 = (): JSX.Element => {
 
   const registerMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
-      const API_BASE = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      const API_BASE = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
       const endpoint = `${API_BASE}/api/mobile/auth/register`;
       
       console.log("Attempting registration to:", endpoint);
@@ -92,7 +92,7 @@ export const SignUp1 = (): JSX.Element => {
 
   // Test API connection with multiple methods
   const testConnection = async () => {
-    const API_BASE = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+    const API_BASE = "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
     
     // Test 1: Basic connectivity
     try {

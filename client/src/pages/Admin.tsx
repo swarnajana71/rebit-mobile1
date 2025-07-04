@@ -17,7 +17,7 @@ export const Admin = (): JSX.Element => {
     queryKey: ["/api/admin/members", dataSource],
     queryFn: async () => {
       const baseUrl = dataSource === "external" 
-        ? "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev"
+        ? "http://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev"
         : "";
       
       try {
