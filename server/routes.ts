@@ -7,10 +7,10 @@ import { z } from "zod";
 export async function registerRoutes(app: Express): Promise<Server> {
   console.log("=== Registering routes ===");
   
-  // External mobile app registration endpoint (for external projects)
+  // External mobile app registration endpoint (forwards to main admin dashboard)
   app.post('/api/mobile/auth/register', async (req, res) => {
     try {
-      console.log("=== EXTERNAL MOBILE REGISTRATION ENDPOINT HIT ===");
+      console.log("=== MOBILE REGISTRATION - FORWARDING TO MAIN ADMIN ===");
       console.log("Request body:", req.body);
       
       const { email, password } = req.body;
@@ -22,28 +22,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      // Create member in local database
-      const member = await storage.createMember({
-        email,
-        password, // In production, this should be hashed
-        registrationMethod: "external-mobile"
+      // Forward to main admin dashboard API
+      const MAIN_ADMIN_URL = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      
+      console.log("Forwarding registration to main admin:", MAIN_ADMIN_URL);
+      
+      const response = await fetch(`${MAIN_ADMIN_URL}/api/mobile/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          username: email.split('@')[0], // Use email prefix as username
+          location: 'Mobile App User',
+          registrationMethod: 'mobile-app'
+        })
       });
       
-      console.log("Member created successfully:", member);
+      console.log("Main admin response status:", response.status);
       
-      res.status(201).json({
-        success: true,
-        message: "Registration successful",
-        data: {
-          id: member.id,
-          email: member.email,
-          registrationMethod: member.registrationMethod,
-          createdAt: member.createdAt
-        }
-      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Main admin error:", errorText);
+        return res.status(response.status).json({
+          error: 'Main admin registration failed',
+          message: errorText
+        });
+      }
+      
+      const result = await response.json();
+      console.log("Main admin registration success:", result);
+      
+      // Also store locally for backup/reference
+      try {
+        await storage.createMember({
+          email,
+          password,
+          registrationMethod: "mobile-app-forwarded"
+        });
+        console.log("Local backup created");
+      } catch (localError) {
+        console.warn("Local backup failed:", localError);
+        // Don't fail the request if local backup fails
+      }
+      
+      res.status(201).json(result);
       
     } catch (error) {
-      console.error("External mobile registration error:", error);
+      console.error("Mobile registration forwarding error:", error);
       res.status(500).json({ 
         error: 'Registration failed',
         message: error instanceof Error ? error.message : 'Unknown error'
