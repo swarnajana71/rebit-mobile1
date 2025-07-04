@@ -135,15 +135,17 @@ export const QRCode = (): JSX.Element => {
                 </Link>
                 
                 {/* Challenge button */}
-                <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
-                  <div
-                    className="w-6 h-6 bg-[100%_100%]"
-                    style={{ backgroundImage: `url(/figmaAssets/gift-400.svg)` }}
-                  />
-                  <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
-                    チャレンジ
-                  </div>
-                </button>
+                <Link href="/challenge">
+                  <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
+                    <div
+                      className="w-6 h-6 bg-[100%_100%]"
+                      style={{ backgroundImage: `url(/figmaAssets/gift-400.svg)` }}
+                    />
+                    <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
+                      チャレンジ
+                    </div>
+                  </button>
+                </Link>
               </div>
 
               {/* Right side navigation items */}
