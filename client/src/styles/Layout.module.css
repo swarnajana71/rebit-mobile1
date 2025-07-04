@@ -19,8 +19,6 @@
   padding: 16px 0;
   display: flex;
   box-shadow: 0 4px 4px #0000001a;
-  position: relative;
-  z-index: 1;
 }
 .Layout_1_4703 {
   align-items: center;
@@ -236,7 +234,6 @@
   gap: 40px;
   padding: 64px 16px 24px;
   display: flex;
-  width: 100%;
 }
 .Button_1_2396 {
   aspect-ratio: 1;
