@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "wouter";
 import Header from "../components/Header";
 import Heading from "../components/Heading";
+import Body from "../components/Body";
 
 export const Help = (): JSX.Element => {
   const statusBarItems = [
@@ -85,9 +86,9 @@ export const Help = (): JSX.Element => {
                   会員ランクとは？
                 </h2>
               </div>
-              <p className="w-[358px] font-['Noto_Sans_JP'] font-medium text-[14px] leading-[160%] flex items-center text-[#162A39]">
+              <Body>
                 ReBitでは、ご利用状況に応じて会員ランクが決まります。ランクが上がるほど、より多くの特典やサービスをご利用いただけます。定期的なアプリの利用やキャンペーンへの参加により、ランクアップが可能です。
-              </p>
+              </Body>
             </div>
 
             {/* Section 2 */}
