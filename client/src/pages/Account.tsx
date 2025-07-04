@@ -94,9 +94,9 @@ export const Account = (): JSX.Element => {
           </div>
 
           {/* Menu List */}
-          <div className="flex flex-col items-start w-full">
+          <div className="flex flex-col items-start w-[390px]">
             {/* Member Information */}
-            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-full">
+            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-[390px]">
               <span className="text-[#162A39] text-ellipsis whitespace-nowrap flex-col flex-1 justify-center font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%] inline-block overflow-hidden">
                 会員情報
               </span>
@@ -108,7 +108,7 @@ export const Account = (): JSX.Element => {
             </div>
 
             {/* Contact Us */}
-            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-full">
+            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-[390px]">
               <span className="text-[#162A39] text-ellipsis whitespace-nowrap flex-col flex-1 justify-center font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%] inline-block overflow-hidden">
                 お問い合わせ
               </span>
@@ -120,7 +120,7 @@ export const Account = (): JSX.Element => {
             </div>
 
             {/* Terms of Service */}
-            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-full">
+            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-[390px]">
               <span className="text-[#162A39] text-ellipsis whitespace-nowrap flex-col flex-1 justify-center font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%] inline-block overflow-hidden">
                 利用規約
               </span>
@@ -132,7 +132,7 @@ export const Account = (): JSX.Element => {
             </div>
 
             {/* Privacy Policy */}
-            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-full">
+            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-[390px]">
               <span className="text-[#162A39] text-ellipsis whitespace-nowrap flex-col flex-1 justify-center font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%] inline-block overflow-hidden">
                 プライバシーポリシー
               </span>
@@ -144,7 +144,7 @@ export const Account = (): JSX.Element => {
             </div>
 
             {/* ReBit Official Site */}
-            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-full">
+            <div className="border-b border-[#E6E6E6] box-border flex items-center gap-2 h-[54px] px-4 w-[390px]">
               <span className="text-[#162A39] text-ellipsis whitespace-nowrap flex-col flex-1 justify-center font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%] inline-block overflow-hidden">
                 ReBit公式サイト
               </span>
