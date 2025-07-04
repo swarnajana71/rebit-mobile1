@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
 import Header from "../components/Header";
-import Heading from "../components/Heading";
-import Body from "../components/Body";
+import Layout from "../components/Layout";
 
 export const Help = (): JSX.Element => {
   const statusBarItems = [
@@ -74,82 +73,8 @@ export const Help = (): JSX.Element => {
         <Header />
 
         {/* Main Content */}
-        <div className="flex flex-col items-center p-0 gap-6 absolute w-[358px] left-1/2 transform -translate-x-1/2 top-[122px]">
-          <div className="flex flex-col items-start p-0 gap-6 w-[358px]">
-            {/* Main Heading */}
-            <Heading>会員ランクの説明</Heading>
-            
-            {/* Section 1 */}
-            <div className="flex flex-col items-start p-0 gap-4 w-[358px] h-[140px] flex-none order-1 self-stretch flex-grow-0">
-              <div className="flex flex-row items-start py-2 px-3 gap-2 w-[358px] h-9 bg-[#E6EAED] flex-none order-0 self-stretch flex-grow-0">
-                <h2 className="w-[334px] h-5 font-['Noto_Sans_JP'] font-bold text-[14px] leading-[140%] flex items-center text-[#162A39] flex-none order-0 flex-grow">
-                  会員ランクとは？
-                </h2>
-              </div>
-              <div className="w-[358px] h-[88px] font-['Noto_Sans_JP'] font-medium text-[14px] leading-[160%] flex items-center text-[#162A39] flex-none order-1 self-stretch flex-grow-0">
-                ReBitでは、ご利用状況に応じて会員ランクが決まります。ランクが上がるほど、より多くの特典やサービスをご利用いただけます。定期的なアプリの利用やキャンペーンへの参加により、ランクアップが可能です。
-              </div>
-            </div>
-
-            {/* Section 2 */}
-            <div className="flex flex-col items-start p-0 gap-4 w-[358px]">
-              <div className="flex flex-row items-start py-2 px-3 gap-2 w-[358px] h-9 bg-[#E6EAED]">
-                <h2 className="w-[334px] h-5 font-['Noto_Sans_JP'] font-bold text-[14px] leading-[140%] flex items-center text-[#162A39] flex-grow">
-                  ランクの種類と特典
-                </h2>
-              </div>
-              <p className="w-[358px] font-['Noto_Sans_JP'] font-medium text-[14px] leading-[160%] flex items-center text-[#162A39]">
-                5つのランクをご用意しており、各ランクで異なる特典をお楽しみいただけます。
-              </p>
-              
-              {/* Chart Image */}
-              <div className="w-[358px] h-[162px] bg-white relative">
-                {/* Base line */}
-                <div className="absolute w-[310px] h-0.5 left-1/2 transform -translate-x-1/2 top-40 bg-[#162A39]"></div>
-                
-                {/* Rank bars */}
-                <div className="absolute w-[30px] h-8 left-14 top-32 bg-[#475A69] rounded-t-sm"></div>
-                <div className="absolute w-[30px] h-14 left-[110px] top-[104px] bg-[#475A69] rounded-t-sm"></div>
-                <div className="absolute w-[30px] h-20 left-[164px] top-20 bg-[#475A69] rounded-t-sm"></div>
-                <div className="absolute w-[30px] h-[104px] left-[218px] top-14 bg-[#475A69] rounded-t-sm"></div>
-                <div className="absolute w-[30px] h-32 left-[272px] top-8 bg-[#475A69] rounded-t-sm"></div>
-                
-                {/* Rank icons */}
-                <div className="absolute w-5 h-5 left-[61px] top-[134px]">
-                  <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#475A69] text-xs font-bold">R</span>
-                  </div>
-                </div>
-                <div className="absolute w-5 h-5 left-[115px] top-[122px]">
-                  <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#475A69] text-xs font-bold">R</span>
-                  </div>
-                </div>
-                <div className="absolute w-5 h-5 left-[169px] top-[110px]">
-                  <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#475A69] text-xs font-bold">R</span>
-                  </div>
-                </div>
-                <div className="absolute w-5 h-5 left-[223px] top-[98px]">
-                  <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#475A69] text-xs font-bold">R</span>
-                  </div>
-                </div>
-                <div className="absolute w-5 h-5 left-[277px] top-[86px]">
-                  <div className="w-5 h-5 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#475A69] text-xs font-bold">R</span>
-                  </div>
-                </div>
-                
-                {/* Seed icon */}
-                <div className="absolute w-6 h-6 left-[59px] top-24">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L22 22H2L12 2Z" fill="#475A69"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="flex justify-center p-6 pb-32">
+          <Layout />
         </div>
       </div>
     </div>
