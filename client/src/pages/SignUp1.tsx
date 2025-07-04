@@ -12,10 +12,15 @@ export const SignUp1 = (): JSX.Element => {
   const registerMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
       const API_BASE = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      const endpoint = `${API_BASE}/api/mobile/auth/register`;
+      
+      console.log("Attempting registration to:", endpoint);
+      console.log("Data:", data);
       
       try {
-        const response = await fetch(`${API_BASE}/api/mobile/auth/register`, {
+        const response = await fetch(endpoint, {
           method: "POST",
+          mode: "cors",
           headers: { 
             "Content-Type": "application/json",
             "Accept": "application/json"
@@ -23,17 +28,32 @@ export const SignUp1 = (): JSX.Element => {
           body: JSON.stringify(data),
         });
         
+        console.log("Response status:", response.status);
+        console.log("Response headers:", Object.fromEntries(response.headers.entries()));
+        
         if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.message || `HTTP ${response.status}: Registration failed`);
+          const errorText = await response.text();
+          console.log("Error response:", errorText);
+          let errorData: any = {};
+          try {
+            errorData = JSON.parse(errorText);
+          } catch (e) {
+            console.log("Could not parse error as JSON");
+          }
+          throw new Error(errorData.message || `HTTP ${response.status}: ${response.statusText}`);
         }
         
-        return await response.json();
+        const result = await response.json();
+        console.log("Success response:", result);
+        return result;
       } catch (error: unknown) {
         console.error("Registration error:", error);
         if (error instanceof Error) {
-          if (error.name === 'TypeError' && error.message.includes('fetch')) {
-            throw new Error("ネットワークエラー: 管理サーバーに接続できません");
+          console.log("Error name:", error.name);
+          console.log("Error message:", error.message);
+          
+          if (error.name === 'TypeError' && (error.message.includes('fetch') || error.message.includes('CORS'))) {
+            throw new Error("ネットワークエラー: 管理サーバーに接続できません。CORSまたはネットワーク問題が発生しています。");
           }
           throw error;
         }
@@ -68,6 +88,29 @@ export const SignUp1 = (): JSX.Element => {
       return;
     }
     registerMutation.mutate({ email, password });
+  };
+
+  // Test API connection
+  const testConnection = async () => {
+    const API_BASE = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+    try {
+      console.log("Testing connection to:", API_BASE);
+      const response = await fetch(`${API_BASE}/api/mobile/auth/register`, {
+        method: "OPTIONS",
+      });
+      console.log("OPTIONS response:", response.status, response.statusText);
+      toast({
+        title: "接続テスト",
+        description: `ステータス: ${response.status}`,
+      });
+    } catch (error) {
+      console.error("Connection test failed:", error);
+      toast({
+        title: "接続エラー",
+        description: "サーバーに接続できません",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -142,6 +185,15 @@ export const SignUp1 = (): JSX.Element => {
                 に同意します
               </p>
             </div>
+
+            {/* Test Connection Button - Debug */}
+            <button
+              type="button"
+              onClick={testConnection}
+              className="w-full py-2 px-4 bg-blue-500 text-white rounded text-sm mb-2"
+            >
+              接続テスト (Debug)
+            </button>
 
             {/* Register Button */}
             <button
