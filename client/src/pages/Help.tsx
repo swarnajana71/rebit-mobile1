@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "wouter";
 import Header from "../components/Header";
-import Layout from "../components/Layout";
 
 export const Help = (): JSX.Element => {
   const statusBarItems = [
@@ -73,8 +72,76 @@ export const Help = (): JSX.Element => {
         <Header />
 
         {/* Main Content */}
-        <div className="flex justify-center p-6 pb-32">
-          <Layout />
+        <div className="flex-1 flex flex-col items-start p-6 pb-32">
+          <div className="flex flex-col items-start gap-6 w-full max-w-[400px]">
+            <h1 className="text-[#162a39] font-['Noto_Sans_JP'] text-[24px] font-bold leading-[160%]">
+              会員ランクとは
+            </h1>
+            
+            <div className="flex flex-col items-start gap-4 w-full">
+              <div className="flex flex-col items-start gap-2 w-full">
+                <h2 className="text-[#162a39] font-['Noto_Sans_JP'] text-[18px] font-semibold leading-[160%]">
+                  会員ランクシステム
+                </h2>
+                <p className="text-[#475a69] font-['Noto_Sans_JP'] text-[16px] leading-[160%]">
+                  ReBitでは、ご利用状況に応じて会員ランクが決まります。ランクが上がるほど、より多くの特典やサービスをご利用いただけます。
+                </p>
+              </div>
+
+              <div className="flex flex-col items-start gap-2 w-full">
+                <h2 className="text-[#162a39] font-['Noto_Sans_JP'] text-[18px] font-semibold leading-[160%]">
+                  ランクの種類
+                </h2>
+                <div className="flex flex-col items-start gap-3 w-full">
+                  <div className="flex items-center gap-3 w-full">
+                    <div className="w-6 h-6 bg-[#C0C0C0] rounded-full flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white rounded-full" />
+                    </div>
+                    <span className="text-[#162a39] font-['Noto_Sans_JP'] text-[16px] font-medium">
+                      シルバー会員
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 w-full">
+                    <div className="w-6 h-6 bg-[#FFD700] rounded-full flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white rounded-full" />
+                    </div>
+                    <span className="text-[#162a39] font-['Noto_Sans_JP'] text-[16px] font-medium">
+                      ゴールド会員
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 w-full">
+                    <div className="w-6 h-6 bg-[#E5E4E2] rounded-full flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white rounded-full" />
+                    </div>
+                    <span className="text-[#162a39] font-['Noto_Sans_JP'] text-[16px] font-medium">
+                      プラチナ会員
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-start gap-2 w-full">
+                <h2 className="text-[#162a39] font-['Noto_Sans_JP'] text-[18px] font-semibold leading-[160%]">
+                  ランクアップの方法
+                </h2>
+                <p className="text-[#475a69] font-['Noto_Sans_JP'] text-[16px] leading-[160%]">
+                  ・定期的なアプリの利用<br/>
+                  ・キャンペーンへの参加<br/>
+                  ・ポイントの貯め方や使い方<br/>
+                  ・友達紹介などの特別な活動
+                </p>
+              </div>
+
+              <div className="flex flex-col items-start gap-2 w-full">
+                <h2 className="text-[#162a39] font-['Noto_Sans_JP'] text-[18px] font-semibold leading-[160%]">
+                  特典について
+                </h2>
+                <p className="text-[#475a69] font-['Noto_Sans_JP'] text-[16px] leading-[160%]">
+                  各ランクに応じて、限定キャンペーンやポイント還元率の向上、特別なサービスなどの特典をご用意しています。
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
