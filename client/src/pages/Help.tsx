@@ -80,15 +80,15 @@ export const Help = (): JSX.Element => {
             <Heading>会員ランクの説明</Heading>
             
             {/* Section 1 */}
-            <div className="flex flex-col items-start p-0 gap-4 w-[358px]">
-              <div className="flex flex-row items-start py-2 px-3 gap-2 w-[358px] h-9 bg-[#E6EAED]">
-                <h2 className="w-[334px] h-5 font-['Noto_Sans_JP'] font-bold text-[14px] leading-[140%] flex items-center text-[#162A39] flex-grow">
+            <div className="flex flex-col items-start p-0 gap-4 w-[358px] h-[140px] flex-none order-1 self-stretch flex-grow-0">
+              <div className="flex flex-row items-start py-2 px-3 gap-2 w-[358px] h-9 bg-[#E6EAED] flex-none order-0 self-stretch flex-grow-0">
+                <h2 className="w-[334px] h-5 font-['Noto_Sans_JP'] font-bold text-[14px] leading-[140%] flex items-center text-[#162A39] flex-none order-0 flex-grow">
                   会員ランクとは？
                 </h2>
               </div>
-              <Body>
+              <div className="w-[358px] h-[88px] font-['Noto_Sans_JP'] font-medium text-[14px] leading-[160%] flex items-center text-[#162A39] flex-none order-1 self-stretch flex-grow-0">
                 ReBitでは、ご利用状況に応じて会員ランクが決まります。ランクが上がるほど、より多くの特典やサービスをご利用いただけます。定期的なアプリの利用やキャンペーンへの参加により、ランクアップが可能です。
-              </Body>
+              </div>
             </div>
 
             {/* Section 2 */}
