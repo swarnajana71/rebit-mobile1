@@ -59,7 +59,7 @@ export const SignUp1 = (): JSX.Element => {
       console.log("Registration error details:", error.message);
       
       // Check if it's an external API error and fallback to local storage
-      if (error.message.includes("External API unavailable") || error.message.includes("503")) {
+      if (error.message.includes("External API unavailable") || error.message.includes("503") || error.message.includes("HTML instead of JSON")) {
         console.log("External API unavailable, falling back to local storage");
         
         // Try local database storage instead
