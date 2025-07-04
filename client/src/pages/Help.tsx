@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
 import Header from "../components/Header";
+import Heading from "../components/Heading";
 
 export const Help = (): JSX.Element => {
   const statusBarItems = [
@@ -75,9 +76,7 @@ export const Help = (): JSX.Element => {
         <div className="flex flex-col items-center p-0 gap-6 absolute w-[358px] left-1/2 transform -translate-x-1/2 top-[122px]">
           <div className="flex flex-col items-start p-0 gap-6 w-[358px]">
             {/* Main Heading */}
-            <h1 className="w-[358px] h-[29px] font-['Noto_Sans_JP'] font-bold text-[18px] leading-[160%] flex items-center text-[#162A39]">
-              会員ランクとは
-            </h1>
+            <Heading>会員ランクとは</Heading>
             
             {/* Section 1 */}
             <div className="flex flex-col items-start p-0 gap-4 w-[358px]">
