@@ -70,7 +70,7 @@ export const QRCode = (): JSX.Element => {
               <rect x="60" y="140" width="20" height="20" fill="#000" />
               <rect x="100" y="140" width="20" height="20" fill="#000" />
               <rect x="140" y="140" width="20" height="20" fill="#000" />
-              <text x="90" y="95" text-anchor="middle" font-size="12" fill="#666">Hirota</text>
+              <text x="90" y="95" textAnchor="middle" fontSize="12" fill="#666">Hirota</text>
             </svg>
           </div>
           <div className={styles.Layout_2_8863}>
