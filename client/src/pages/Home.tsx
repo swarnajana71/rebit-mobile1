@@ -8,23 +8,19 @@ export const Home = (): JSX.Element => {
       type: "text",
       content: "9:41",
       className:
-        "w-fit mt-[-1.00px] [font-family:'SF_Pro-Semibold',Helvetica] font-normal text-black text-[17px] text-center tracking-[0] leading-[22px] whitespace-nowrap",
+        "w-fit [font-family:'SF_Pro-Semibold',Helvetica] font-semibold text-black text-[17px] text-center tracking-[-0.4px] leading-[22px] whitespace-nowrap",
     },
     {
-      type: "image",
-      src: "/figmaAssets/cellular-connection.svg",
-      alt: "Cellular connection",
-      className: "w-[19.2px] h-[12.23px]",
+      type: "cellular",
+      className: "w-[17px] h-[11px]",
     },
     {
-      type: "image",
-      src: "/figmaAssets/wifi.svg",
-      alt: "Wifi",
-      className: "w-[17.14px] h-[12.33px]",
+      type: "wifi",
+      className: "w-[15px] h-[11px]",
     },
     {
       type: "battery",
-      className: "w-[27.33px] h-[13px]",
+      className: "w-[24px] h-[11px]",
     },
   ];
 
@@ -40,26 +36,33 @@ export const Home = (): JSX.Element => {
               </div>
             </div>
 
-            <div className="flex w-[120px] items-center justify-center gap-2 pl-4 pr-6 py-0 relative">
-              {statusBarItems.slice(1, 3).map((item, index) => (
-                <img
-                  key={`status-icon-${index}`}
-                  className={item.className}
-                  alt={item.alt}
-                  src={item.src}
-                />
-              ))}
+            <div className="flex w-[120px] items-center justify-end gap-1 pl-4 pr-6 py-0 relative">
+              {/* Cellular Signal */}
+              <div className={statusBarItems[1].className}>
+                <svg width="17" height="11" viewBox="0 0 17 11" fill="none">
+                  <rect x="0" y="8" width="2" height="3" rx="1" fill="black"/>
+                  <rect x="3" y="6" width="2" height="5" rx="1" fill="black"/>
+                  <rect x="6" y="4" width="2" height="7" rx="1" fill="black"/>
+                  <rect x="9" y="2" width="2" height="9" rx="1" fill="black"/>
+                </svg>
+              </div>
 
+              {/* WiFi Signal */}
+              <div className={statusBarItems[2].className}>
+                <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
+                  <path d="M7.5 2C10.54 2 13.02 3.02 13.02 3.02L12.25 4.14C12.25 4.14 10.29 3.29 7.5 3.29C4.71 3.29 2.75 4.14 2.75 4.14L1.98 3.02C1.98 3.02 4.46 2 7.5 2Z" fill="black"/>
+                  <path d="M7.5 5C9.36 5 10.95 5.75 10.95 5.75L10.18 6.86C10.18 6.86 8.95 6.29 7.5 6.29C6.05 6.29 4.82 6.86 4.82 6.86L4.05 5.75C4.05 5.75 5.64 5 7.5 5Z" fill="black"/>
+                  <path d="M7.5 8C8.18 8 8.77 8.25 8.77 8.25L8 9.36C8 9.36 7.68 9.29 7.5 9.29C7.32 9.29 7 9.36 7 9.36L6.23 8.25C6.23 8.25 6.82 8 7.5 8Z" fill="black"/>
+                </svg>
+              </div>
+
+              {/* Battery */}
               <div className={statusBarItems[3].className}>
-                <div className="absolute w-[25px] h-[13px] top-0 left-0 rounded-[4.3px] border border-solid border-[#00000059]">
-                  <div className="relative w-[21px] h-[9px] top-px left-px bg-black rounded-[2.5px]" />
-                </div>
-
-                <img
-                  className="absolute w-px h-1 top-[5px] left-[26px]"
-                  alt="Cap"
-                  src="/figmaAssets/cap.svg"
-                />
+                <svg width="24" height="11" viewBox="0 0 24 11" fill="none">
+                  <rect x="0" y="2" width="20" height="7" rx="2" stroke="black" strokeWidth="1" fill="none"/>
+                  <rect x="1.5" y="3.5" width="17" height="4" rx="0.5" fill="black"/>
+                  <rect x="21" y="4.5" width="2" height="2" rx="1" fill="black"/>
+                </svg>
               </div>
             </div>
           </div>
