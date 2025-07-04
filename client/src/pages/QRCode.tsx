@@ -64,15 +64,8 @@ export const QRCode = (): JSX.Element => {
             </div>
           </div>
 
-          {/* Header with Logo and Back Button */}
+          {/* Header with Logo */}
           <div className="bg-white w-full flex justify-center items-center h-[44px] px-4 relative">
-            {/* Back Button */}
-            <Link href="/" className="absolute left-4 p-2">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" fill="#162a39"/>
-              </svg>
-            </Link>
-            
             {/* Centered Logo */}
             <div className="w-[42px] h-7 bg-[url(/figmaAssets/logo.png)] bg-[100%_100%]" />
           </div>
