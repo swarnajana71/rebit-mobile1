@@ -66,10 +66,10 @@ export const Help = (): JSX.Element => {
               </div>
             </div>
           </div>
-
-          {/* Header */}
-          <Header />
         </header>
+
+        {/* Header */}
+        <Header />
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col items-start p-6 pb-32">
