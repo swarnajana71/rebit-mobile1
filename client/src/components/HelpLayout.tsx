@@ -71,10 +71,46 @@ export default function HelpLayout() {
 
       <div className={styles.Layout_2_9245}>
         <div className={styles.Heading_2_9246}>
-          <span className={styles.Heading_2_9247}>ランクアップの条件</span>
+          <span className={styles.Heading_2_9247}>ランク：Seed（種）</span>
         </div>
         <span className={styles.Body_2_9248}>
-          ReBit BOXに資源ゴミを入れるとエコマイルがもらえます。エコマイルが貯まるとランクアップします。
+          あなたの環境への意識が芽生えました。小さな一歩が未来を変えていきます。
+        </span>
+      </div>
+
+      <div className={styles.Layout_2_9249}>
+        <div className={styles.Heading_2_9250}>
+          <span className={styles.Heading_2_9251}>ランク：Leaf（葉）</span>
+        </div>
+        <span className={styles.Body_2_9252}>
+          芽が生え、確かな成長を始めています。あなたの日々の行動が環境を支えています。
+        </span>
+      </div>
+
+      <div className={styles.Layout_2_9253}>
+        <div className={styles.Heading_2_9254}>
+          <span className={styles.Heading_2_9255}>ランク：Tree（木）</span>
+        </div>
+        <span className={styles.Body_2_9256}>
+          あなたの貢献は地に根を張り、確かな形に成長し続けています。
+        </span>
+      </div>
+
+      <div className={styles.Layout_2_9257}>
+        <div className={styles.Heading_2_9258}>
+          <span className={styles.Heading_2_9259}>ランク：Forest（森）</span>
+        </div>
+        <span className={styles.Body_2_9260}>
+          あなたの行動が周囲に広がり、持続可能な未来を支える力になっています。
+        </span>
+      </div>
+
+      <div className={styles.Layout_2_9261}>
+        <div className={styles.Heading_2_9262}>
+          <span className={styles.Heading_2_9263}>ランク：Earth（地球）</span>
+        </div>
+        <span className={styles.Body_2_9264}>
+          地球の未来のために大きな貢献を成し遂げた、真のエコリーダーです。
         </span>
       </div>
     </div>
