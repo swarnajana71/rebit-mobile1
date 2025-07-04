@@ -31,13 +31,11 @@
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   white-space: nowrap;
-  writing-mode: horizontal-tb;
+  width: auto;
+  height: auto;
 }
