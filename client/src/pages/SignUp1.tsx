@@ -11,7 +11,7 @@ export const SignUp1 = (): JSX.Element => {
 
   const registerMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
-      const response = await fetch("/api/mobile/auth/register", {
+      const response = await fetch("https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev/api/mobile/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

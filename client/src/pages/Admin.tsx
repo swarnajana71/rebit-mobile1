@@ -11,11 +11,16 @@ interface Member {
 
 export const Admin = (): JSX.Element => {
   const [selectedMember, setSelectedMember] = useState<Member | null>(null);
+  const [dataSource, setDataSource] = useState<"local" | "external">("local");
 
   const { data: membersData, isLoading, error } = useQuery({
-    queryKey: ["/api/admin/members"],
+    queryKey: ["/api/admin/members", dataSource],
     queryFn: async () => {
-      const response = await fetch("/api/admin/members");
+      const baseUrl = dataSource === "external" 
+        ? "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev"
+        : "";
+      
+      const response = await fetch(`${baseUrl}/api/admin/members`);
       if (!response.ok) {
         throw new Error("Failed to fetch members");
       }
@@ -46,10 +51,25 @@ export const Admin = (): JSX.Element => {
       <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="py-6">
-            <h1 className="text-3xl font-bold text-gray-900">Member Administration</h1>
-            <p className="mt-2 text-gray-600">
-              Total members: {members.length}
-            </p>
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold text-gray-900">Member Administration</h1>
+                <p className="mt-2 text-gray-600">
+                  Total members: {members.length} • Source: {dataSource === "external" ? "External API" : "Local Storage"}
+                </p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <label className="text-sm font-medium text-gray-700">Data Source:</label>
+                <select
+                  value={dataSource}
+                  onChange={(e) => setDataSource(e.target.value as "local" | "external")}
+                  className="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="local">Local Test Data</option>
+                  <option value="external">External Admin API</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
       </div>

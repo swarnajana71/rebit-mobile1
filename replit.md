@@ -106,6 +106,12 @@ Changelog:
 - July 04, 2025. Initial setup
 - July 04, 2025. Major architectural change - simplified to iPhone status bar only
 - July 04, 2025. Reverted changes - restored full application with all pages and functionality
+- July 04, 2025. Integrated member registration system with external admin API
+  * Added PostgreSQL database schema with members table
+  * Created registration API endpoints (/api/mobile/auth/register, /api/admin/members)
+  * Connected SignUp1 form to external API (4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev)
+  * Built admin dashboard at /admin with local/external data source toggle
+  * Successfully tested email/password registration flow
 ```
 
 ## User Preferences
