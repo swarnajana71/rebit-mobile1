@@ -27,7 +27,7 @@ export const FooterSection = (): JSX.Element => {
   ];
 
   return (
-    <footer className="flex flex-col w-full items-start bg-transparent">
+    <footer className="fixed bottom-0 left-0 right-0 flex flex-col w-full items-start bg-transparent z-50">
       <div className="flex flex-col items-center justify-end p-2 relative self-stretch w-full flex-[0_0_auto] bg-white border-t [border-top-style:solid] border-[#e6e6e6]">
         <div className="flex items-center justify-between relative self-stretch w-full flex-[0_0_auto]">
           {/* Left side navigation items */}
