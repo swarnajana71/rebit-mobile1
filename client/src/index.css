@@ -73,6 +73,7 @@
 }
 
 :root {
+  --text-icon-primary: #162a39;
   --med-12px-font-family: "Noto Sans JP", Helvetica;
   --med-12px-font-size: 12px;
   --med-12px-font-style: normal;
