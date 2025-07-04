@@ -122,8 +122,10 @@ export const QRCode = (): JSX.Element => {
                 {/* Home button with outlined icon */}
                 <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 12H5V21H10V15H14V21H19V12H22L12 2Z" stroke="#162a39" strokeWidth="1.5" fill="none" strokeLinejoin="round"/>
-                    <rect x="9" y="15" width="6" height="6" stroke="#162a39" strokeWidth="1.5" fill="none"/>
+                    <path d="M3 12L12 3L21 12" stroke="#162a39" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M5 10V19C5 19.5523 5.44772 20 6 20H18C18.5523 20 19 19.5523 19 19V10" stroke="#162a39" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="10" y="15" width="4" height="5" stroke="#162a39" strokeWidth="1.5" fill="none"/>
+                    <circle cx="11.5" cy="17" r="0.5" fill="#162a39"/>
                   </svg>
                   <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
                     ホーム
