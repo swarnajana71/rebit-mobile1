@@ -93,7 +93,7 @@ export const MainContentSection = (): JSX.Element => {
 
       <div className="flex flex-col items-center gap-6 w-full">
         <div className="flex flex-col items-center w-full">
-          <Card className="w-full mx-4 z-[1] rounded-lg overflow-hidden shadow-rebit-app-shadow-card bg-[linear-gradient(270deg,rgba(234,227,200,1)_0%,rgba(218,210,157,1)_100%)] border-0">
+          <Card className="w-full z-[1] rounded-lg overflow-hidden shadow-rebit-app-shadow-card bg-[linear-gradient(270deg,rgba(234,227,200,1)_0%,rgba(218,210,157,1)_100%)] border-0">
             <CardContent className="flex flex-col items-start gap-3 p-0">
               <div className="flex items-center gap-2 pl-6 pr-4 py-4 w-full">
                 <div className="flex items-center gap-1 flex-1">
