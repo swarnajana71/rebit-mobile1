@@ -1,0 +1,118 @@
+Implement the following design in React. Use the following files generated from a Figma design as a specification and guide:
+
+```src/styles/List.module.css
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,500&display=swap";
+.List_2_9054 {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+.Item_2_9055 {
+  border-bottom: 1px solid var(--Border-Basic, #e6e6e6);
+  box-sizing: border-box;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+  padding: 16px;
+  display: flex;
+}
+.Name_1_5016 {
+  color: var(--text-icon-primary, #162a39);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-direction: column;
+  flex: 1 0 0;
+  justify-content: center;
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  display: inline-block;
+  overflow: hidden;
+}
+.IconArea_1_5017 {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+.ArrowRight_1_5125 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+.Item_2_9056,
+.Item_2_9057,
+.Item_2_9058,
+.Item_2_9059 {
+  border-bottom: 1px solid var(--Border-Basic, #e6e6e6);
+  box-sizing: border-box;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+  padding: 16px;
+  display: flex;
+}
+
+```
+
+---
+
+```src/components/List.tsx
+import React from 'react';
+import styles from '../styles/List.module.css';
+
+
+export default function List() {
+  return (
+    <div className={styles.List_2_9054}>
+      <div className={styles.Item_2_9055}><span className={styles.Name_1_5016}>&#x4F1A;&#x54E1;&#x60C5;&#x5831;</span>
+        <div className={styles.IconArea_1_5017}>
+          <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div className={styles.Item_2_9056}><span className={styles.Name_1_5016}>&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</span>
+        <div className={styles.IconArea_1_5017}>
+          <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div className={styles.Item_2_9057}><span className={styles.Name_1_5016}>&#x5229;&#x7528;&#x898F;&#x7D04;</span>
+        <div className={styles.IconArea_1_5017}>
+          <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div className={styles.Item_2_9058}><span className={styles.Name_1_5016}>&#x30D7;&#x30E9;&#x30A4;&#x30D0;&#x30B7;&#x30FC;&#x30DD;&#x30EA;&#x30B7;&#x30FC;</span>
+        <div className={styles.IconArea_1_5017}>
+          <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div className={styles.Item_2_9059}><span className={styles.Name_1_5016}>ReBit&#x516C;&#x5F0F;&#x30B5;&#x30A4;&#x30C8;</span>
+        <div className={styles.IconArea_1_5017}>
+          <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
