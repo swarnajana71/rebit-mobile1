@@ -26,9 +26,9 @@ export const Admin = (): JSX.Element => {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
         return response.json();
-      } catch (err) {
-        console.error("API fetch error:", err);
-        const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      } catch (error: unknown) {
+        console.error("API fetch error:", error);
+        const errorMessage = error instanceof Error ? error.message : "Unknown error";
         throw new Error(`Failed to fetch members: ${errorMessage}`);
       }
     },

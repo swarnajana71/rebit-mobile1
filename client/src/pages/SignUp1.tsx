@@ -11,8 +11,10 @@ export const SignUp1 = (): JSX.Element => {
 
   const registerMutation = useMutation({
     mutationFn: async (data: { email: string; password: string }) => {
+      const API_BASE = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      
       try {
-        const response = await fetch("https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev/api/mobile/auth/register", {
+        const response = await fetch(`${API_BASE}/api/mobile/auth/register`, {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",
@@ -27,13 +29,13 @@ export const SignUp1 = (): JSX.Element => {
         }
         
         return await response.json();
-      } catch (err) {
-        console.error("Registration error:", err);
-        if (err instanceof Error) {
-          if (err.name === 'TypeError' && err.message.includes('fetch')) {
+      } catch (error: unknown) {
+        console.error("Registration error:", error);
+        if (error instanceof Error) {
+          if (error.name === 'TypeError' && error.message.includes('fetch')) {
             throw new Error("ネットワークエラー: 管理サーバーに接続できません");
           }
-          throw err;
+          throw error;
         }
         throw new Error("予期しないエラーが発生しました");
       }
