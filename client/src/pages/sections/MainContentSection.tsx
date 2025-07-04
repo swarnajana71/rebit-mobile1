@@ -176,7 +176,7 @@ export const MainContentSection = (): JSX.Element => {
                 {button.id === 1 ? (
                   <img src="/icons/mail-icon.png" alt="Mail" className="w-8 h-8" />
                 ) : button.id === 2 ? (
-                  <Vector />
+                  <img src="/icons/exchange-icon.png" alt="Exchange" className="w-8 h-8" />
                 ) : (
                   <div className="w-8 h-8">{button.icon}</div>
                 )}
