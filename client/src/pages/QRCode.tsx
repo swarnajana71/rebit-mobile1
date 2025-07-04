@@ -151,15 +151,17 @@ export const QRCode = (): JSX.Element => {
               {/* Right side navigation items */}
               <div className="flex items-center justify-end gap-2 relative flex-1 grow">
                 {/* Map button */}
-                <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
-                  <div
-                    className="w-6 h-6 bg-[100%_100%]"
-                    style={{ backgroundImage: `url(/figmaAssets/pin.svg)` }}
-                  />
-                  <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
-                    マップ
-                  </div>
-                </button>
+                <Link href="/map">
+                  <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
+                    <div
+                      className="w-6 h-6 bg-[100%_100%]"
+                      style={{ backgroundImage: `url(/figmaAssets/pin.svg)` }}
+                    />
+                    <div className="font-rebit-app-label-12px font-[number:var(--rebit-app-label-12px-font-weight)] text-[#162a39] text-[length:var(--rebit-app-label-12px-font-size)] leading-[var(--rebit-app-label-12px-line-height)] whitespace-nowrap relative w-fit text-center tracking-[var(--rebit-app-label-12px-letter-spacing)] [font-style:var(--rebit-app-label-12px-font-style)]">
+                      マップ
+                    </div>
+                  </button>
+                </Link>
                 
                 {/* Account button */}
                 <button className="flex flex-col w-16 items-center gap-0.5 relative p-0 h-auto bg-transparent border-none">
