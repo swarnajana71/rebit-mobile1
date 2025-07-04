@@ -89,68 +89,68 @@ export const Account = (): JSX.Element => {
 
             {/* User Name */}
             <span className="color-[#162A39] font-['Noto_Sans_JP'] text-[14px] font-bold leading-[140%] text-[#162A39]">
-              田中 太郎
+              渡辺 広太
             </span>
           </div>
 
           {/* Menu List */}
           <div className="flex flex-col items-start w-[358px]">
-            {/* Account Settings */}
+            {/* Member Information */}
             <div className="flex h-[54px] px-4 items-center gap-2 border-b border-[#E6E6E6] w-full box-border">
               <span className="flex-1 overflow-hidden text-[#162A39] text-ellipsis whitespace-nowrap font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%]">
-                アカウント設定
+                会員情報
               </span>
               <div className="flex w-5 h-5 justify-center items-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="#162A39" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.913 6.70802 17.917C6.45108 17.921 6.20802 17.8207 6.00802 17.6127C5.80802 17.4043 5.70802 17.161 5.70802 16.8835C5.70802 16.606 5.80802 16.3627 6.00802 16.1543L12.0622 10.0002Z" fill="#162A39"/>
                 </svg>
               </div>
             </div>
 
-            {/* Notification Settings */}
+            {/* Contact Us */}
             <div className="flex h-[54px] px-4 items-center gap-2 border-b border-[#E6E6E6] w-full box-border">
               <span className="flex-1 overflow-hidden text-[#162A39] text-ellipsis whitespace-nowrap font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%]">
-                通知設定
+                お問い合わせ
               </span>
               <div className="flex w-5 h-5 justify-center items-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="#162A39" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.913 6.70802 17.917C6.45108 17.921 6.20802 17.8207 6.00802 17.6127C5.80802 17.4043 5.70802 17.161 5.70802 16.8835C5.70802 16.606 5.80802 16.3627 6.00802 16.1543L12.0622 10.0002Z" fill="#162A39"/>
                 </svg>
               </div>
             </div>
 
-            {/* Point History */}
+            {/* Terms of Service */}
             <div className="flex h-[54px] px-4 items-center gap-2 border-b border-[#E6E6E6] w-full box-border">
               <span className="flex-1 overflow-hidden text-[#162A39] text-ellipsis whitespace-nowrap font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%]">
-                ポイント履歴
+                利用規約
               </span>
               <div className="flex w-5 h-5 justify-center items-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="#162A39" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.913 6.70802 17.917C6.45108 17.921 6.20802 17.8207 6.00802 17.6127C5.80802 17.4043 5.70802 17.161 5.70802 16.8835C5.70802 16.606 5.80802 16.3627 6.00802 16.1543L12.0622 10.0002Z" fill="#162A39"/>
                 </svg>
               </div>
             </div>
 
-            {/* Help & Support */}
+            {/* Privacy Policy */}
             <div className="flex h-[54px] px-4 items-center gap-2 border-b border-[#E6E6E6] w-full box-border">
               <span className="flex-1 overflow-hidden text-[#162A39] text-ellipsis whitespace-nowrap font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%]">
-                ヘルプ・サポート
+                プライバシーポリシー
               </span>
               <div className="flex w-5 h-5 justify-center items-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="#162A39" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.913 6.70802 17.917C6.45108 17.921 6.20802 17.8207 6.00802 17.6127C5.80802 17.4043 5.70802 17.161 5.70802 16.8835C5.70802 16.606 5.80802 16.3627 6.00802 16.1543L12.0622 10.0002Z" fill="#162A39"/>
                 </svg>
               </div>
             </div>
 
-            {/* Logout */}
+            {/* ReBit Official Site */}
             <div className="flex h-[54px] px-4 items-center gap-2 border-b border-[#E6E6E6] w-full box-border">
               <span className="flex-1 overflow-hidden text-[#162A39] text-ellipsis whitespace-nowrap font-['Noto_Sans_JP'] text-[14px] font-medium leading-[160%]">
-                ログアウト
+                ReBit公式サイト
               </span>
               <div className="flex w-5 h-5 justify-center items-center">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="#162A39" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.913 6.70802 17.917C6.45108 17.921 6.20802 17.8207 6.00802 17.6127C5.80802 17.4043 5.70802 17.161 5.70802 16.8835C5.70802 16.606 5.80802 16.3627 6.00802 16.1543L12.0622 10.0002Z" fill="#162A39"/>
                 </svg>
               </div>
             </div>

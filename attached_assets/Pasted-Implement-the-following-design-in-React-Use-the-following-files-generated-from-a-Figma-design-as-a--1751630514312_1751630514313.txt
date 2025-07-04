@@ -1,0 +1,182 @@
+Implement the following design in React. Use the following files generated from a Figma design as a specification and guide:
+
+```src/styles/Layout.module.css
+@import "https://fonts.googleapis.com/css?family=Noto+Sans+JP:0,700;0,500&display=swap";
+.Layout_2_9050 {
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  width: 390px;
+  padding: 24px 0 40px;
+  display: flex;
+}
+.Layout_2_9051 {
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 358px;
+  display: flex;
+}
+.ProfileImage_2_9052 {
+  aspect-ratio: 1;
+  width: 64px;
+  height: 64px;
+}
+.Image_1_4988 {
+  background: var(--Navy-Navy-50, #e6eaed);
+  border-radius: 40px;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+}
+.IconArea_1_4989 {
+  aspect-ratio: 38.4/38.4;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 38.4px;
+  height: 38.4px;
+  display: flex;
+}
+.Person_1_5127 {
+  aspect-ratio: 38.4/38.4;
+  flex-shrink: 0;
+  width: 38.4px;
+  height: 38.4px;
+}
+.Heading_2_9053 {
+  color: var(--text-icon-primary, #162a39);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  display: inline-block;
+}
+.List_2_9054 {
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  display: flex;
+}
+.Item_2_9055 {
+  border-bottom: 1px solid var(--Border-Basic, #e6e6e6);
+  box-sizing: border-box;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+  padding: 16px;
+  display: flex;
+}
+.Name_1_5016 {
+  color: var(--text-icon-primary, #162a39);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-direction: column;
+  flex: 1 0 0;
+  justify-content: center;
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 160%;
+  display: inline-block;
+  overflow: hidden;
+}
+.IconArea_1_5017 {
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  display: flex;
+}
+.ArrowRight_1_5125 {
+  aspect-ratio: 1;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+.Item_2_9056,
+.Item_2_9057,
+.Item_2_9058,
+.Item_2_9059 {
+  border-bottom: 1px solid var(--Border-Basic, #e6e6e6);
+  box-sizing: border-box;
+  align-items: center;
+  gap: 8px;
+  height: 54px;
+  padding: 16px;
+  display: flex;
+}
+
+```
+
+---
+
+```src/components/Layout.tsx
+import React from 'react';
+import styles from '../styles/Layout.module.css';
+
+
+export default function Layout() {
+  return (
+    <div className={styles.Layout_2_9050}>
+      <div className={styles.Layout_2_9051}>
+        <div className={styles.ProfileImage_2_9052}>
+          <div className={styles.Image_1_4988}></div>
+          <div className={styles.IconArea_1_4989}>
+            <div className={styles.Person_1_5127}><svg width="39" height="40" viewBox="0 0 39 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.802 19.9997C18.042 19.9997 16.5353 19.373 15.282 18.1197C14.0286 16.8664 13.402 15.3597 13.402 13.5997C13.402 11.8397 14.0286 10.333 15.282 9.07971C16.5353 7.82637 18.042 7.19971 19.802 7.19971C21.562 7.19971 23.0686 7.82637 24.322 9.07971C25.5753 10.333 26.202 11.8397 26.202 13.5997C26.202 15.3597 25.5753 16.8664 24.322 18.1197C23.0686 19.373 21.562 19.9997 19.802 19.9997ZM7.00195 29.5997V28.3197C7.00195 27.413 7.23529 26.5797 7.70195 25.8197C8.16862 25.0597 8.78862 24.4797 9.56195 24.0797C11.2153 23.253 12.8953 22.633 14.602 22.2197C16.3086 21.8064 18.042 21.5997 19.802 21.5997C21.562 21.5997 23.2953 21.8064 25.002 22.2197C26.7086 22.633 28.3886 23.253 30.042 24.0797C30.8153 24.4797 31.4353 25.0597 31.902 25.8197C32.3686 26.5797 32.602 27.413 32.602 28.3197V29.5997C32.602 30.4797 32.2886 31.233 31.662 31.8597C31.0353 32.4864 30.282 32.7997 29.402 32.7997H10.202C9.32195 32.7997 8.56862 32.4864 7.94195 31.8597C7.31529 31.233 7.00195 30.4797 7.00195 29.5997Z" fill="#475A69" />
+              </svg>
+            </div>
+          </div>
+        </div><span className={styles.Heading_2_9053}>&#x6E21;&#x8FBA; &#x5E83;&#x592A;</span>
+      </div>
+      <div className={styles.List_2_9054}>
+        <div className={styles.Item_2_9055}><span className={styles.Name_1_5016}>&#x4F1A;&#x54E1;&#x60C5;&#x5831;</span>
+          <div className={styles.IconArea_1_5017}>
+            <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className={styles.Item_2_9056}><span className={styles.Name_1_5016}>&#x304A;&#x554F;&#x3044;&#x5408;&#x308F;&#x305B;</span>
+          <div className={styles.IconArea_1_5017}>
+            <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className={styles.Item_2_9057}><span className={styles.Name_1_5016}>&#x5229;&#x7528;&#x898F;&#x7D04;</span>
+          <div className={styles.IconArea_1_5017}>
+            <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className={styles.Item_2_9058}><span className={styles.Name_1_5016}>&#x30D7;&#x30E9;&#x30A4;&#x30D0;&#x30B7;&#x30FC;&#x30DD;&#x30EA;&#x30B7;&#x30FC;</span>
+          <div className={styles.IconArea_1_5017}>
+            <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div className={styles.Item_2_9059}><span className={styles.Name_1_5016}>ReBit&#x516C;&#x5F0F;&#x30B5;&#x30A4;&#x30C8;</span>
+          <div className={styles.IconArea_1_5017}>
+            <div className={styles.ArrowRight_1_5125}><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12.0622 10.0002L5.93718 3.87516C5.72885 3.66683 5.62816 3.4203 5.6351 3.13558C5.64205 2.85086 5.74968 2.60433 5.95802 2.396C6.16635 2.18766 6.41288 2.0835 6.6976 2.0835C6.98232 2.0835 7.22885 2.18766 7.43718 2.396L13.833 8.81266C13.9997 8.97933 14.1247 9.16683 14.208 9.37516C14.2914 9.5835 14.333 9.79183 14.333 10.0002C14.333 10.2085 14.2914 10.4168 14.208 10.6252C14.1247 10.8335 13.9997 11.021 13.833 11.1877L7.41635 17.6043C7.20802 17.8127 6.96496 17.9134 6.68718 17.9064C6.40941 17.8995 6.16635 17.7918 5.95802 17.5835C5.74968 17.3752 5.64552 17.1286 5.64552 16.8439C5.64552 16.5592 5.74968 16.3127 5.95802 16.1043L12.0622 10.0002Z" fill="#162A39" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
