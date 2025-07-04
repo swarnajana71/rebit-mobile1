@@ -29,8 +29,8 @@ export const Home = (): JSX.Element => {
   ];
 
   return (
-    <div className="bg-white flex flex-row justify-center w-full min-h-screen">
-      <div className="bg-white w-full max-w-[390px] relative">
+    <div className="bg-white w-full min-h-screen">
+      <div className="bg-white w-full relative">
         {/* Status Bar */}
         <header className="flex flex-col w-full items-start pt-4 pb-0 px-0 sticky top-0 left-0 bg-white z-10">
           <div className="items-center justify-between flex relative self-stretch w-full flex-[0_0_auto]">
