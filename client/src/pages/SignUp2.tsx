@@ -68,10 +68,23 @@ export const SignUp2 = (): JSX.Element => {
               </div>
             </button>
 
-            {/* Button 3 - Placeholder */}
-            <div className="w-[358px] h-[48px] bg-gray-200 rounded-[24px] flex items-center justify-center">
-              <span className="text-gray-500 font-['Noto_Sans_JP'] text-[14px]">Button 3 (準備中)</span>
-            </div>
+            {/* Button 3 - Google */}
+            <button className="relative w-[358px] h-[48px] rounded-[24px] overflow-hidden">
+              <svg width="358" height="48" viewBox="0 0 358 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.5" y="0.5" width="357" height="47" rx="23.5" fill="white"/>
+                <rect x="0.5" y="0.5" width="357" height="47" rx="23.5" stroke="#747775"/>
+                <mask id="mask0_2_8676" style={{maskType:"luminance"}} maskUnits="userSpaceOnUse" x="16" y="14" width="20" height="20">
+                  <path d="M36 14H16V34H36V14Z" fill="white"/>
+                </mask>
+                <g mask="url(#mask0_2_8676)">
+                  <path d="M35.6 24.2274C35.6 23.5183 35.5364 22.8365 35.4182 22.1819H26V26.0501H31.3818C31.15 27.3001 30.4455 28.3592 29.3864 29.0683V31.5774H32.6182C34.5091 29.8365 35.6 27.2728 35.6 24.2274Z" fill="#4285F4"/>
+                  <path d="M26.0001 33.9999C28.7001 33.9999 30.9637 33.1044 32.6182 31.5772L29.3864 29.0681C28.491 29.6681 27.3455 30.0226 26.0001 30.0226C23.3955 30.0226 21.191 28.2635 20.4046 25.8999H17.0637V28.4908C18.7092 31.759 22.091 33.9999 26.0001 33.9999Z" fill="#34A853"/>
+                  <path d="M20.4045 25.8999C20.2045 25.2999 20.0909 24.659 20.0909 23.9999C20.0909 23.3408 20.2045 22.6999 20.4045 22.0999V19.509H17.0636C16.3864 20.859 16 22.3863 16 23.9999C16 25.6135 16.3864 27.1408 17.0636 28.4908L20.4045 25.8999Z" fill="#FBBC04"/>
+                  <path d="M26.0001 17.9773C27.4682 17.9773 28.7864 18.4818 29.8228 19.4727L32.691 16.6045C30.9592 14.9909 28.6955 14 26.0001 14C22.091 14 18.7092 16.2409 17.0637 19.5091L20.4046 22.1C21.191 19.7364 23.3955 17.9773 26.0001 17.9773Z" fill="#E94235"/>
+                </g>
+                <text x="126.729" y="28" className="fill-[#747775] font-['Noto_Sans_JP'] text-[15px] font-medium">Googleでログイン</text>
+              </svg>
+            </button>
 
             {/* Button 4 - Placeholder */}
             <div className="w-[358px] h-[48px] bg-gray-200 rounded-[24px] flex items-center justify-center">
