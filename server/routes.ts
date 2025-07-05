@@ -7,7 +7,183 @@ import { z } from "zod";
 export async function registerRoutes(app: Express): Promise<Server> {
   console.log("=== Registering routes ===");
   
-  // External mobile app registration endpoint (forwards to main admin dashboard)
+  // Email verification flow - Step 1: Send verification code
+  app.post("/api/mobile/auth/send-verification", async (req, res) => {
+    try {
+      const { email } = req.body;
+      
+      if (!email) {
+        return res.status(400).json({ message: "メールアドレスが必要です" });
+      }
+      
+      console.log("=== Sending Verification Code ===");
+      console.log("Email:", email);
+      
+      // Generate 4-digit verification code
+      const verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
+      
+      // Store verification code temporarily (in production, use Redis or database)
+      // For now, we'll store in memory (this is just for demo)
+      global.verificationCodes = global.verificationCodes || {};
+      global.verificationCodes[email] = {
+        code: verificationCode,
+        timestamp: Date.now(),
+        verified: false
+      };
+      
+      console.log("Generated verification code:", verificationCode);
+      
+      // In production, send actual email here
+      // For demo, just log the code
+      console.log(`Email would be sent to ${email} with code: ${verificationCode}`);
+      
+      res.json({
+        success: true,
+        message: "認証コードを送信しました",
+        // In production, don't return the code
+        debug_code: verificationCode
+      });
+      
+    } catch (error) {
+      console.error("Send verification error:", error);
+      res.status(500).json({ message: "認証コードの送信に失敗しました" });
+    }
+  });
+
+  // Email verification flow - Step 2: Verify code
+  app.post("/api/mobile/auth/verify-code", async (req, res) => {
+    try {
+      const { email, code } = req.body;
+      
+      if (!email || !code) {
+        return res.status(400).json({ message: "メールアドレスと認証コードが必要です" });
+      }
+      
+      console.log("=== Verifying Code ===");
+      console.log("Email:", email);
+      console.log("Code:", code);
+      
+      // Check verification code
+      const storedData = global.verificationCodes?.[email];
+      if (!storedData) {
+        return res.status(400).json({ message: "認証コードが見つかりません" });
+      }
+      
+      if (storedData.code !== code) {
+        return res.status(400).json({ message: "認証コードが正しくありません" });
+      }
+      
+      // Check if code is expired (5 minutes)
+      const fiveMinutes = 5 * 60 * 1000;
+      if (Date.now() - storedData.timestamp > fiveMinutes) {
+        return res.status(400).json({ message: "認証コードの有効期限が切れています" });
+      }
+      
+      // Mark as verified
+      storedData.verified = true;
+      
+      console.log("Code verified successfully");
+      
+      res.json({
+        success: true,
+        message: "認証が完了しました",
+        email: email
+      });
+      
+    } catch (error) {
+      console.error("Verify code error:", error);
+      res.status(500).json({ message: "認証に失敗しました" });
+    }
+  });
+
+  // Email verification flow - Step 3: Complete registration
+  app.post("/api/mobile/auth/complete-registration", async (req, res) => {
+    try {
+      const { email, firstName, lastName, mobile, password } = req.body;
+      
+      if (!email || !firstName || !lastName || !mobile || !password) {
+        return res.status(400).json({ message: "すべての項目を入力してください" });
+      }
+      
+      console.log("=== Completing Registration ===");
+      console.log("Email:", email);
+      console.log("Name:", firstName, lastName);
+      console.log("Mobile:", mobile);
+      
+      // Check if email was verified
+      const storedData = global.verificationCodes?.[email];
+      if (!storedData || !storedData.verified) {
+        return res.status(400).json({ message: "メールアドレスが認証されていません" });
+      }
+      
+      // Forward to main admin backend
+      const externalApiUrl = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev/api/mobile/auth/register";
+      
+      const registrationData = {
+        email,
+        password,
+        firstName,
+        lastName,
+        mobile,
+        username: email.split('@')[0],
+        location: 'Mobile App User (Email Verified)',
+        registrationMethod: "email-verified-mobile-app"
+      };
+      
+      console.log("Forwarding to external API:", externalApiUrl);
+      
+      const response = await fetch(externalApiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(registrationData),
+      });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("External API error:", response.status, errorText);
+        return res.status(response.status).json({
+          message: errorText || "外部API登録に失敗しました"
+        });
+      }
+      
+      const result = await response.json();
+      console.log("External API registration success:", result);
+      
+      // Also store locally for backup/reference
+      try {
+        await storage.createMember({
+          email,
+          password,
+          registrationMethod: "email-verified-mobile-app-forwarded"
+        });
+        console.log("Local backup created");
+      } catch (localError) {
+        console.warn("Local backup failed:", localError);
+      }
+      
+      // Clean up verification code
+      if (global.verificationCodes?.[email]) {
+        delete global.verificationCodes[email];
+      }
+      
+      res.json({
+        success: true,
+        message: "会員登録が完了しました",
+        data: result.user || result.data,
+        timestamp: new Date().toISOString(),
+        registrationMethod: "email-verified-mobile-app"
+      });
+      
+    } catch (error) {
+      console.error("Complete registration error:", error);
+      res.status(500).json({ message: "登録の完了に失敗しました" });
+    }
+  });
+  
+  // External mobile app registration endpoint (forwards to main admin dashboard) - Legacy support
   app.post('/api/mobile/auth/register', async (req, res) => {
     try {
       console.log("=== MOBILE REGISTRATION - FORWARDING TO MAIN ADMIN ===");
