@@ -48,8 +48,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      const result = await response.json();
-      console.log("Admin API registration init success:", result);
+      const responseText = await response.text();
+      console.log("Admin API raw response:", responseText);
+      
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log("Admin API registration init success:", result);
+      } catch (parseError) {
+        console.error("Failed to parse admin API response as JSON:", parseError);
+        console.log("Response was:", responseText.substring(0, 200));
+        throw new Error("Admin API returned invalid response format");
+      }
       
       // Store session info locally for later use
       if (result.data?.sessionId) {
@@ -132,8 +142,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      const result = await response.json();
-      console.log("Admin API verification success:", result);
+      const responseText = await response.text();
+      console.log("Admin API verify raw response:", responseText);
+      
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log("Admin API verification success:", result);
+      } catch (parseError) {
+        console.error("Failed to parse admin API verify response as JSON:", parseError);
+        console.log("Response was:", responseText.substring(0, 200));
+        throw new Error("Admin API returned invalid response format");
+      }
       
       // Update local session
       if ((global as any).registrationSessions?.[email]) {
@@ -220,8 +240,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
-      const result = await response.json();
-      console.log("Admin API registration complete success:", result);
+      const responseText = await response.text();
+      console.log("Admin API complete raw response:", responseText);
+      
+      let result;
+      try {
+        result = JSON.parse(responseText);
+        console.log("Admin API registration complete success:", result);
+      } catch (parseError) {
+        console.error("Failed to parse admin API complete response as JSON:", parseError);
+        console.log("Response was:", responseText.substring(0, 200));
+        throw new Error("Admin API returned invalid response format");
+      }
       
       // Also store locally for backup/reference
       try {
