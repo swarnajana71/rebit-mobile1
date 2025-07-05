@@ -22,7 +22,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Forward to admin API - Step 1: Initiate registration
       const ADMIN_API_URL = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
       
-      const response = await fetch(`${ADMIN_API_URL}/api/auth/register/init`, {
+      const response = await fetch(`${ADMIN_API_URL}/api/mobile/auth/register/init`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -121,7 +121,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Forward to admin API - Step 2: Verify email code
       const ADMIN_API_URL = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
       
-      const response = await fetch(`${ADMIN_API_URL}/api/auth/register/verify-email`, {
+      const response = await fetch(`${ADMIN_API_URL}/api/mobile/auth/register/verify-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -228,9 +228,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
         preferredLanguage: "ja"
       };
       
-      console.log("Forwarding to admin API:", `${ADMIN_API_URL}/api/auth/register/complete`);
+      console.log("Forwarding to admin API:", `${ADMIN_API_URL}/api/mobile/auth/register/complete`);
       
-      const response = await fetch(`${ADMIN_API_URL}/api/auth/register/complete`, {
+      const response = await fetch(`${ADMIN_API_URL}/api/mobile/auth/register/complete`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
