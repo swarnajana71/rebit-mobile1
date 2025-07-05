@@ -86,10 +86,28 @@ export const SignUp2 = (): JSX.Element => {
               </svg>
             </button>
 
-            {/* Button 4 - Placeholder */}
-            <div className="w-[358px] h-[48px] bg-gray-200 rounded-[24px] flex items-center justify-center">
-              <span className="text-gray-500 font-['Noto_Sans_JP'] text-[14px]">Button 4 (準備中)</span>
-            </div>
+            {/* Button 4 - Email */}
+            <Link href="/email-registration">
+              <button className="relative w-[358px] h-[48px] rounded-[24px] overflow-hidden">
+                <svg width="358" height="48" viewBox="0 0 358 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="1" y="1" width="356" height="46" rx="23" fill="white"/>
+                  <rect x="1" y="1" width="356" height="46" rx="23" stroke="url(#paint0_linear_2_8686)" strokeWidth="2"/>
+                  <g clipPath="url(#clip0_2_8686)">
+                    <path d="M19.9995 32C19.4495 32 18.9787 31.8042 18.587 31.4125C18.1953 31.0208 17.9995 30.55 17.9995 30V18C17.9995 17.45 18.1953 16.9792 18.587 16.5875C18.9787 16.1958 19.4495 16 19.9995 16H35.9995C36.5495 16 37.0203 16.1958 37.412 16.5875C37.8037 16.9792 37.9995 17.45 37.9995 18V30C37.9995 30.55 37.8037 31.0208 37.412 31.4125C37.0203 31.8042 36.5495 32 35.9995 32H19.9995ZM35.9995 20L28.5245 24.675C28.4412 24.725 28.3537 24.7625 28.262 24.7875C28.1703 24.8125 28.0828 24.825 27.999 24.825C27.9162 24.825 27.8287 24.8125 27.737 24.7875C27.6453 24.7625 27.5578 24.725 27.4745 24.675L19.9995 20V18L27.999 23L35.9995 18V20Z" fill="#2B988D"/>
+                  </g>
+                  <text x="106.802" y="28" className="fill-[#2B988D] font-['Noto_Sans_JP'] text-[15px] font-medium">メールアドレスで登録</text>
+                  <defs>
+                    <linearGradient id="paint0_linear_2_8686" x1="-3.55067e-08" y1="24.192" x2="357.773" y2="33.2134" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#2B988D"/>
+                      <stop offset="1" stopColor="#A4E0D9"/>
+                    </linearGradient>
+                    <clipPath id="clip0_2_8686">
+                      <rect width="24" height="24" fill="white" transform="translate(16 12)"/>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </button>
+            </Link>
           </div>
 
           {/* Navigation Buttons */}
