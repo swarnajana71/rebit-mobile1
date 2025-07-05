@@ -58,6 +58,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } catch (parseError) {
         console.error("Failed to parse admin API response as JSON:", parseError);
         console.log("Response was:", responseText.substring(0, 200));
+        
+        // Check if admin API is returning HTML (development page)
+        if (responseText.includes("<!DOCTYPE html")) {
+          return res.status(503).json({
+            success: false,
+            message: "管理システムが利用できません。しばらくしてから再度お試しください。"
+          });
+        }
+        
         throw new Error("Admin API returned invalid response format");
       }
       
@@ -152,6 +161,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } catch (parseError) {
         console.error("Failed to parse admin API verify response as JSON:", parseError);
         console.log("Response was:", responseText.substring(0, 200));
+        
+        // Check if admin API is returning HTML (development page)
+        if (responseText.includes("<!DOCTYPE html")) {
+          return res.status(503).json({
+            success: false,
+            message: "管理システムが利用できません。しばらくしてから再度お試しください。"
+          });
+        }
+        
         throw new Error("Admin API returned invalid response format");
       }
       
@@ -250,6 +268,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } catch (parseError) {
         console.error("Failed to parse admin API complete response as JSON:", parseError);
         console.log("Response was:", responseText.substring(0, 200));
+        
+        // Check if admin API is returning HTML (development page)
+        if (responseText.includes("<!DOCTYPE html")) {
+          return res.status(503).json({
+            success: false,
+            message: "管理システムが利用できません。しばらくしてから再度お試しください。"
+          });
+        }
+        
         throw new Error("Admin API returned invalid response format");
       }
       
