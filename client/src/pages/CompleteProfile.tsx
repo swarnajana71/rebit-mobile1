@@ -13,23 +13,15 @@ export const CompleteProfile = (): JSX.Element => {
   const sessionId = urlParams.get('sessionId') || '';
   
   const [formData, setFormData] = useState({
-    firstName: '',
     lastName: '',
+    firstName: '',
+    lastNameKana: '',
+    firstNameKana: '',
     mobile: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   });
 
   const validateForm = () => {
-    if (!formData.firstName.trim()) {
-      toast({
-        title: "入力エラー",
-        description: "名前を入力してください",
-        variant: "destructive",
-      });
-      return false;
-    }
-    
     if (!formData.lastName.trim()) {
       toast({
         title: "入力エラー",
@@ -39,10 +31,37 @@ export const CompleteProfile = (): JSX.Element => {
       return false;
     }
     
+    if (!formData.firstName.trim()) {
+      toast({
+        title: "入力エラー",
+        description: "名を入力してください",
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    if (!formData.lastNameKana.trim()) {
+      toast({
+        title: "入力エラー",
+        description: "姓（カナ）を入力してください",
+        variant: "destructive",
+      });
+      return false;
+    }
+    
+    if (!formData.firstNameKana.trim()) {
+      toast({
+        title: "入力エラー",
+        description: "名（カナ）を入力してください",
+        variant: "destructive",
+      });
+      return false;
+    }
+    
     if (!formData.mobile.trim()) {
       toast({
         title: "入力エラー",
-        description: "携帯電話番号を入力してください",
+        description: "電話番号を入力してください",
         variant: "destructive",
       });
       return false;
@@ -52,15 +71,6 @@ export const CompleteProfile = (): JSX.Element => {
       toast({
         title: "入力エラー",
         description: "パスワードは6文字以上で入力してください",
-        variant: "destructive",
-      });
-      return false;
-    }
-    
-    if (formData.password !== formData.confirmPassword) {
-      toast({
-        title: "入力エラー",
-        description: "パスワードが一致しません",
         variant: "destructive",
       });
       return false;
@@ -124,8 +134,10 @@ export const CompleteProfile = (): JSX.Element => {
     completeRegistrationMutation.mutate({
       email,
       sessionId,
-      firstName: formData.firstName,
       lastName: formData.lastName,
+      firstName: formData.firstName,
+      lastNameKana: formData.lastNameKana,
+      firstNameKana: formData.firstNameKana,
       mobile: formData.mobile,
       password: formData.password
     });
@@ -161,7 +173,7 @@ export const CompleteProfile = (): JSX.Element => {
         </div>
 
         {/* Header */}
-        <div className="px-4 py-2 flex items-center">
+        <div className="px-4 py-2 flex items-center border-b border-gray-200">
           <button 
             onClick={() => navigate(`/code-confirmed?email=${encodeURIComponent(email)}&sessionId=${encodeURIComponent(sessionId)}`)}
             className="p-2 -ml-2"
@@ -171,7 +183,7 @@ export const CompleteProfile = (): JSX.Element => {
             </svg>
           </button>
           <div className="flex-1 text-center">
-            <h1 className="text-[17px] font-medium text-black font-['Noto_Sans_JP']">プロフィール完成</h1>
+            <h1 className="text-[17px] font-medium text-black font-['Noto_Sans_JP']">会員登録</h1>
           </div>
           <div className="w-6"></div>
         </div>
@@ -180,59 +192,80 @@ export const CompleteProfile = (): JSX.Element => {
         <div className="px-4 py-8 flex flex-col items-center">
           <div className="w-full max-w-[358px]">
             {/* Title */}
-            <div className="text-center mb-6">
-              <h2 className="text-[20px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
-                プロフィールを完成させる
+            <div className="text-center mb-8">
+              <h2 className="text-[20px] font-medium text-black font-['Noto_Sans_JP']">
+                会員情報を登録
               </h2>
-              <p className="text-[14px] text-gray-600 font-['Noto_Sans_JP']">
-                アカウントを作成するために<br />
-                必要な情報を入力してください
-              </p>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              {/* First Name */}
-              <div>
-                <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
-                  名前　必須
-                </label>
-                <input
-                  type="text"
-                  value={formData.firstName}
-                  onChange={(e) => handleInputChange('firstName', e.target.value)}
-                  className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#4CAF50]"
-                  placeholder="太郎"
-                  required
-                />
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Last Name and First Name Row */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
+                    姓　<span className="text-red-500">必須</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.lastName}
+                    onChange={(e) => handleInputChange('lastName', e.target.value)}
+                    className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#148176]"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
+                    名　<span className="text-red-500">必須</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.firstName}
+                    onChange={(e) => handleInputChange('firstName', e.target.value)}
+                    className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#148176]"
+                    required
+                  />
+                </div>
               </div>
 
-              {/* Last Name */}
-              <div>
-                <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
-                  姓　必須
-                </label>
-                <input
-                  type="text"
-                  value={formData.lastName}
-                  onChange={(e) => handleInputChange('lastName', e.target.value)}
-                  className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#4CAF50]"
-                  placeholder="田中"
-                  required
-                />
+              {/* Last Name Kana and First Name Kana Row */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
+                    姓（カナ）　<span className="text-red-500">必須</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.lastNameKana}
+                    onChange={(e) => handleInputChange('lastNameKana', e.target.value)}
+                    className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#148176]"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
+                    名（カナ）　<span className="text-red-500">必須</span>
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.firstNameKana}
+                    onChange={(e) => handleInputChange('firstNameKana', e.target.value)}
+                    className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#148176]"
+                    required
+                  />
+                </div>
               </div>
 
-              {/* Mobile */}
+              {/* Phone Number */}
               <div>
                 <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
-                  携帯電話番号　必須
+                  電話番号　<span className="text-red-500">必須</span>
                 </label>
                 <input
                   type="tel"
                   value={formData.mobile}
                   onChange={(e) => handleInputChange('mobile', e.target.value)}
-                  className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#4CAF50]"
-                  placeholder="090-1234-5678"
+                  className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#148176]"
                   required
                 />
               </div>
@@ -240,48 +273,46 @@ export const CompleteProfile = (): JSX.Element => {
               {/* Password */}
               <div>
                 <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
-                  パスワード　必須
+                  パスワード　<span className="text-red-500">必須</span>
                 </label>
+                <p className="text-[12px] text-gray-500 font-['Noto_Sans_JP'] mb-2">
+                  6文字以上の半角英数字でご指定ください
+                </p>
                 <input
                   type="password"
                   value={formData.password}
                   onChange={(e) => handleInputChange('password', e.target.value)}
-                  className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#4CAF50]"
-                  placeholder="6文字以上"
-                  required
-                />
-              </div>
-
-              {/* Confirm Password */}
-              <div>
-                <label className="block text-[14px] font-medium text-black font-['Noto_Sans_JP'] mb-2">
-                  パスワード確認　必須
-                </label>
-                <input
-                  type="password"
-                  value={formData.confirmPassword}
-                  onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
-                  className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#4CAF50]"
-                  placeholder="パスワードを再入力"
+                  className="w-full h-[48px] px-4 border border-gray-300 rounded-lg font-['Noto_Sans_JP'] text-[16px] focus:outline-none focus:border-[#148176]"
                   required
                 />
               </div>
 
               {/* Submit Button */}
-              <div className="pt-4">
+              <div className="pt-8 flex justify-center">
                 <button
                   type="submit"
                   disabled={completeRegistrationMutation.isPending}
-                  className="w-full h-[50px] bg-[#4CAF50] text-white rounded-lg font-['Noto_Sans_JP'] text-[16px] font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                  className="relative w-[240px] h-[48px] rounded-[24px] overflow-hidden"
                 >
-                  {completeRegistrationMutation.isPending ? (
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>登録中...</span>
-                    </div>
-                  ) : (
-                    "登録を完了する"
-                  )}
+                  <svg width="240" height="48" viewBox="0 0 240 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                    <rect width="240" height="48" rx="24" fill="url(#paint0_linear_2_10500)"/>
+                    <defs>
+                      <linearGradient id="paint0_linear_2_10500" x1="0" y1="24" x2="240" y2="24" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#148176"/>
+                        <stop offset="1" stopColor="#77C6BE"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    {completeRegistrationMutation.isPending ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span className="text-white font-['Noto_Sans_JP'] text-[16px] font-medium">登録中...</span>
+                      </div>
+                    ) : (
+                      <span className="text-white font-['Noto_Sans_JP'] text-[16px] font-medium">登録する</span>
+                    )}
+                  </div>
                 </button>
               </div>
             </form>
