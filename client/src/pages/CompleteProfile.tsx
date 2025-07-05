@@ -153,27 +153,8 @@ export const CompleteProfile = (): JSX.Element => {
   return (
     <div className="bg-white w-full min-h-screen flex justify-center">
       <div className="bg-white w-[390px] relative">
-        {/* Status Bar */}
-        <div className="flex justify-between items-center p-4 pt-12">
-          <div className="flex items-center gap-1">
-            <span className="text-black font-medium text-[17px]">9:41</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <svg className="w-4 h-4" fill="black" viewBox="0 0 24 24">
-              <path d="M2 17h20v2H2zm1.15-4.05L4 11.47l.85 1.48L5.5 12l-.35-.95L4 12.53l-1.15-1.48L2 12.53l.85-1.48L3.5 12l-.35.95zM12 4l7 3v6l-7 3-7-3V7l7-3z"/>
-            </svg>
-            <svg className="w-4 h-4" fill="black" viewBox="0 0 24 24">
-              <path d="M2 17h20v2H2zm1.15-4.05L4 11.47l.85 1.48L5.5 12l-.35-.95L4 12.53l-1.15-1.48L2 12.53l.85-1.48L3.5 12l-.35.95zM12 4l7 3v6l-7 3-7-3V7l7-3z"/>
-            </svg>
-            <svg className="w-6 h-3" fill="black" viewBox="0 0 24 12">
-              <rect x="1" y="1" width="22" height="10" rx="5" fill="none" stroke="black" strokeWidth="1"/>
-              <rect x="23" y="4" width="2" height="4" rx="1" fill="black"/>
-            </svg>
-          </div>
-        </div>
-
         {/* Header */}
-        <div className="px-4 py-2 flex items-center border-b border-gray-200">
+        <div className="px-4 py-4 flex items-center border-b border-gray-200">
           <button 
             onClick={() => navigate(`/code-confirmed?email=${encodeURIComponent(email)}&sessionId=${encodeURIComponent(sessionId)}`)}
             className="p-2 -ml-2"
