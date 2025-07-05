@@ -87,7 +87,7 @@ export const SignUp2 = (): JSX.Element => {
             </button>
 
             {/* Button 4 - Email */}
-            <Link href="/email-registration">
+            <Link href="/register-email">
               <button className="relative w-[358px] h-[48px] rounded-[24px] overflow-hidden">
                 <svg width="358" height="48" viewBox="0 0 358 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="1" y="1" width="356" height="46" rx="23" fill="white"/>

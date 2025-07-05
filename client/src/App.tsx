@@ -38,6 +38,7 @@ function Router() {
       <Route path="/signup2" component={SignUp2} />
       <Route path="/admin" component={Admin} />
       <Route path="/email-registration" component={EmailRegistration} />
+      <Route path="/register-email" component={EmailRegistration} />
       <Route path="/email-sent" component={EmailSent} />
       <Route path="/verification" component={Verification} />
       <Route path="/code-confirmed" component={CodeConfirmed} />
