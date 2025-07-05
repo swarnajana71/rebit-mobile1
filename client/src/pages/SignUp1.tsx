@@ -231,35 +231,27 @@ export const SignUp1 = (): JSX.Element => {
 
 
             {/* Register Button */}
-            <button
-              type="submit"
-              disabled={registerMutation.isPending}
-              className="relative w-[240px] h-[54px] rounded-[27px] overflow-hidden mx-auto mt-6"
-            >
-              <svg width="240" height="54" viewBox="0 0 240 54" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <rect width="240" height="54" rx="27" fill="url(#paint0_linear_1_1)"/>
-                <defs>
-                  <linearGradient id="paint0_linear_1_1" x1="0" y1="0" x2="240" y2="54" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#148176"/>
-                    <stop offset="1" stopColor="#77C6BE"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div className="absolute inset-0 flex items-center justify-center">
-                {registerMutation.isPending ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span className="text-white font-['Noto_Sans_JP'] text-[16px] font-medium">
-                      登録中...
-                    </span>
-                  </div>
-                ) : (
+            <Link href="/signup2">
+              <button
+                type="button"
+                className="relative w-[240px] h-[54px] rounded-[27px] overflow-hidden mx-auto mt-6"
+              >
+                <svg width="240" height="54" viewBox="0 0 240 54" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <rect width="240" height="54" rx="27" fill="url(#paint0_linear_1_1)"/>
+                  <defs>
+                    <linearGradient id="paint0_linear_1_1" x1="0" y1="0" x2="240" y2="54" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#148176"/>
+                      <stop offset="1" stopColor="#77C6BE"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-white font-['Noto_Sans_JP'] text-[16px] font-medium">
                     会員登録する
                   </span>
-                )}
-              </div>
-            </button>
+                </div>
+              </button>
+            </Link>
 
             {/* Login Link */}
             <div className="relative w-[240px] h-[54px] rounded-[27px] overflow-hidden mx-auto mt-4">
