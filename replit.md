@@ -118,6 +118,14 @@ Changelog:
   * Added proper error handling for duplicate usernames
   * Local backup storage maintains reference copies
   * Registration flow fully functional with Japanese success/error messages
+- July 05, 2025. Redesigned registration flow to match admin 2-step authentication system
+  * Implemented proper email verification flow using admin API endpoints
+  * Created 5-page registration journey: EmailRegistration → EmailSent → Verification → CodeConfirmed → CompleteProfile
+  * Integrated with admin /api/auth/register/init, /verify-email, /complete endpoints
+  * Added session management with sessionId tracking throughout flow
+  * Email sending and verification now handled entirely by admin backend
+  * PWA only collects user information and forwards to admin authentication system
+  * Maintains Japanese interface with authentic mobile design patterns
 ```
 
 ## User Preferences

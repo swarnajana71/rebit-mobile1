@@ -1,0 +1,723 @@
+# RVM Authentication - 2-Step Registration Flow
+
+## 🔐 Two-Step Registration Process
+
+### Overview
+The registration is split into two steps for better user experience:
+1. **Step 1**: Email verification (user provides only email)
+2. **Step 2**: Profile completion (name, mobile, password)
+
+---
+
+## 📱 API Endpoints
+
+### Step 1: Initiate Registration (Email Only)
+```http
+POST /api/auth/register/init
+Content-Type: application/json
+
+{
+  "email": "user@example.com"
+}
+```
+
+**Response (Success)**:
+```json
+{
+  "success": true,
+  "message": "Verification code sent to your email",
+  "data": {
+    "email": "user@example.com",
+    "sessionId": "reg_session_abc123",  // Temporary session ID
+    "codeExpiresIn": 600  // 10 minutes
+  }
+}
+```
+
+### Step 2: Verify Email Code
+```http
+POST /api/auth/register/verify-email
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "code": "1234",
+  "sessionId": "reg_session_abc123"
+}
+```
+
+**Response (Success)**:
+```json
+{
+  "success": true,
+  "message": "Email verified successfully",
+  "data": {
+    "email": "user@example.com",
+    "sessionId": "reg_session_abc123",
+    "emailVerified": true,
+    "nextStep": "complete_profile"
+  }
+}
+```
+
+### Step 3: Complete Profile
+```http
+POST /api/auth/register/complete
+Content-Type: application/json
+
+{
+  "sessionId": "reg_session_abc123",
+  "fullName": "John Doe",
+  "mobile": "+971501234567",
+  "password": "SecurePass123!",
+  "preferredLanguage": "en"  // Optional
+}
+```
+
+**Response (Success)**:
+```json
+{
+  "success": true,
+  "message": "Registration completed successfully",
+  "data": {
+    "userId": "user_123",
+    "accessToken": "eyJhbGciOiJIUzI1NiIs...",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIs...",
+    "user": {
+      "id": "user_123",
+      "email": "user@example.com",
+      "mobile": "+971501234567",
+      "fullName": "John Doe",
+      "points": 0,
+      "ranking": "Seed",
+      "isVerified": true
+    }
+  }
+}
+```
+
+### Additional Endpoints
+
+#### Resend Verification Code
+```http
+POST /api/auth/register/resend-code
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "sessionId": "reg_session_abc123"
+}
+```
+
+#### Check Registration Status
+```http
+GET /api/auth/register/status/:sessionId
+```
+
+**Response**:
+```json
+{
+  "success": true,
+  "data": {
+    "sessionId": "reg_session_abc123",
+    "email": "user@example.com",
+    "emailVerified": true,
+    "profileCompleted": false,
+    "expiresAt": "2024-01-20T10:30:00Z"
+  }
+}
+```
+
+---
+
+## 💾 Database Schema
+
+### Users Table
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    mobile VARCHAR(20) UNIQUE,           -- Nullable until profile completion
+    password_hash TEXT,                  -- Nullable until profile completion
+    full_name VARCHAR(255),              -- Nullable until profile completion
+    points INTEGER DEFAULT 0,
+    ranking VARCHAR(50) DEFAULT 'Seed',
+    is_verified BOOLEAN DEFAULT false,
+    is_active BOOLEAN DEFAULT true,
+    preferred_language VARCHAR(2) DEFAULT 'en',
+    registration_completed BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Registration Sessions Table
+```sql
+CREATE TABLE registration_sessions (
+    id VARCHAR(50) PRIMARY KEY,          -- Session ID
+    email VARCHAR(255) NOT NULL,
+    email_verified BOOLEAN DEFAULT false,
+    profile_completed BOOLEAN DEFAULT false,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    
+    CONSTRAINT unique_email_session UNIQUE(email)
+);
+```
+
+### Verification Codes Table
+```sql
+CREATE TABLE verification_codes (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    session_id VARCHAR(50) NOT NULL,
+    code VARCHAR(4) NOT NULL,
+    attempts INTEGER DEFAULT 0,
+    expires_at TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    used_at TIMESTAMP,
+    
+    FOREIGN KEY (session_id) REFERENCES registration_sessions(id) ON DELETE CASCADE
+);
+```
+
+---
+
+## 🚀 Implementation Code
+
+### 1. Registration Controller
+
+```typescript
+// src/controllers/registrationController.ts
+import { Request, Response } from 'express';
+import { v4 as uuidv4 } from 'uuid';
+import bcrypt from 'bcrypt';
+import { db } from '../db';
+import { EmailService } from '../services/emailService';
+import { VerificationCodeManager } from '../utils/verificationCode';
+
+export class RegistrationController {
+  private emailService: EmailService;
+
+  constructor() {
+    this.emailService = new EmailService();
+  }
+
+  // Step 1: Initiate registration with email only
+  async initiateRegistration(req: Request, res: Response) {
+    try {
+      const { email } = req.body;
+
+      // Validate email
+      if (!email || !this.isValidEmail(email)) {
+        return res.status(400).json({
+          success: false,
+          error: 'Valid email address is required',
+        });
+      }
+
+      // Check if email already registered
+      const existingUser = await db.query(
+        'SELECT id FROM users WHERE email = $1 AND registration_completed = true',
+        [email]
+      );
+
+      if (existingUser.rows.length > 0) {
+        return res.status(409).json({
+          success: false,
+          error: 'This email is already registered',
+        });
+      }
+
+      // Check for existing session
+      let sessionId;
+      const existingSession = await db.query(
+        'SELECT id FROM registration_sessions WHERE email = $1 AND expires_at > NOW()',
+        [email]
+      );
+
+      if (existingSession.rows.length > 0) {
+        sessionId = existingSession.rows[0].id;
+      } else {
+        // Create new registration session
+        sessionId = `reg_session_${uuidv4()}`;
+        const expiresAt = new Date();
+        expiresAt.setHours(expiresAt.getHours() + 1); // 1 hour session
+
+        await db.query(
+          `INSERT INTO registration_sessions (id, email, expires_at)
+           VALUES ($1, $2, $3)
+           ON CONFLICT (email) DO UPDATE 
+           SET id = $1, expires_at = $3, created_at = NOW()`,
+          [sessionId, email, expiresAt]
+        );
+      }
+
+      // Generate and save verification code
+      const code = VerificationCodeManager.generateCode();
+      const codeExpiresAt = VerificationCodeManager.getExpirationTime();
+
+      await db.query(
+        `INSERT INTO verification_codes (email, session_id, code, expires_at)
+         VALUES ($1, $2, $3, $4)`,
+        [email, sessionId, code, codeExpiresAt]
+      );
+
+      // Send verification email
+      await this.emailService.sendVerificationCode(email, code);
+
+      res.status(200).json({
+        success: true,
+        message: 'Verification code sent to your email',
+        data: {
+          email,
+          sessionId,
+          codeExpiresIn: 600,
+        },
+      });
+    } catch (error) {
+      console.error('Registration initiation error:', error);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to initiate registration',
+      });
+    }
+  }
+
+  // Step 2: Verify email code
+  async verifyEmail(req: Request, res: Response) {
+    try {
+      const { email, code, sessionId } = req.body;
+
+      // Validate inputs
+      if (!email || !code || !sessionId) {
+        return res.status(400).json({
+          success: false,
+          error: 'Email, code, and session ID are required',
+        });
+      }
+
+      // Verify session exists and not expired
+      const session = await db.query(
+        'SELECT * FROM registration_sessions WHERE id = $1 AND email = $2 AND expires_at > NOW()',
+        [sessionId, email]
+      );
+
+      if (session.rows.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: 'Invalid or expired session',
+        });
+      }
+
+      // Verify code
+      const verificationResult = await db.query(
+        `SELECT * FROM verification_codes 
+         WHERE email = $1 AND session_id = $2 AND code = $3 
+         AND used_at IS NULL AND expires_at > NOW()
+         ORDER BY created_at DESC LIMIT 1`,
+        [email, sessionId, code]
+      );
+
+      if (verificationResult.rows.length === 0) {
+        // Increment attempts
+        await db.query(
+          `UPDATE verification_codes 
+           SET attempts = attempts + 1 
+           WHERE email = $1 AND session_id = $2 AND used_at IS NULL`,
+          [email, sessionId]
+        );
+
+        return res.status(400).json({
+          success: false,
+          error: 'Invalid or expired verification code',
+        });
+      }
+
+      // Mark code as used
+      await db.query(
+        'UPDATE verification_codes SET used_at = NOW() WHERE id = $1',
+        [verificationResult.rows[0].id]
+      );
+
+      // Update session
+      await db.query(
+        'UPDATE registration_sessions SET email_verified = true WHERE id = $1',
+        [sessionId]
+      );
+
+      res.json({
+        success: true,
+        message: 'Email verified successfully',
+        data: {
+          email,
+          sessionId,
+          emailVerified: true,
+          nextStep: 'complete_profile',
+        },
+      });
+    } catch (error) {
+      console.error('Email verification error:', error);
+      res.status(500).json({
+        success: false,
+        error: 'Verification failed',
+      });
+    }
+  }
+
+  // Step 3: Complete profile
+  async completeProfile(req: Request, res: Response) {
+    try {
+      const { sessionId, fullName, mobile, password, preferredLanguage } = req.body;
+
+      // Validate inputs
+      if (!sessionId || !fullName || !mobile || !password) {
+        return res.status(400).json({
+          success: false,
+          error: 'All fields are required',
+        });
+      }
+
+      // Validate mobile format
+      if (!this.isValidMobile(mobile)) {
+        return res.status(400).json({
+          success: false,
+          error: 'Invalid mobile number format',
+        });
+      }
+
+      // Validate password strength
+      if (!this.isStrongPassword(password)) {
+        return res.status(400).json({
+          success: false,
+          error: 'Password must be at least 8 characters with numbers and special characters',
+        });
+      }
+
+      // Verify session
+      const session = await db.query(
+        `SELECT * FROM registration_sessions 
+         WHERE id = $1 AND email_verified = true 
+         AND profile_completed = false AND expires_at > NOW()`,
+        [sessionId]
+      );
+
+      if (session.rows.length === 0) {
+        return res.status(400).json({
+          success: false,
+          error: 'Invalid session or email not verified',
+        });
+      }
+
+      const { email } = session.rows[0];
+
+      // Check if mobile already exists
+      const existingMobile = await db.query(
+        'SELECT id FROM users WHERE mobile = $1',
+        [mobile]
+      );
+
+      if (existingMobile.rows.length > 0) {
+        return res.status(409).json({
+          success: false,
+          error: 'Mobile number already registered',
+        });
+      }
+
+      // Hash password
+      const passwordHash = await bcrypt.hash(password, 10);
+
+      // Create or update user
+      const userResult = await db.query(
+        `INSERT INTO users (email, mobile, password_hash, full_name, preferred_language, is_verified, registration_completed)
+         VALUES ($1, $2, $3, $4, $5, true, true)
+         ON CONFLICT (email) DO UPDATE 
+         SET mobile = $2, password_hash = $3, full_name = $4, 
+             preferred_language = $5, is_verified = true, 
+             registration_completed = true, updated_at = NOW()
+         RETURNING id, email, mobile, full_name, points, ranking`,
+        [email, mobile, passwordHash, fullName, preferredLanguage || 'en']
+      );
+
+      const user = userResult.rows[0];
+
+      // Update session
+      await db.query(
+        'UPDATE registration_sessions SET profile_completed = true WHERE id = $1',
+        [sessionId]
+      );
+
+      // Generate tokens
+      const accessToken = this.generateJWT({ userId: user.id, email: user.email });
+      const refreshToken = this.generateRefreshToken({ userId: user.id });
+
+      // Send welcome email
+      await this.emailService.sendWelcomeEmail(email, fullName);
+
+      res.json({
+        success: true,
+        message: 'Registration completed successfully',
+        data: {
+          userId: user.id,
+          accessToken,
+          refreshToken,
+          user: {
+            ...user,
+            isVerified: true,
+          },
+        },
+      });
+    } catch (error) {
+      console.error('Profile completion error:', error);
+      res.status(500).json({
+        success: false,
+        error: 'Failed to complete registration',
+      });
+    }
+  }
+
+  // Helper methods
+  private isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  private isValidMobile(mobile: string): boolean {
+    // Example for UAE numbers, adjust for your region
+    const mobileRegex = /^\+971[0-9]{9}$/;
+    return mobileRegex.test(mobile);
+  }
+
+  private isStrongPassword(password: string): boolean {
+    // At least 8 characters, one number, one special character
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
+  private generateJWT(payload: any): string {
+    // Implementation depends on your JWT library
+    return 'jwt_token_here';
+  }
+
+  private generateRefreshToken(payload: any): string {
+    // Implementation depends on your JWT library
+    return 'refresh_token_here';
+  }
+}
+```
+
+### 2. Email Templates
+
+```typescript
+// src/services/emailService.ts
+export class EmailService {
+  async sendVerificationCode(email: string, code: string): Promise<void> {
+    const mailOptions = {
+      from: '"RVM System" <noreply@rvm-system.com>',
+      to: email,
+      subject: 'Verify your email - RVM System',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background-color: #2ECC71; padding: 30px; text-align: center;">
+            <h1 style="color: white; margin: 0;">Welcome to RVM!</h1>
+            <p style="color: white; margin: 10px 0 0 0;">Let's verify your email</p>
+          </div>
+          <div style="padding: 40px 20px; background-color: #f5f5f5;">
+            <p style="color: #333; font-size: 16px; margin-bottom: 30px;">
+              Enter this code to verify your email address:
+            </p>
+            <div style="background-color: #fff; padding: 30px; text-align: center; margin: 0 auto; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <h1 style="color: #2ECC71; letter-spacing: 10px; margin: 0; font-size: 48px;">${code}</h1>
+            </div>
+            <p style="color: #666; font-size: 14px; margin-top: 30px; text-align: center;">
+              This code expires in 10 minutes
+            </p>
+            <hr style="border: none; border-top: 1px solid #ddd; margin: 40px 0;">
+            <p style="color: #999; font-size: 12px; text-align: center;">
+              If you didn't request this email, you can safely ignore it.
+            </p>
+          </div>
+        </div>
+      `
+    };
+
+    await this.transporter.sendMail(mailOptions);
+  }
+
+  async sendWelcomeEmail(email: string, userName: string): Promise<void> {
+    const mailOptions = {
+      from: '"RVM System" <noreply@rvm-system.com>',
+      to: email,
+      subject: '🎉 Welcome to RVM - Start Earning Rewards!',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background-color: #2ECC71; padding: 40px; text-align: center;">
+            <h1 style="color: white; margin: 0;">Welcome, ${userName}!</h1>
+            <p style="color: white; margin: 10px 0 0 0; font-size: 18px;">
+              Your account is ready to go
+            </p>
+          </div>
+          <div style="padding: 40px 20px; background-color: #fff;">
+            <h2 style="color: #333; margin-bottom: 20px;">Get Started with RVM</h2>
+            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h3 style="color: #2ECC71; margin-top: 0;">📱 Download the App</h3>
+              <p>Get our mobile app to find nearby machines and start recycling</p>
+            </div>
+            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h3 style="color: #2ECC71; margin-top: 0;">♻️ Start Recycling</h3>
+              <p>Find a machine, scan your QR code, and earn points instantly</p>
+            </div>
+            <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px;">
+              <h3 style="color: #2ECC71; margin-top: 0;">🎁 Earn Rewards</h3>
+              <p>Exchange your points for amazing rewards and discounts</p>
+            </div>
+          </div>
+          <div style="background-color: #f5f5f5; padding: 20px; text-align: center;">
+            <p style="color: #666; margin: 0;">
+              Happy recycling! 🌍
+            </p>
+          </div>
+        </div>
+      `
+    };
+
+    await this.transporter.sendMail(mailOptions);
+  }
+}
+```
+
+---
+
+## 📱 Mobile App Flow
+
+### Screen 1: Email Entry
+```typescript
+interface EmailEntryScreen {
+  email: string;
+  // Single input field
+  // "Continue" button
+  // "Already have an account? Login" link
+}
+```
+
+### Screen 2: Verification Code
+```typescript
+interface VerificationScreen {
+  // 4 separate digit inputs
+  digit1: string;
+  digit2: string;
+  digit3: string;
+  digit4: string;
+  
+  // Features:
+  // - Auto-focus next field
+  // - Auto-submit on 4th digit
+  // - Countdown timer (10:00)
+  // - "Resend Code" button
+  // - "Change Email" link
+}
+```
+
+### Screen 3: Complete Profile
+```typescript
+interface ProfileCompletionScreen {
+  fullName: string;
+  mobile: string;         // With country code picker
+  password: string;       // With strength indicator
+  confirmPassword: string;
+  acceptTerms: boolean;   // Checkbox
+  
+  // Features:
+  // - Password visibility toggle
+  // - Real-time validation
+  // - Mobile format helper
+  // - Terms & conditions link
+}
+```
+
+---
+
+## 🔒 Security Features
+
+1. **Session Management**
+   - 1-hour registration session expiry
+   - Session ID validation at each step
+   - Prevents jumping between steps
+
+2. **Rate Limiting**
+   ```typescript
+   // Middleware example
+   const rateLimits = {
+     emailInit: '5 per hour per IP',
+     verifyCode: '10 attempts per session',
+     resendCode: '3 per hour per email',
+     completeProfile: '5 per hour per IP'
+   };
+   ```
+
+3. **Validation Rules**
+   - Email: Valid format check
+   - Mobile: Country-specific format
+   - Password: 8+ chars, numbers, special chars
+   - Code: 4 digits only
+
+---
+
+## 🧪 Error Handling
+
+### Common Error Responses
+
+```json
+// Email already registered
+{
+  "success": false,
+  "error": "This email is already registered",
+  "code": "EMAIL_EXISTS"
+}
+
+// Invalid verification code
+{
+  "success": false,
+  "error": "Invalid or expired verification code",
+  "code": "INVALID_CODE",
+  "attemptsRemaining": 3
+}
+
+// Session expired
+{
+  "success": false,
+  "error": "Registration session expired. Please start again.",
+  "code": "SESSION_EXPIRED"
+}
+
+// Mobile already exists
+{
+  "success": false,
+  "error": "Mobile number already registered",
+  "code": "MOBILE_EXISTS"
+}
+```
+
+---
+
+## 🚀 Benefits of 2-Step Registration
+
+1. **Lower Barrier to Entry**
+   - Users only need email to start
+   - Reduces initial form fatigue
+
+2. **Email Verification First**
+   - Ensures valid email before collecting more data
+   - Reduces fake registrations
+
+3. **Better Conversion**
+   - Users who verify email are more committed
+   - Can send reminders to complete profile
+
+4. **Progressive Disclosure**
+   - Collect information when needed
+   - Less overwhelming for users
+
+5. **Flexibility**
+   - Can add more steps later (e.g., preferences)
+   - A/B test different flows

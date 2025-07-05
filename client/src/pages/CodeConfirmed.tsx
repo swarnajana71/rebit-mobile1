@@ -3,9 +3,10 @@ import { useLocation } from "wouter";
 export const CodeConfirmed = (): JSX.Element => {
   const [, navigate] = useLocation();
   
-  // Get email from URL params
+  // Get email and sessionId from URL params
   const urlParams = new URLSearchParams(window.location.search);
   const email = urlParams.get('email') || '';
+  const sessionId = urlParams.get('sessionId') || '';
 
   return (
     <div className="bg-white w-full min-h-screen flex justify-center">
@@ -77,7 +78,7 @@ export const CodeConfirmed = (): JSX.Element => {
 
             {/* Continue Button */}
             <button
-              onClick={() => navigate(`/complete-profile?email=${encodeURIComponent(email)}`)}
+              onClick={() => navigate(`/complete-profile?email=${encodeURIComponent(email)}&sessionId=${encodeURIComponent(sessionId)}`)}
               className="w-full h-[50px] bg-[#4CAF50] text-white rounded-lg font-['Noto_Sans_JP'] text-[16px] font-medium"
             >
               プロフィールを完成させる

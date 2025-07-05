@@ -7,7 +7,7 @@ import { z } from "zod";
 export async function registerRoutes(app: Express): Promise<Server> {
   console.log("=== Registering routes ===");
   
-  // Email verification flow - Step 1: Send verification code
+  // Email verification flow - Step 1: Initiate registration (forwards to admin)
   app.post("/api/mobile/auth/send-verification", async (req, res) => {
     try {
       const { email } = req.body;
@@ -16,41 +16,71 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "メールアドレスが必要です" });
       }
       
-      console.log("=== Sending Verification Code ===");
+      console.log("=== Initiating Registration via Admin API ===");
       console.log("Email:", email);
       
-      // Generate 4-digit verification code
-      const verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
+      // Forward to admin API - Step 1: Initiate registration
+      const ADMIN_API_URL = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
       
-      // Store verification code temporarily (in production, use Redis or database)
-      // For now, we'll store in memory (this is just for demo)
-      global.verificationCodes = global.verificationCodes || {};
-      global.verificationCodes[email] = {
-        code: verificationCode,
-        timestamp: Date.now(),
-        verified: false
-      };
+      const response = await fetch(`${ADMIN_API_URL}/api/auth/register/init`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ email }),
+      });
       
-      console.log("Generated verification code:", verificationCode);
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Admin API error:", response.status, errorData);
+        
+        let errorMessage = "認証コードの送信に失敗しました";
+        if (response.status === 409) {
+          errorMessage = "このメールアドレスは既に登録されています";
+        } else if (errorData.error) {
+          errorMessage = errorData.error;
+        }
+        
+        return res.status(response.status).json({
+          success: false,
+          message: errorMessage
+        });
+      }
       
-      // In production, send actual email here
-      // For demo, just log the code
-      console.log(`Email would be sent to ${email} with code: ${verificationCode}`);
+      const result = await response.json();
+      console.log("Admin API registration init success:", result);
+      
+      // Store session info locally for later use
+      if (result.data?.sessionId) {
+        global.registrationSessions = global.registrationSessions || {};
+        global.registrationSessions[email] = {
+          sessionId: result.data.sessionId,
+          email: email,
+          emailVerified: false,
+          timestamp: Date.now()
+        };
+      }
       
       res.json({
         success: true,
         message: "認証コードを送信しました",
-        // In production, don't return the code
-        debug_code: verificationCode
+        data: {
+          email: email,
+          sessionId: result.data?.sessionId
+        }
       });
       
     } catch (error) {
-      console.error("Send verification error:", error);
-      res.status(500).json({ message: "認証コードの送信に失敗しました" });
+      console.error("Registration init error:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "認証コードの送信に失敗しました" 
+      });
     }
   });
 
-  // Email verification flow - Step 2: Verify code
+  // Email verification flow - Step 2: Verify code (forwards to admin)
   app.post("/api/mobile/auth/verify-code", async (req, res) => {
     try {
       const { email, code } = req.body;
@@ -59,44 +89,77 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "メールアドレスと認証コードが必要です" });
       }
       
-      console.log("=== Verifying Code ===");
+      console.log("=== Verifying Code via Admin API ===");
       console.log("Email:", email);
       console.log("Code:", code);
       
-      // Check verification code
-      const storedData = global.verificationCodes?.[email];
-      if (!storedData) {
-        return res.status(400).json({ message: "認証コードが見つかりません" });
+      // Get session info
+      const sessionData = (global as any).registrationSessions?.[email];
+      if (!sessionData) {
+        return res.status(400).json({ message: "認証セッションが見つかりません" });
       }
       
-      if (storedData.code !== code) {
-        return res.status(400).json({ message: "認証コードが正しくありません" });
+      // Forward to admin API - Step 2: Verify email code
+      const ADMIN_API_URL = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
+      
+      const response = await fetch(`${ADMIN_API_URL}/api/auth/register/verify-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          email,
+          code,
+          sessionId: sessionData.sessionId
+        }),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Admin API verify error:", response.status, errorData);
+        
+        let errorMessage = "認証コードが正しくありません";
+        if (response.status === 400 && errorData.error?.includes("expired")) {
+          errorMessage = "認証コードの有効期限が切れています";
+        } else if (errorData.error) {
+          errorMessage = errorData.error;
+        }
+        
+        return res.status(response.status).json({
+          success: false,
+          message: errorMessage
+        });
       }
       
-      // Check if code is expired (5 minutes)
-      const fiveMinutes = 5 * 60 * 1000;
-      if (Date.now() - storedData.timestamp > fiveMinutes) {
-        return res.status(400).json({ message: "認証コードの有効期限が切れています" });
+      const result = await response.json();
+      console.log("Admin API verification success:", result);
+      
+      // Update local session
+      if ((global as any).registrationSessions?.[email]) {
+        (global as any).registrationSessions[email].emailVerified = true;
       }
-      
-      // Mark as verified
-      storedData.verified = true;
-      
-      console.log("Code verified successfully");
       
       res.json({
         success: true,
         message: "認証が完了しました",
-        email: email
+        data: {
+          email: email,
+          sessionId: sessionData.sessionId,
+          emailVerified: true
+        }
       });
       
     } catch (error) {
-      console.error("Verify code error:", error);
-      res.status(500).json({ message: "認証に失敗しました" });
+      console.error("Code verification error:", error);
+      res.status(500).json({ 
+        success: false, 
+        message: "認証に失敗しました" 
+      });
     }
   });
 
-  // Email verification flow - Step 3: Complete registration
+  // Email verification flow - Step 3: Complete registration (forwards to admin)
   app.post("/api/mobile/auth/complete-registration", async (req, res) => {
     try {
       const { email, firstName, lastName, mobile, password } = req.body;
@@ -105,81 +168,93 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: "すべての項目を入力してください" });
       }
       
-      console.log("=== Completing Registration ===");
+      console.log("=== Completing Registration via Admin API ===");
       console.log("Email:", email);
       console.log("Name:", firstName, lastName);
       console.log("Mobile:", mobile);
       
-      // Check if email was verified
-      const storedData = global.verificationCodes?.[email];
-      if (!storedData || !storedData.verified) {
+      // Get session info and verify email was verified
+      const sessionData = (global as any).registrationSessions?.[email];
+      if (!sessionData || !sessionData.emailVerified) {
         return res.status(400).json({ message: "メールアドレスが認証されていません" });
       }
       
-      // Forward to main admin backend
-      const externalApiUrl = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev/api/mobile/auth/register";
+      // Forward to admin API - Step 3: Complete profile
+      const ADMIN_API_URL = "https://4e475e40-746c-4b88-8374-64ada12b3caa-00-12lsasagarlm3.worf.replit.dev";
       
-      const registrationData = {
-        email,
-        password,
-        firstName,
-        lastName,
-        mobile,
-        username: email.split('@')[0],
-        location: 'Mobile App User (Email Verified)',
-        registrationMethod: "email-verified-mobile-app"
+      const profileData = {
+        sessionId: sessionData.sessionId,
+        fullName: `${firstName} ${lastName}`,
+        mobile: mobile,
+        password: password,
+        preferredLanguage: "ja"
       };
       
-      console.log("Forwarding to external API:", externalApiUrl);
+      console.log("Forwarding to admin API:", `${ADMIN_API_URL}/api/auth/register/complete`);
       
-      const response = await fetch(externalApiUrl, {
+      const response = await fetch(`${ADMIN_API_URL}/api/auth/register/complete`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: JSON.stringify(registrationData),
+        body: JSON.stringify(profileData),
       });
       
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("External API error:", response.status, errorText);
+        const errorData = await response.json().catch(() => ({}));
+        console.error("Admin API complete error:", response.status, errorData);
+        
+        let errorMessage = "登録の完了に失敗しました";
+        if (response.status === 409) {
+          errorMessage = "携帯電話番号が既に登録されています";
+        } else if (response.status === 400) {
+          errorMessage = "入力内容に問題があります";
+        } else if (errorData.error) {
+          errorMessage = errorData.error;
+        }
+        
         return res.status(response.status).json({
-          message: errorText || "外部API登録に失敗しました"
+          success: false,
+          message: errorMessage
         });
       }
       
       const result = await response.json();
-      console.log("External API registration success:", result);
+      console.log("Admin API registration complete success:", result);
       
       // Also store locally for backup/reference
       try {
         await storage.createMember({
           email,
           password,
-          registrationMethod: "email-verified-mobile-app-forwarded"
+          registrationMethod: "admin-api-2step-forwarded"
         });
         console.log("Local backup created");
       } catch (localError) {
         console.warn("Local backup failed:", localError);
+        // Don't fail the request if local backup fails
       }
       
-      // Clean up verification code
-      if (global.verificationCodes?.[email]) {
-        delete global.verificationCodes[email];
+      // Clean up session data
+      if ((global as any).registrationSessions?.[email]) {
+        delete (global as any).registrationSessions[email];
       }
       
       res.json({
         success: true,
         message: "会員登録が完了しました",
-        data: result.user || result.data,
+        data: result.data || result,
         timestamp: new Date().toISOString(),
-        registrationMethod: "email-verified-mobile-app"
+        registrationMethod: "admin-api-2step"
       });
       
     } catch (error) {
       console.error("Complete registration error:", error);
-      res.status(500).json({ message: "登録の完了に失敗しました" });
+      res.status(500).json({ 
+        success: false, 
+        message: "登録の完了に失敗しました" 
+      });
     }
   });
   

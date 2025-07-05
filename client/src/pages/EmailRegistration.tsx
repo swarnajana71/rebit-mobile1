@@ -35,14 +35,16 @@ export const EmailRegistration = (): JSX.Element => {
       }
       
       return await response.json();
-      
-      console.log("Verification sent response:", response);
-      return response;
     },
     onSuccess: (data) => {
       console.log("Verification code sent:", data);
-      // Navigate to email sent confirmation page
-      navigate(`/email-sent?email=${encodeURIComponent(email)}`);
+      toast({
+        title: "認証コード送信完了",
+        description: "メールに認証コードを送信しました",
+      });
+      // Navigate to email sent confirmation page with session info
+      const sessionId = data.data?.sessionId || '';
+      navigate(`/email-sent?email=${encodeURIComponent(email)}&sessionId=${encodeURIComponent(sessionId)}`);
     },
     onError: (error: Error) => {
       console.error("Verification send failed:", error);
